@@ -1,5 +1,10 @@
-Abdul: i hate vim so much
+Project Team Members:
+Abdul 
+Evan 
+AJ
+Enrico
+i hate vim so much
 102_3_F20
-Evan: Evan Swett
-Enrico: Enrico Blackwell
-Henry: henry
+Evan Swett
+Enrico Blackwell
+henry
