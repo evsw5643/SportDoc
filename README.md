@@ -5,5 +5,5 @@ Project Team Members:
 Evan Swett
 Enrico Blackwell
 henry
-aj
-abdul
+Abdul
+Julian
