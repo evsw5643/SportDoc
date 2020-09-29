@@ -8,7 +8,7 @@ function App() {
         <Router>
             <div className="App">
                 {/* navbar */}
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <nav class="navbar navbar-expand-lg navbar-dark">
                     <Link to="/" class="navbar-brand">
                         Sport Doc
                     </Link>
@@ -27,16 +27,16 @@ function App() {
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="">
                                     Basketball
                                 </a>
                             </li>
+                            
                         </ul>
                     </div>
-                </nav>
-
-                <Switch>
-                    <Route exact path="/">
+                </nav> 
+                <Switch style="height: 1vh;">
+                    <Route style="height: 1vh;" exact path="/">
                         <Home />
                     </Route>
                     {/* <Route path="/basketball">
