@@ -9,17 +9,12 @@ con = engine.connect()
 # Verify that there are no existing tables
 print(engine.table_names())
 
-players = None
-
-allframes = None
 for year in range(1965, 2021):
-    teams = Teams(2020)
+    teams = Teams(year)
     frames = teams.dataframes
     frames['year'] = year
-    if allframes is None:
-        allframes = frames
-    else:
-        allframes = allframes.append(frames)
+
+    frames.to_sql("teams", con, if_exists='append')
 
     for team in teams:
         for player in team.roster.players:
@@ -27,11 +22,7 @@ for year in range(1965, 2021):
             pdf['year'] = year
             pdf['team'] = team.name
             pdf['player_name'] = player.name
-            if players is None:
-                players = pdf
-            else:
-                players.append(pdf)
+            pdf.to_sql("players", con, if_exists='append')
 
-allframes.to_sql("teams", con)
-players.to_sql("players", con)
+
 con.close()
