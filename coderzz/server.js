@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const port = 80;
+const port = 3000;
 
 const { Pool } = require('pg');
 
@@ -17,10 +17,12 @@ const pool = new Pool({
     connectionTimeoutMillis: 2000
 });
 
-app.get('/viewtable', (req, res) => {
+// Tables: teams, players
+
+app.get('/viewteams', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query('SELECT * FROM users', (err, reso) => {
+        client.query('SELECT * FROM teams', (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
