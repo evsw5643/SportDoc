@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 CREATE TABLE games (
     home text,
     away text,
@@ -17,3 +18,6 @@ CREATE TABLE players (
     year int,
     points int,
 )
+=======
+SELECT * FROM database WHERE a = 5;
+>>>>>>> master
