@@ -1,3 +1,5 @@
+# ATTENTION! Do not run this file unless you want to reset the database and re grab all the data!
+
 from sportsreference.nba.teams import Teams
 
 import sqlalchemy  # Package for accessing SQL databases via Python
