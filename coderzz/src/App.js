@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Home from './Views/Home.js';
+import Home from './Views/Home/Home.js';
+import Basketball from './Views/Basketball/basketball.js'
 import './App.css';
 
 function App() {
@@ -27,9 +28,9 @@ function App() {
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="">
+                                <Link class="nav-link" to="/basketball">
                                     Basketball
-                                </a>
+                                </Link>
                             </li>
                             
                         </ul>
@@ -39,9 +40,9 @@ function App() {
                     <Route style="height: 1vh;" exact path="/">
                         <Home />
                     </Route>
-                    {/* <Route path="/basketball">
+                    <Route style="height: 1vh;" exact path="/basketball">
                         <Basketball />
-                    </Route> */}
+                    </Route>
                 </Switch>
             </div>
         </Router>
