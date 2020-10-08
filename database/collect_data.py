@@ -23,7 +23,8 @@ def do_year(year):
         frames['year'] = year
 
         frames.to_sql("teams", con, if_exists='append')
-    except:
+    except Exception as e:
+        print(e)
         time.sleep(5 * 60)
         teams = Teams(year)
         frames = teams.dataframes
@@ -36,7 +37,8 @@ def do_year(year):
 
     try:
         do_games()
-    except:
+    except Exception as e:
+        print(e)
         time.sleep(5 * 60)
         do_games()
 
@@ -49,7 +51,8 @@ def do_players(team):
             pdf['team'] = team.name
             pdf['player_name'] = player.name
             pdf.to_sql("players", con, if_exists='append')
-        except:
+        except Exception as e:
+            print(e)
             time.sleep(5 * 60)
             pdf = player.dataframe
             pdf['year'] = year
@@ -65,7 +68,8 @@ def do_games():
 for year in range(2011, 2021):
     try:
         do_year(year)
-    except:
+    except Exception as e:
+        print(e)
         time.sleep(60 * 5)
         do_year(year)
 
