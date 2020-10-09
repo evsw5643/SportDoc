@@ -2,11 +2,11 @@
 import time
 from datetime import datetime
 import pandas as pd
+import trueskill
 
 from sportsreference.mlb.boxscore import Boxscores
 
-year = 2019
-def do_games():
+def do_games(year):
     games = Boxscores(datetime(year, 9, 1), datetime(year + 1, 7, 1))
     ngames = []
     for month, games in games.games.items():
@@ -15,10 +15,13 @@ def do_games():
             ngames.append(game)
 
     df = pd.DataFrame(ngames)
-    print(df.head())
+    return df
 
-do_games()
+df = do_games(2019)
+# for year in range(2011, 2021):
+#     df.append(do_games(year))
 
+teams = set(df["away_name"]) | set(df["home_name"])
 
 # import sqlalchemy  # Package for accessing SQL databases via Python
 #

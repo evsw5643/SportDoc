@@ -66,7 +66,7 @@ def do_games():
     ngames = []
     for month, games in games.games.items():
         for game in games:
-            game["month"] = datetime.strptime(month, "%m-%d-%Y")
+            game["date"] = datetime.strptime(month, "%m-%d-%Y")
             ngames.append(game)
 
     df = pd.DataFrame(ngames)
