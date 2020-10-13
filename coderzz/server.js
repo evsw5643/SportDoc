@@ -19,10 +19,10 @@ const pool = new Pool({
 
 // Tables: teams, players
 
-app.get('/viewteams', (req, res) => {
+app.get('/getteam/:team', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query('SELECT * FROM teams', (err, reso) => {
+        client.query(`SELECT * FROM teams WHERE abbreviation = '${req.params.team}'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);

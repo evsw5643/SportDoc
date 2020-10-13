@@ -1,13 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Home from './Views/Home/Home.js';
-import Basketball from './Views/Basketball/basketball.js'
+import Sport from './Views/Sport/sport.js'
 import './App.css';
 
 function App() {
     return (
         <Router>
             <div className="App">
+
                 {/* navbar */}
                 <nav class="navbar navbar-expand-lg navbar-dark">
                     <Link to="/" class="navbar-brand">
@@ -32,18 +33,51 @@ function App() {
                                     Basketball
                                 </Link>
                             </li>
-                            
+                            <li class="nav-item">
+                                <Link class="nav-link" to="/football">
+                                    Footbal
+                                </Link>
+                            </li>
+                            <li class="nav-item">
+                                <Link class="nav-link" to="/baseball">
+                                    Baseball
+                                </Link>
+                            </li>
+                            <li class="nav-item">
+                                <Link class="nav-link" to="/hockey">
+                                    Hockey
+                                </Link>
+                            </li>
+                            <li class="nav-item">
+                                <Link class="nav-link" to="/soccer">
+                                    Soccer
+                                </Link>
+                            </li>
                         </ul>
                     </div>
-                </nav> 
-                <Switch style="height: 1vh;">
-                    <Route style="height: 1vh;" exact path="/">
-                        <Home />
-                    </Route>
-                    <Route style="height: 1vh;" exact path="/basketball">
-                        <Basketball />
-                    </Route>
-                </Switch>
+                </nav>
+                <div class="container-fluid">s
+                    <Switch style={{ height: '1vh' }}>
+                        <Route style={{ height: '1vh' }} exact path="/">
+                            <Home />
+                        </Route>
+                        <Route style={{ height: '1vh' }} exact path="/basketball">
+                            <Sport sport="basketball" />
+                        </Route>
+                        <Route style={{ height: '1vh' }} exact path="/football">
+                            <Sport sport="football" />
+                        </Route>
+                        <Route style={{ height: '1vh' }} exact path="/soccer">
+                            <Sport sport="soccer" />
+                        </Route>
+                        <Route style={{ height: '1vh' }} exact path="/baseball">
+                            <Sport sport="baseball" />
+                        </Route>
+                        <Route style={{ height: '1vh' }} exact path="/hockey">
+                            <Sport sport="hockey" />
+                        </Route>
+                    </Switch>
+                </div>
             </div>
         </Router>
     );
