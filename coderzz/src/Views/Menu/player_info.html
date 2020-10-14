@@ -15,7 +15,58 @@
 body {
   background-color: black;
 }
+  
   </style>
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  
+  <script type="text/javascript">
+    window.onload = function () {
+      var chart = new CanvasJS.Chart("chartContainer", {
+        title:{
+          text: "Shooting Percentage"              
+        },
+        data: [              
+        {
+          type: "column",
+          name: "Preseason",
+          showInLegend: true,               
+          dataPoints: [
+            { label: "In The Paint",  y: 49.3  },
+            { label: "Mid Range", y: 15  },
+            { label: "Three Point", y: 34.8  }
+          ]
+        },
+
+        {
+          type: "column",
+          name: "Regular Season",
+          showInLegend: true,               
+          dataPoints: [
+            { label: "In The Paint",  y: 70  },
+            { label: "Mid Range", y: 20  },
+            { label: "Three Point", y: 20  }
+          ]
+        },
+
+        {
+          type: "column",
+          name: "Finals",
+          showInLegend: true,               
+          dataPoints: [
+            { label: "In The Paint",  y: 90  },
+            { label: "Mid Range", y: 30  },
+            { label: "Three Point", y: 40  }
+          ]
+        }
+        ],
+
+        axisY: {
+          suffix: "%"
+        }
+      });
+      chart.render();
+    }
+    </script>
   </head>
   
   <body>
@@ -74,16 +125,8 @@ body {
       </div>
     </div>
 
-      <div class = "col-sm-7" >
-        <div class = "card" style = "background-color: rgb(11, 0, 65) ;">
-        <h4 style = "text-align: center; font-size: 40px;color: crimson;" class = "card-title">Season Statistics </h4>
-        <img class = "card-img-top" src = "https://amp.businessinsider.com/images/51ba2667eab8ea1f7b000036-750-428.jpg" alt = "Sample Image">
-        <span style = "text-align: center;">
-          <a href="#" class="btn btn-primary">FG%</a>
-          <a href="#" class="btn btn-primary">PPG</a>
-          <a href="#" class="btn btn-primary">3PT%</a>
-        </span>
-        
+      <div class = "col-md-8" >
+        <div id="chartContainer" style="height: 300px; width: 100%;">
       </div>
       </div>
 
