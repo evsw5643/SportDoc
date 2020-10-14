@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Home from './Views/Home/Home.js';
 import Sport from './Views/Sport/sport.js'
+import Player from './Views/Menu/palyer_info.js'
 import './App.css';
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
                             </li>
                             <li class="nav-item">
                                 <Link class="nav-link" to="/football">
-                                    Footbal
+                                    Football
                                 </Link>
                             </li>
                             <li class="nav-item">
@@ -51,6 +52,11 @@ function App() {
                             <li class="nav-item">
                                 <Link class="nav-link" to="/soccer">
                                     Soccer
+                                </Link>
+                            </li>
+                            <li class="nav-item">
+                                <Link class="nav-link" to="/player">
+                                    Player
                                 </Link>
                             </li>
                         </ul>
@@ -75,6 +81,9 @@ function App() {
                         </Route>
                         <Route style={{ height: '1vh' }} exact path="/hockey">
                             <Sport sport="hockey" />
+                        </Route>
+                        <Route style={{ height: '1vh' }} exact path="/player">
+                            <Player />
                         </Route>
                     </Switch>
                 </div>
