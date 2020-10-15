@@ -11,12 +11,59 @@
     justify-content: center;
     color: white;
 }
-
-.card {
+/* basic card stuff */
+.card{
     background-color: #000b14;
-    color: black;
 }
 
 .card-title {
     color: white;
 }
+
+.home_card {
+    background-color: #005FB8;
+    border-radius: 20px;
+    color: #F94E62;
+    display: flex;
+    height: 10rem;
+    width: 10rem;
+    transition-duration: 1s;
+}
+
+
+/* hover animations */
+
+.basketball-card:hover{
+    transform: scale(1.1);
+    background: linear-gradient(to bottom, #ECA72C 0%,#000000  100%); 
+    transition-duration: 1s;
+}
+.football-card:hover{
+    transform: scale(1.1);
+    background: linear-gradient(to bottom, #581908 0%,#000000  100%); 
+    transition-duration: 1s;
+}
+.baseball-card:hover{
+    transform: scale(1.1);
+    transition-duration: 1s;
+    background: linear-gradient(to bottom, #F44E3F 0%,#000000  100%); 
+}
+
+.hockey-card:hover{
+    transform: scale(1.1);
+    background: linear-gradient(to bottom, #ffffff 0%,#000000  100%);
+    transition-duration: 1s;
+}
+
+.hockey-card:hover .hockey_text{
+    color:black;
+    transition-duration: 1s;
+}
+
+.soccer-card:hover{
+    transform: scale(1.1);
+    background: linear-gradient(to bottom, #98D831 0%,#000000  100%);
+    transition-duration: 1s;
+}
+
+

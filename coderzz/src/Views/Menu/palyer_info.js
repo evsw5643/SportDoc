@@ -49,17 +49,17 @@ function Player(props) {
   //     chart.render();
   // }
   return (
-    <div class="content">
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="card" style={{ backgroundColor: "rgb(11, 0, 65)" }}>
-            {/* <h4 style="text-align: center; color: crimson;" class="card-title">Lebron James</h4> */}
+    <div className="content">
+      <div className="row">
+        <div className="col-sm-4">
+          <div className="card" style={{ backgroundColor: "rgb(11, 0, 65)" }}>
+            {/* <h4 style="text-align: center; color: crimson;" className="card-title">Lebron James</h4> */}
 
-            <div class="card-body">
-              <img class="card-img-top"
+            <div className="card-body">
+              <img className="card-img-top"
                 src="https://www.discoverlosangeles.com/sites/default/files/styles/hero/public/media/sports/lebron_james_preseason_2018.jpg?itok=-l1GeKAX"
                 alt="Sample Image" />
-              <p class="card-text" style={{ marginTop: '8px', color: 'crimson' }}>
+              <p className="card-text" style={{ marginTop: '8px', color: 'crimson' }}>
                 Age:<br />
               Height:<br />
               Weight:<br />
@@ -68,7 +68,7 @@ function Player(props) {
           </div>
         </div>
 
-        {/* <div class="col-md-8">
+        {/* <div className="col-md-8">
           <div id="chartContainer" style="height: 300px; width: 100%;">
           </div>
         </div> */}
@@ -76,11 +76,11 @@ function Player(props) {
 
       </div>
       <br />
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="card">
-            <h4 style={{ textAlign: 'center', color: 'black' }} class="card-title">Schedule</h4>
-            <table class="table table-bordered table-sm">
+      <div className="row">
+        <div className="col-sm-4">
+          <div className="card">
+            <h4 style={{ textAlign: 'center', color: 'black' }} className="card-title">Schedule</h4>
+            <table className="table table-bordered table-sm">
               <thead>
                 <tr>
                   <th>(Home Team Name)</th>
@@ -114,8 +114,8 @@ function Player(props) {
         </div>
 
 
-        {/* <div class="col-md-8">
-          <table class="table table-bordered table-md" style="background-color: rgb(68, 68, 68);color:white">
+        {/* <div className="col-md-8">
+          <table className="table table-bordered table-md" style="background-color: rgb(68, 68, 68);color:white">
             <thead>
               <tr>
                 <th>Lebron James</th>

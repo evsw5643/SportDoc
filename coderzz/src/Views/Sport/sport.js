@@ -35,28 +35,28 @@ function Sport(props) {
   }
   return (
     <div>
-      <div class="content">
-        <div class="card-group">
-          <div class="card">
-            <img class="card-img-top" src={Blank} alt="Blank" />
-            <div class="card-body">
-              <h3 class="card-title">Team of the Day</h3>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <button type="button" class="btn btn-warning">{attr1}</button>
-              <button type="button" class="btn btn-warning">{attr2}</button>
-              <button type="button" class="btn btn-warning">{attr3}</button>
-              <p class="card-text"><small class="text-muted">Last updated X mins ago</small></p>
+      <div className="content">
+        <div className="card-group">
+          <div className="card">
+            <img className="card-img-top" src={Blank} alt="Blank" />
+            <div className="card-body">
+              <h3 className="card-title">Team of the Day</h3>
+              <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <button type="button" className="btn btn-warning">{attr1}</button>
+              <button type="button" className="btn btn-warning">{attr2}</button>
+              <button type="button" className="btn btn-warning">{attr3}</button>
+              <p className="card-text"><small className="text-muted">Last updated X mins ago</small></p>
             </div>
           </div>
-          <div class="card">
-            <img class="card-img-top" src={Blank} alt="Blank" />
-            <div class="card-body">
-              <h3 class="card-title">Player of the Day</h3>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-              <button type="button" class="btn btn-warning">{attr1}</button>
-              <button type="button" class="btn btn-warning">{attr2}</button>
-              <button type="button" class="btn btn-warning">{attr3}</button>
-              <p class="card-text"><small class="text-muted">Last updated X mins ago</small></p>
+          <div className="card">
+            <img className="card-img-top" src={Blank} alt="Blank" />
+            <div className="card-body">
+              <h3 className="card-title">Player of the Day</h3>
+              <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+              <button type="button" className="btn btn-warning">{attr1}</button>
+              <button type="button" className="btn btn-warning">{attr2}</button>
+              <button type="button" className="btn btn-warning">{attr3}</button>
+              <p className="card-text"><small className="text-muted">Last updated X mins ago</small></p>
             </div>
           </div>
         </div>
