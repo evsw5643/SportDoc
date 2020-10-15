@@ -1,54 +1,53 @@
 import React from 'react';
-import CanvasJS from './Canvas'
 
 function Player(props) {
 
-   window.onload = function () {
-      var chart = new CanvasJS.Chart("chartContainer", {
-          title: {
-              text: "Shooting Percentage"
-          },
-          data: [
-              {
-                  type: "column",
-                  name: "Preseason",
-                  showInLegend: true,
-                  dataPoints: [
-                      { label: "In The Paint", y: 49.3 },
-                      { label: "Mid Range", y: 15 },
-                      { label: "Three Point", y: 34.8 }
-                  ]
-              },
+  //  window.onload = function () {
+  //     var chart = new CanvasJS.Chart("chartContainer", {
+  //         title: {
+  //             text: "Shooting Percentage"
+  //         },
+  //         data: [
+  //             {
+  //                 type: "column",
+  //                 name: "Preseason",
+  //                 showInLegend: true,
+  //                 dataPoints: [
+  //                     { label: "In The Paint", y: 49.3 },
+  //                     { label: "Mid Range", y: 15 },
+  //                     { label: "Three Point", y: 34.8 }
+  //                 ]
+  //             },
 
-              {
-                  type: "column",
-                  name: "Regular Season",
-                  showInLegend: true,
-                  dataPoints: [
-                      { label: "In The Paint", y: 70 },
-                      { label: "Mid Range", y: 20 },
-                      { label: "Three Point", y: 20 }
-                  ]
-              },
+  //             {
+  //                 type: "column",
+  //                 name: "Regular Season",
+  //                 showInLegend: true,
+  //                 dataPoints: [
+  //                     { label: "In The Paint", y: 70 },
+  //                     { label: "Mid Range", y: 20 },
+  //                     { label: "Three Point", y: 20 }
+  //                 ]
+  //             },
 
-              {
-                  type: "column",
-                  name: "Finals",
-                  showInLegend: true,
-                  dataPoints: [
-                      { label: "In The Paint", y: 90 },
-                      { label: "Mid Range", y: 30 },
-                      { label: "Three Point", y: 40 }
-                  ]
-              }
-          ],
+  //             {
+  //                 type: "column",
+  //                 name: "Finals",
+  //                 showInLegend: true,
+  //                 dataPoints: [
+  //                     { label: "In The Paint", y: 90 },
+  //                     { label: "Mid Range", y: 30 },
+  //                     { label: "Three Point", y: 40 }
+  //                 ]
+  //             }
+  //         ],
 
-          axisY: {
-              suffix: "%"
-          }
-      });
-      chart.render();
-  }
+  //         axisY: {
+  //             suffix: "%"
+  //         }
+  //     });
+  //     chart.render();
+  // }
 
   return (
     <div class="content">
@@ -81,8 +80,8 @@ function Player(props) {
       <div class="row">
         <div class="col-sm-4">
           <div class="card">
-            <h4 style={{ textAlign: 'center', color: 'black' }} class="card-title">Schedule</h4>
-            <table class="table table-bordered table-sm">
+            <h4 style={{ textAlign: 'center', color: 'white' }} class="card-title">Schedule</h4>
+            <table style={{ color: 'white' }} class="table table-bordered table-sm">
               <thead>
                 <tr>
                   <th>(Home Team Name)</th>
