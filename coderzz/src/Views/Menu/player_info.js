@@ -60,7 +60,7 @@ function Player(props) {
               <img class="card-img-top"
                 src="https://www.discoverlosangeles.com/sites/default/files/styles/hero/public/media/sports/lebron_james_preseason_2018.jpg?itok=-l1GeKAX"
                 alt="Sample Image" />
-              <p class="card-text" style={{ marginTop: '8px', color: 'crimson' }}>
+              <p className="card-text" style={{ marginTop: '8px', color: 'crimson' }}>
                 Age:<br />
               Height:<br />
               Weight:<br />

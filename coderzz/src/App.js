@@ -18,12 +18,12 @@ function App() {
             <div className="App">
 
                 {/* navbar */}
-                <nav class="navbar navbar-expand-lg navbar-dark">
-                    <Link to="/" class="navbar-brand">
+                <nav className="navbar navbar-expand-lg navbar-dark">
+                    <Link to="/" className="navbar-brand">
                         Sport Doc
                     </Link>
                     <button
-                        class="navbar-toggler"
+                        className="navbar-toggler"
                         type="button"
                         data-toggle="collapse"
                         data-target="#navbarSupportedContent"
@@ -31,38 +31,38 @@ function App() {
                         aria-expanded="false"
                         aria-label="Toggle navigation"
                     >
-                        <span class="navbar-toggler-icon" />
+                        <span className="navbar-toggler-icon" />
                     </button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <Link class="nav-link" to="/basketball">
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav mr-auto">
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/basketball">
                                     Basketball
                                 </Link>
                             </li>
-                            <li class="nav-item">
-                                <Link class="nav-link" to="/football">
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/football">
                                     Football
                                 </Link>
                             </li>
-                            <li class="nav-item">
-                                <Link class="nav-link" to="/baseball">
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/baseball">
                                     Baseball
                                 </Link>
                             </li>
-                            <li class="nav-item">
-                                <Link class="nav-link" to="/hockey">
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/hockey">
                                     Hockey
                                 </Link>
                             </li>
-                            <li class="nav-item">
-                                <Link class="nav-link" to="/soccer">
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/soccer">
                                     Soccer
                                 </Link>
                             </li>
-                            <li class="nav-item">
-                                <Link class="nav-link" to="/player">
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/player">
                                     Player
                                 </Link>
                             </li>
@@ -74,7 +74,7 @@ function App() {
                         </ul>
                     </div>
                 </nav>
-                <div class="container-fluid">
+                <div className="container-fluid">
                     <Switch style={{ height: '1vh' }}>
                         <Route style={{ height: '1vh' }} exact path="/">
                             <Home />
