@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Home from './Views/Home/Home.js';
 import Sport from './Views/Sport/sport.js'
-import Player from './Views/Menu/palyer_info.js'
+import Player from './Views/Menu/player_info.js'
 import './App.css';
 
 function App() {
