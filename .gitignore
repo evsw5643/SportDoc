@@ -3,5 +3,5 @@ node_modules/
 coderz.code-workspace
 .DS_STORE
 coderzz/src/coderzz.code-workspace
-
+coderzz/CoderzVSCode.code-workspace
 coderzz/src/sportsdoc.sql
