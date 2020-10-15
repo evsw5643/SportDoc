@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import Home from './Views/Home/Home.js';
 import Sport from './Views/Sport/sport.js'
-import Player from './Views/Menu/player_info.js'
+import Player from './Views/Player/player_info.js'
 import Team from './Views/Team/team_info.js'
 import './App.css';
 
