@@ -36,7 +36,7 @@ app.get('/getteam/:team', (req, res) => {
 app.get('/getplayer/:player', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT * FROM players WHERE player_id = '${req.params.player}'`, (err, reso) => {
+        client.query(`SELECT * FROM players WHERE player_id = '${req.params.player}' AND index = 'Career'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);

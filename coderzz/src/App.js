@@ -62,8 +62,8 @@ function App() {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/player">
-                                    Player
+                                <Link className="nav-link" to="/player/jamesle01">
+                                    Player:LeBron
                                 </Link>
                             </li>
                             <li class="nav-item">
@@ -94,9 +94,7 @@ function App() {
                         <Route style={{ height: '1vh' }} exact path="/hockey">
                             <Sport sport="hockey" />
                         </Route>
-                        <Route style={{ height: '1vh' }} exact path="/player">
-                            <Player />
-                        </Route>
+                        <Route style={{ height: '1vh' }} exact path="/player/:id" children={<PlayerLoad />} />
                         <Route style={{ height: '1vh' }} exact path="/team/:abb" children={<TeamLoad />} />
                     </Switch>
                 </div>
@@ -110,6 +108,15 @@ function TeamLoad() {
     return (
         <div>
             <Team team={abb} />
+        </div>
+    )
+}
+
+function PlayerLoad() {
+    let { id } = useParams()
+    return (
+        <div>
+            <Player player={id} />
         </div>
     )
 }
