@@ -5,8 +5,8 @@
     align-items: center;
     justify-content: center;
     margin: auto;
-    height: 50rem;
-    width: 50rem;
+    height: 40rem;
+    width: 40rem;
 }
 
 .team_stat_text{
@@ -20,4 +20,10 @@
 .team_stat_img{
     height: 100px;
     width: 100px;
+}
+
+.search_box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

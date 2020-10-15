@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import "./player_info.css"
 // import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
 
 function Player(props) {
 
   const [loading, setloading] = useState(true);
   const [player, setplayer] = useState([])
+  const [search, setsearch] = useState("")
 
   useEffect(() => {
     api(props.player)
@@ -25,6 +26,14 @@ function Player(props) {
         }
       )
 
+  }
+  function handleChange(event) {
+    setsearch(event.target.value.toUpperCase());
+  }
+  
+  function reload(){
+    setloading(true)
+    api(search)
   }
 
   //  window.onload = function () {
@@ -82,119 +91,31 @@ function Player(props) {
       </div>
     )
   } else if (!loading) {
-
     return (
       <div className="content">
-        <div className="row">
+        <div className="row justify-content-center">
           <div className="col-sm-4">
-            <div className="card" style={{ backgroundColor: "rgb(11, 0, 65)" }}>
-              {<h4 style={{ textAlign: 'center', color: 'crimson' }} className="card-title">{player[0].player_name}</h4>}
-
-              <div className="card-body">
-                <img className="card-img-top"
+            <div className="card player_stat_card">
+              <h2 className="card-title player_stat_title"> {player[0].player_name} </h2>  
+              <div className="card-body player_stat_body">
+                <img className="card-img-top player_stat_img"
                   src={`https://www.basketball-reference.com/req/202010061/images/players/${player[0].player_id}.jpg`}
-                  alt="Sample Image" />
-                <p className="card-text" style={{ marginTop: '8px', color: 'crimson' }}>
-                  Age:<br />
-              Height:<br />
-              Weight:<br />
+                  alt="Sample Image"/>
+                <p className="card-text player_stat_text">
+                  <h3>Career Points:</h3> {player[player.length-1].points}
+                  <br />
+                  <h3>Career Assists:</h3> {player[player.length-1].assists}
+                  <br />
+                  <h3>Career Rebounds: </h3> {player[player.length-1].total_rebounds}
+                  <br />
+                  <h3>Career Blocks: </h3> {player[player.length-1].blocks} 
+                  <br />
                 </p>
               </div>
             </div>
           </div>
-
-          {<div className="col-md-8">
-            <div id="chartContainer" style={{ height: '300px', width: '100%' }}>
-            </div>
-          </div>}
-
-
         </div>
         <br />
-        <div className="row">
-          <div className="col-sm-4">
-            <div className="card">
-              <h4 style={{ textAlign: 'center', color: 'white' }} className="card-title">Schedule</h4>
-              <table style={{ color: 'white' }} className="table table-bordered table-sm">
-                <thead>
-                  <tr>
-                    <th>(Home Team Name)</th>
-                    <th>(Opponent Team Name)</th>
-                    <th>Home Score</th>
-                    <th>Opponent Score</th>
-                  </tr>
-                  <tr>
-                    <td style={{ color: 'red' }}>Lakers</td>
-                    <td style={{ color: 'green' }}>Heat</td>
-                    <td>100</td>
-                    <td>116</td>
-                  </tr>
-                  <tr>
-                    <td style={{ color: 'green' }}>Lakers</td>
-                    <td style={{ color: 'red' }} >Celtics</td>
-                    <td>90</td>
-                    <td>70</td>
-                  </tr>
-                  <tr>
-                    <td style={{ color: 'green' }}>Lakers</td>
-                    <td style={{ color: 'red' }}>Jazz</td>
-                    <td>111</td>
-                    <td>85</td>
-                  </tr>
-
-                </thead>
-              </table>
-
-            </div>
-          </div>
-
-
-          {<div className="col-md-8">
-            <table className="table table-bordered table-md" style={{ backgroundColor: 'rgb(68, 68, 68)', color: 'white' }}>
-              <thead>
-                <tr>
-                  <th>Lebron James</th>
-                  <th>PPG</th>
-                  <th>Blocks</th>
-                  <th>Steals</th>
-                  <th>Rebounds</th>
-                  <th>Free Throws</th>
-                  <th>Field Goal</th>
-                  <th>3PT%</th>
-                  <th>Total Points</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td>Regular Season</td>
-                  <td>y</td>
-                  <td>x</td>
-                  <td>y</td>
-                  <td>x</td>
-                  <td>y</td>
-                  <td>x</td>
-                  <td>y</td>
-                  <td>y</td>
-
-                </tr>
-                <tr>
-                  <td>Playoffs</td>
-                  <td>y</td>
-                  <td>x</td>
-                  <td>y</td>
-                  <td>x</td>
-                  <td>y</td>
-                  <td>x</td>
-                  <td>y</td>
-                  <td>y</td>
-
-                </tr>
-              </tbody>
-            </table>
-          </div>}
-
-        </div>
       </div>
     )
   }

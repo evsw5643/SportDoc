@@ -1,0 +1,14 @@
+.player_stat_card{
+    background-color: #001427;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+
+}
+.player_stat_title{
+    color:  #F94E62;
+
+}
+.player_stat_text{
+    color:  #F94E62;
+}

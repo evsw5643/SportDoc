@@ -62,7 +62,7 @@ function App() {
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/player/jamesle01">
-                                    Player:LeBron
+                                    Player Stats
                                 </Link>
                             </li>
                             <li className="nav-item">

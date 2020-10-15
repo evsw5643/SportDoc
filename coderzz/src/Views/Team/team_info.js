@@ -32,7 +32,6 @@ function Team(props) {
 
   function reload(){
     setloading(true)
-    console.log(search)
     api(search)
   }
 
@@ -46,7 +45,6 @@ function Team(props) {
     )
   } else if (!loading) {
     return (
-      
       <div className="content">
         <div className="search_box">
         <form>
@@ -57,7 +55,7 @@ function Team(props) {
         </form>
         </div>
         <div>
-          <div className="row">
+          <div className="row justify-content-center">
             <div className="col-sm-4">
               <div className="card team-card">
                 <div className="card-body team_stat_card">
