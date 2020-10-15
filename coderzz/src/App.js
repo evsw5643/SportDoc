@@ -62,12 +62,12 @@ function App() {
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/player">
-                                    Player
+                                    Player Stats
                                 </Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/team/DEN">
-                                    Team:DEN
+                                    Team Stats
                                 </Link>
                             </li>
                         </ul>

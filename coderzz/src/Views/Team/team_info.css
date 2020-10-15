@@ -1,0 +1,23 @@
+.team_stat_card{
+    background-color: #001427;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    height: 50rem;
+    width: 50rem;
+}
+
+.team_stat_text{
+    color: #F94E62;
+}
+
+.team_stat_title{
+    color: #F94E62;
+}
+
+.team_stat_img{
+    height: 100px;
+    width: 100px;
+}
