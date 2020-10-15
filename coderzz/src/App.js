@@ -1,8 +1,15 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useParams
+} from "react-router-dom";
 import Home from './Views/Home/Home.js';
 import Sport from './Views/Sport/sport.js'
 import Player from './Views/Menu/player_info.js'
+import Team from './Views/Team/team_info.js'
 import './App.css';
 
 function App() {
@@ -59,10 +66,15 @@ function App() {
                                     Player
                                 </Link>
                             </li>
+                            <li class="nav-item">
+                                <Link class="nav-link" to="/team/DEN">
+                                    Team:DEN
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                 </nav>
-                <div class="container-fluid">s
+                <div class="container-fluid">
                     <Switch style={{ height: '1vh' }}>
                         <Route style={{ height: '1vh' }} exact path="/">
                             <Home />
@@ -85,11 +97,21 @@ function App() {
                         <Route style={{ height: '1vh' }} exact path="/player">
                             <Player />
                         </Route>
+                        <Route style={{ height: '1vh' }} exact path="/team/:abb" children={<TeamLoad />} />
                     </Switch>
                 </div>
             </div>
         </Router>
     );
+}
+
+function TeamLoad() {
+    let { abb } = useParams()
+    return (
+        <div>
+            <Team team={abb} />
+        </div>
+    )
 }
 
 export default App;
