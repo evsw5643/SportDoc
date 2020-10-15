@@ -16,7 +16,6 @@ function App() {
     return (
         <Router>
             <div className="App">
-
                 {/* navbar */}
                 <nav className="navbar navbar-expand-lg navbar-dark">
                     <Link to="/" className="navbar-brand">
@@ -66,8 +65,8 @@ function App() {
                                     Player:LeBron
                                 </Link>
                             </li>
-                            <li class="nav-item">
-                                <Link class="nav-link" to="/team/DEN">
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/team/DEN">
                                     Team:DEN
                                 </Link>
                             </li>

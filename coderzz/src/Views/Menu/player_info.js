@@ -74,8 +74,8 @@ function Player(props) {
           <div class="card" style={{ backgroundColor: "rgb(11, 0, 65)" }}>
             {<h4 style={{ textAlign: 'center', color: 'crimson' }} class="card-title">{player[0].name}</h4>}
 
-            <div class="card-body">
-              <img class="card-img-top"
+            <div className="card-body">
+              <img className="card-img-top"
                 src="https://www.discoverlosangeles.com/sites/default/files/styles/hero/public/media/sports/lebron_james_preseason_2018.jpg?itok=-l1GeKAX"
                 alt="Sample Image" />
               <p className="card-text" style={{ marginTop: '8px', color: 'crimson' }}>
@@ -87,19 +87,19 @@ function Player(props) {
           </div>
         </div>
 
-        {<div class="col-md-8">
-          <div id="chartContainer" style={{ height: '300px', width: '100%' }}>
+        { <div className="col-md-8">
+          <div id="chartContainer" style={{height: '300px', width: '100%'}}>
           </div>
         </div>}
 
 
       </div>
       <br />
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="card">
-            <h4 style={{ textAlign: 'center', color: 'white' }} class="card-title">Schedule</h4>
-            <table style={{ color: 'white' }} class="table table-bordered table-sm">
+      <div className="row">
+        <div className="col-sm-4">
+          <div className="card">
+            <h4 style={{ textAlign: 'center', color: 'white' }} className="card-title">Schedule</h4>
+            <table style={{ color: 'white' }} className="table table-bordered table-sm">
               <thead>
                 <tr>
                   <th>(Home Team Name)</th>
@@ -133,8 +133,8 @@ function Player(props) {
         </div>
 
 
-        {<div class="col-md-8">
-          <table class="table table-bordered table-md" style={{ backgroundColor: 'rgb(68, 68, 68)', color: 'white' }}>
+        {<div className="col-md-8">
+          <table className="table table-bordered table-md" style={{backgroundColor: 'rgb(68, 68, 68)', color: 'white'}}>
             <thead>
               <tr>
                 <th>Lebron James</th>
