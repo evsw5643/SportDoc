@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import "./player_info.css"
-// import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function Player(props) {
 
   const [loading, setloading] = useState(true);
   const [player, setplayer] = useState([])
   const [search, setsearch] = useState("")
+  const [sport, setsport] = useState("")
 
   useEffect(() => {
-    api(props.player)
+
+    setsport(props.sport)
+    api(props.player, props.sport)
   }, [])
 
-  function api(apiPlayer) {
-    fetch(`/basketball/getplayer/${props.player}`)
+  function api(apiPlayer, apiSport) {
+    fetch(`/${apiSport}/getplayer/${apiPlayer}`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -28,12 +31,16 @@ function Player(props) {
 
   }
   function handleChange(event) {
-    setsearch(event.target.value.toUpperCase());
+    setsearch(event.target.value);
+  }
+
+  function handleChangeD(event) {
+    setsport(event.target.value);
   }
 
   function reload() {
     setloading(true)
-    api(search)
+    api(search, sport)
   }
 
   //  window.onload = function () {
@@ -93,6 +100,22 @@ function Player(props) {
   } else if (!loading) {
     return (
       <div className="content">
+        <div className="search_box">
+          <form>
+            <label>
+              <input type="text" onChange={handleChange} />
+            </label>
+            <select id="sports" onChange={handleChangeD}>
+              <option value="" selected disabled hidden>Choose Sport</option>
+              <option value="basketball">Basketball</option>
+              <option value="baseball">Baseball</option>
+              <option value="football">Football</option>
+              <option value="soccer">Soccer</option>
+              <option value="hockey">Hockey</option>
+            </select>
+            <Link to={"/player/" + sport + "/" + search}> <input className="submit_button" type="submit" value="Submit" onClick={reload} /> </Link>
+          </form>
+        </div>
         <div className="row justify-content-center">
           <div className="col-sm-4">
             <div className="card player_stat_card">

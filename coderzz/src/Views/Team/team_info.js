@@ -6,13 +6,15 @@ function Team(props) {
   const [loading, setloading] = useState(true);
   const [team, setteam] = useState([])
   const [search, setsearch] = useState("")
+  const [sport, setsport] = useState("")
 
   useEffect(() => {
-    api(props.team)
+    setsport(props.sport)
+    api(props.team, props.sport)
   }, [])
 
-  function api(apiTeam) {
-    fetch(`/basketball/getteam/${apiTeam}`)
+  function api(apiTeam, apiSport) {
+    fetch(`/${apiSport}/getteam/${apiTeam}`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -30,9 +32,13 @@ function Team(props) {
     setsearch(event.target.value.toUpperCase());
   }
 
+  function handleChangeD(event) {
+    setsport(event.target.value);
+  }
+
   function reload() {
     setloading(true)
-    api(search)
+    api(search, sport)
   }
 
   if (loading) {
@@ -51,7 +57,15 @@ function Team(props) {
             <label>
               <input type="text" onChange={handleChange} />
             </label>
-            <Link to={"/team/" + search}> <input className="submit_button" type="submit" value="Submit" onClick={reload} /> </Link>
+            <select id="sports" onChange={handleChangeD}>
+              <option value="" selected disabled hidden>Choose Sport</option>
+              <option value="basketball">Basketball</option>
+              <option value="baseball">Baseball</option>
+              <option value="football">Football</option>
+              <option value="soccer">Soccer</option>
+              <option value="hockey">Hockey</option>
+            </select>
+            <Link to={"/team/" + sport + "/" + search}> <input className="submit_button" type="submit" value="Submit" onClick={reload} /> </Link>
           </form>
         </div>
         <div>
