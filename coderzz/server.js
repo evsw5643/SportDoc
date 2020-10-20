@@ -19,10 +19,10 @@ const pool = new Pool({
 
 // Tables: teams, players
 
-app.get('/getteam/:team', (req, res) => {
+app.get('/basketball/getteam/:team', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT * FROM teams WHERE abbreviation = '${req.params.team}'`, (err, reso) => {
+        client.query(`SELECT * FROM nba_teams WHERE abbreviation = '${req.params.team}'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -33,10 +33,10 @@ app.get('/getteam/:team', (req, res) => {
     });
 });
 
-app.get('/getplayer/:player', (req, res) => {
+app.get('basketball/getplayer/:player', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT * FROM players WHERE player_id = '${req.params.player}' AND index = 'Career'`, (err, reso) => {
+        client.query(`SELECT * FROM nba_players WHERE player_id = '${req.params.player}' AND index = 'Career'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
