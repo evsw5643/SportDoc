@@ -199,6 +199,8 @@ def do_soccer():
         for player in team.roster.players:
             try:
                 pdf = player.dataframe
+                if pdf is None:
+                    continue
                 pdf['year'] = year
                 pdf['team'] = team.name
                 pdf['player_name'] = player.name
@@ -267,7 +269,7 @@ def do_football():
         for player in team.roster.players:
             try:
                 pdf = player.dataframe
-                if not pdf:
+                if pdf is None:
                     continue
                 pdf['year'] = year
                 pdf['team'] = team.name
@@ -378,16 +380,16 @@ t1 = Thread(target=do_basketball)
 t2 = Thread(target=do_hockey)
 t3 = Thread(target=do_football)
 t4 = Thread(target=do_baseball)
-t5 = Thread(target=do_soccer)
+# t5 = Thread(target=do_soccer)
 
 t1.start()
 t2.start()
 t3.start()
 t4.start()
-t5.start()
+# t5.start()
 
 t1.join()
 t2.join()
 t3.join()
 t4.join()
-t5.join()
+# t5.join()
