@@ -1,4 +1,5 @@
 # ATTENTION! Do not run this file unless you want to reset the database and re grab all the data!
+import traceback
 import time
 from datetime import datetime
 
@@ -32,7 +33,7 @@ def do_hockey():
 
             frames.to_sql("nhl_teams", con, if_exists='append')
         except Exception as e:
-            print(e)
+            traceback.print_exc()
             time.sleep(timeout)
             teams = NHLTeams(year)
             frames = teams.dataframes
@@ -46,7 +47,7 @@ def do_hockey():
         try:
             do_games()
         except Exception as e:
-            print(e)
+            traceback.print_exc()
             time.sleep(timeout)
             do_games()
 
@@ -60,7 +61,7 @@ def do_hockey():
                 pdf['birth_date'] = player.birth_date
                 pdf.to_sql("nhl_players", con, if_exists='append')
             except Exception as e:
-                print(e)
+                traceback.print_exc()
                 time.sleep(timeout)
                 pdf = player.dataframe
                 pdf['year'] = year
@@ -84,7 +85,7 @@ def do_hockey():
         try:
             do_year(year)
         except Exception as e:
-            print(e)
+            traceback.print_exc()
             time.sleep(timeout)
             do_year(year)
 
@@ -103,7 +104,7 @@ def do_basketball():
 
             frames.to_sql("nba_teams", con, if_exists='append')
         except Exception as e:
-            print(e)
+            traceback.print_exc()
             time.sleep(timeout)
             teams = NBATeams(year)
             frames = teams.dataframes
@@ -117,7 +118,7 @@ def do_basketball():
         try:
             do_games()
         except Exception as e:
-            print(e)
+            traceback.print_exc()
             time.sleep(timeout)
             do_games()
 
@@ -131,7 +132,7 @@ def do_basketball():
                 pdf['birth_date'] = player.birth_date
                 pdf.to_sql("nba_players", con, if_exists='append')
             except Exception as e:
-                print(e)
+                traceback.print_exc()
                 time.sleep(timeout)
                 pdf = player.dataframe
                 pdf['year'] = year
@@ -155,7 +156,7 @@ def do_basketball():
         try:
             do_year(year)
         except Exception as e:
-            print(e)
+            traceback.print_exc()
             time.sleep(timeout)
             do_year(year)
 
@@ -174,7 +175,7 @@ def do_football():
 
             frames.to_sql("nfl_teams", con, if_exists='append')
         except Exception as e:
-            print(e)
+            traceback.print_exc()
             time.sleep(timeout)
             teams = NFLTeams(year)
             frames = teams.dataframes
@@ -188,7 +189,7 @@ def do_football():
         try:
             do_games()
         except Exception as e:
-            print(e)
+            traceback.print_exc()
             time.sleep(timeout)
             do_games()
 
@@ -202,7 +203,7 @@ def do_football():
                 pdf['birth_date'] = player.birth_date
                 pdf.to_sql("nfl_players", con, if_exists='append')
             except Exception as e:
-                print(e)
+                traceback.print_exc()
                 time.sleep(timeout)
                 pdf = player.dataframe
                 pdf['year'] = year
@@ -226,7 +227,7 @@ def do_football():
         try:
             do_year(year)
         except Exception as e:
-            print(e)
+            traceback.print_exc()
             time.sleep(timeout)
             do_year(year)
 
