@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const port = 3000;
+const port = 3001;
 
 const { Pool } = require('pg');
 
@@ -19,10 +19,24 @@ const pool = new Pool({
 
 // Tables: teams, players
 
-app.get('/viewteams', (req, res) => {
+app.get('/getteam/:team', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query('SELECT * FROM teams', (err, reso) => {
+        client.query(`SELECT * FROM teams WHERE abbreviation = '${req.params.team}'`, (err, reso) => {
+            done();
+            if (err) {
+                console.log(err.stack);
+            } else {
+                res.send(reso.rows);
+            }
+        });
+    });
+});
+
+app.get('/getplayer/:player', (req, res) => {
+    pool.connect((err, client, done) => {
+        if (err) throw err;
+        client.query(`SELECT * FROM players WHERE player_id = '${req.params.player}' AND index = 'Career'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
