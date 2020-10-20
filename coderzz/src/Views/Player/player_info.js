@@ -13,7 +13,7 @@ function Player(props) {
   }, [])
 
   function api(apiPlayer) {
-    fetch(`/getplayer/${props.player}`)
+    fetch(`/basketball/getplayer/${props.player}`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -30,8 +30,8 @@ function Player(props) {
   function handleChange(event) {
     setsearch(event.target.value.toUpperCase());
   }
-  
-  function reload(){
+
+  function reload() {
     setloading(true)
     api(search)
   }
@@ -96,19 +96,19 @@ function Player(props) {
         <div className="row justify-content-center">
           <div className="col-sm-4">
             <div className="card player_stat_card">
-              <h2 className="card-title player_stat_title"> {player[0].player_name} </h2>  
+              <h2 className="card-title player_stat_title"> {player[0].player_name} </h2>
               <div className="card-body player_stat_body">
                 <img className="card-img-top player_stat_img"
                   src={`https://www.basketball-reference.com/req/202010061/images/players/${player[0].player_id}.jpg`}
-                  alt="Sample Image"/>
+                  alt="Sample Image" />
                 <p className="card-text player_stat_text">
-                  <h3>Career Points:</h3> {player[player.length-1].points}
+                  <h3>Career Points:</h3> {player[player.length - 1].points}
                   <br />
-                  <h3>Career Assists:</h3> {player[player.length-1].assists}
+                  <h3>Career Assists:</h3> {player[player.length - 1].assists}
                   <br />
-                  <h3>Career Rebounds: </h3> {player[player.length-1].total_rebounds}
+                  <h3>Career Rebounds: </h3> {player[player.length - 1].total_rebounds}
                   <br />
-                  <h3>Career Blocks: </h3> {player[player.length-1].blocks} 
+                  <h3>Career Blocks: </h3> {player[player.length - 1].blocks}
                   <br />
                 </p>
               </div>
