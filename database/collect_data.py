@@ -1,6 +1,6 @@
 # ATTENTION! Do not run this file unless you want to reset the database and re grab all the data!
-import traceback
 import time
+import traceback
 from datetime import datetime
 
 import pandas as pd
@@ -236,6 +236,14 @@ def do_football():
 
 from threading import Thread
 
-Thread(target=do_basketball).start()
-Thread(target=do_hockey).start()
-Thread(target=do_football).start()
+t1 = Thread(target=do_basketball)
+t2 = Thread(target=do_hockey)
+t3 = Thread(target=do_football)
+
+t1.start()
+t2.start()
+t3.start()
+
+t1.join()
+t2.join()
+t3.join()
