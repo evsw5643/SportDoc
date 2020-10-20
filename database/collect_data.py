@@ -225,7 +225,7 @@ def do_soccer():
             ngames.append(game.dataframe)
 
         df = pd.DataFrame(ngames)
-        df.to_sql("ncaaf_games", con, if_exists='append')
+        df.to_sql("soccer_games", con, if_exists='append')
 
     for tid in squad_ids.SQUAD_IDS.values():
         try:
