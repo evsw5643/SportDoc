@@ -12,15 +12,18 @@ from sportsreference.nhl.boxscore import Boxscores as NHLBoxscores
 from sportsreference.nhl.teams import Teams as NHLTeams
 
 # Connect to database (Note: The package psychopg2 is required for Postgres to work with SQLAlchemy)
-engine = sqlalchemy.create_engine("postgresql://ubuntu:password@3.17.77.33/sportdoc")
-con = engine.connect()
+# engine = sqlalchemy.create_engine("postgresql://ubuntu:password@3.17.77.33/sportdoc")
+# con = engine.connect()
 
 # Verify that there are no existing tables
-print(engine.table_names())
+# print(engine.table_names())
 timeout = 60
 
 
 def do_hockey():
+    engine = sqlalchemy.create_engine("postgresql://ubuntu:password@3.17.77.33/sportdoc")
+    con = engine.connect()
+
     def do_year(year):
         try:
             teams = NHLTeams(year)
@@ -85,8 +88,13 @@ def do_hockey():
             time.sleep(timeout)
             do_year(year)
 
+    con.close()
+
 
 def do_basketball():
+    engine = sqlalchemy.create_engine("postgresql://ubuntu:password@3.17.77.33/sportdoc")
+    con = engine.connect()
+
     def do_year(year):
         try:
             teams = NBATeams(year)
@@ -151,8 +159,13 @@ def do_basketball():
             time.sleep(timeout)
             do_year(year)
 
+    con.close()
+
 
 def do_football():
+    engine = sqlalchemy.create_engine("postgresql://ubuntu:password@3.17.77.33/sportdoc")
+    con = engine.connect()
+
     def do_year(year):
         try:
             teams = NFLTeams(year)
@@ -217,9 +230,11 @@ def do_football():
             time.sleep(timeout)
             do_year(year)
 
+    con.close()
 
-do_basketball()
-do_football()
-do_hockey()
 
-con.close()
+from threading import Thread
+
+Thread(target=do_basketball).start()
+Thread(target=do_hockey).start()
+Thread(target=do_football).start()
