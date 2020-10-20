@@ -19,6 +19,7 @@ const pool = new Pool({
 
 // Tables: teams, players
 
+//! Basketball
 app.get('/basketball/getteam/:team', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
@@ -33,10 +34,126 @@ app.get('/basketball/getteam/:team', (req, res) => {
     });
 });
 
-app.get('basketball/getplayer/:player', (req, res) => {
+app.get('/basketball/getplayer/:player', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
         client.query(`SELECT * FROM nba_players WHERE player_id = '${req.params.player}' AND index = 'Career'`, (err, reso) => {
+            done();
+            if (err) {
+                console.log(err.stack);
+            } else {
+                res.send(reso.rows);
+            }
+        });
+    });
+});
+
+//! Football
+app.get('/football/getteam/:team', (req, res) => {
+    pool.connect((err, client, done) => {
+        if (err) throw err;
+        client.query(`SELECT * FROM nfl_teams WHERE abbreviation = '${req.params.team}'`, (err, reso) => {
+            done();
+            if (err) {
+                console.log(err.stack);
+            } else {
+                res.send(reso.rows);
+            }
+        });
+    });
+});
+
+app.get('/football/getplayer/:player', (req, res) => {
+    pool.connect((err, client, done) => {
+        if (err) throw err;
+        client.query(`SELECT * FROM nfl_players WHERE player_id = '${req.params.player}' AND index = 'Career'`, (err, reso) => {
+            done();
+            if (err) {
+                console.log(err.stack);
+            } else {
+                res.send(reso.rows);
+            }
+        });
+    });
+});
+
+//! Hockey
+app.get('/hockey/getteam/:team', (req, res) => {
+    pool.connect((err, client, done) => {
+        if (err) throw err;
+        client.query(`SELECT * FROM nhl_teams WHERE abbreviation = '${req.params.team}'`, (err, reso) => {
+            done();
+            if (err) {
+                console.log(err.stack);
+            } else {
+                res.send(reso.rows);
+            }
+        });
+    });
+});
+
+app.get('/hockey/getplayer/:player', (req, res) => {
+    pool.connect((err, client, done) => {
+        if (err) throw err;
+        client.query(`SELECT * FROM nhl_players WHERE player_id = '${req.params.player}' AND index = 'Career'`, (err, reso) => {
+            done();
+            if (err) {
+                console.log(err.stack);
+            } else {
+                res.send(reso.rows);
+            }
+        });
+    });
+});
+
+//! Soccer
+app.get('/soccer/getteam/:team', (req, res) => {
+    pool.connect((err, client, done) => {
+        if (err) throw err;
+        client.query(`SELECT * FROM soccer_teams WHERE abbreviation = '${req.params.team}'`, (err, reso) => {
+            done();
+            if (err) {
+                console.log(err.stack);
+            } else {
+                res.send(reso.rows);
+            }
+        });
+    });
+});
+
+app.get('/soccer/getplayer/:player', (req, res) => {
+    pool.connect((err, client, done) => {
+        if (err) throw err;
+        client.query(`SELECT * FROM soccer_players WHERE player_id = '${req.params.player}' AND index = 'Career'`, (err, reso) => {
+            done();
+            if (err) {
+                console.log(err.stack);
+            } else {
+                res.send(reso.rows);
+            }
+        });
+    });
+});
+
+//! Baseball
+app.get('/baseball/getteam/:team', (req, res) => {
+    pool.connect((err, client, done) => {
+        if (err) throw err;
+        client.query(`SELECT * FROM mlb_teams WHERE abbreviation = '${req.params.team}'`, (err, reso) => {
+            done();
+            if (err) {
+                console.log(err.stack);
+            } else {
+                res.send(reso.rows);
+            }
+        });
+    });
+});
+
+app.get('/baseball/getplayer/:player', (req, res) => {
+    pool.connect((err, client, done) => {
+        if (err) throw err;
+        client.query(`SELECT * FROM mlb_players WHERE player_id = '${req.params.player}' AND index = 'Career'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
