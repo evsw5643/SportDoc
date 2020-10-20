@@ -267,6 +267,8 @@ def do_football():
         for player in team.roster.players:
             try:
                 pdf = player.dataframe
+                if not pdf:
+                    continue
                 pdf['year'] = year
                 pdf['team'] = team.name
                 pdf['player_name'] = player.name
