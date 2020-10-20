@@ -5,16 +5,16 @@ from datetime import datetime
 
 import pandas as pd
 import sqlalchemy  # Package for accessing SQL databases via Python
+from sportsreference.fb import squad_ids
+from sportsreference.fb.team import Team as FBTeam
+from sportsreference.mlb.boxscore import Boxscores as MLBBoxscores
+from sportsreference.mlb.teams import Teams as MLBTeams
 from sportsreference.nba.boxscore import Boxscores as NBABoxscores
 from sportsreference.nba.teams import Teams as NBATeams
 from sportsreference.nfl.boxscore import Boxscores as NFLBoxscores
 from sportsreference.nfl.teams import Teams as NFLTeams
 from sportsreference.nhl.boxscore import Boxscores as NHLBoxscores
 from sportsreference.nhl.teams import Teams as NHLTeams
-from sportsreference.mlb.boxscore import Boxscores as MLBBoxscores
-from sportsreference.mlb.teams import Teams as MLBTeams
-from sportsreference.ncaaf.boxscore import Boxscores as NCAAFBoxscores
-from sportsreference.ncaaf.teams import Teams as NCAAFTeams
 
 # Connect to database (Note: The package psychopg2 is required for Postgres to work with SQLAlchemy)
 # engine = sqlalchemy.create_engine("postgresql://ubuntu:password@3.17.77.33/sportdoc")
@@ -165,75 +165,78 @@ def do_basketball():
     con.close()
 
 
+sfields = ['squad_id', 'name', 'season', 'record', 'position', 'points', 'league', 'manager',
+           'country', 'gender', 'goals_scored', 'goals_against', 'goal_difference', 'expected_goals',
+           'expected_goals_against', 'expected_goal_difference', 'home_record', 'home_games', 'away_record',
+           'away_games', 'home_wins', 'home_draws', 'home_losses', 'away_wins', 'away_draws', 'away_losses',
+           'home_points', 'away_points']
+
+
 def do_soccer():
     engine = sqlalchemy.create_engine("postgresql://ubuntu:password@3.17.77.33/sportdoc")
     con = engine.connect()
+    FBTeam.dataframe = property(lambda self: pd.DataFrame([self.__dict__]))
 
-    def do_year(year):
+    def do_team(team):
         try:
-            teams = NCAAFTeams(year)
-            frames = teams.dataframes
-            frames['year'] = year
-
-            frames.to_sql("ncaaf_teams", con, if_exists='append')
+            df = pd.DataFrame([{field: getattr(team, field) for field in sfields}])
+            df.to_sql("soccer_teams", con, if_exists='append')
         except Exception as e:
             traceback.print_exc()
             time.sleep(timeout)
-            teams = NCAAFTeams(year)
-            frames = teams.dataframes
-            frames['year'] = year
+            df = pd.DataFrame([{field: getattr(team, field) for field in sfields}])
+            df.to_sql("soccer_teams", con, if_exists='append')
 
-            frames.to_sql("ncaaf_teams", con, if_exists='append')
-
-        for team in teams:
+        try:
+            do_players(team)
+        except:
+            traceback.print_exc()
+            time.sleep(timeout)
             do_players(team)
 
         try:
-            do_games()
+            do_games(team)
         except Exception as e:
             traceback.print_exc()
             time.sleep(timeout)
-            do_games()
+            do_games(team)
 
     def do_players(team):
-        for player in team.roster.players:
+        for player in team.roster:
             try:
                 pdf = player.dataframe
                 if pdf is None:
                     continue
-                pdf['year'] = year
                 pdf['team'] = team.name
                 pdf['player_name'] = player.name
-                pdf.to_sql("ncaaf_players", con, if_exists='append')
+                pdf.to_sql("soccer_players", con, if_exists='append')
             except Exception as e:
                 traceback.print_exc()
                 time.sleep(timeout)
                 pdf = player.dataframe
-                pdf['year'] = year
                 pdf['team'] = team.name
                 pdf['player_name'] = player.name
-                pdf.to_sql("ncaaf_players", con, if_exists='append')
+                pdf.to_sql("soccer_players", con, if_exists='append')
 
-    def do_games():
-        games = NCAAFBoxscores(datetime(year, 9, 1), datetime(year + 1, 2, 1))
+    def do_games(team):
+        games = team.schedule
         ngames = []
-        for month, games in games.games.items():
-            for game in games:
-                game["date"] = datetime.strptime(month, "%m-%d-%Y")
-                ngames.append(game)
+        for game in games:
+            ngames.append(game.dataframe)
 
         df = pd.DataFrame(ngames)
-        df.to_sql("ncaaf_games", con, if_exists='append')
+        df.to_sql("soccer_games", con, if_exists='append')
 
-    for year in range(2011, 2021):
+    for tid in squad_ids.SQUAD_IDS.values():
         try:
-            do_year(year)
+            do_team(FBTeam(tid))
         except Exception as e:
             traceback.print_exc()
             time.sleep(timeout)
-            do_year(year)
+            do_team(FBTeam(tid))
 
     con.close()
+
 
 def do_football():
     engine = sqlalchemy.create_engine("postgresql://ubuntu:password@3.17.77.33/sportdoc")
@@ -374,22 +377,23 @@ def do_baseball():
 
     con.close()
 
+
 from threading import Thread
 
 t1 = Thread(target=do_basketball)
 t2 = Thread(target=do_hockey)
 t3 = Thread(target=do_football)
 t4 = Thread(target=do_baseball)
-# t5 = Thread(target=do_soccer)
+t5 = Thread(target=do_soccer)
 
 t1.start()
 t2.start()
 t3.start()
 t4.start()
-# t5.start()
+t5.start()
 
 t1.join()
 t2.join()
 t3.join()
 t4.join()
-# t5.join()
+t5.join()
