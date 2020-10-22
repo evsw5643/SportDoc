@@ -1,9 +1,11 @@
 .title {
     text-align: center;
+    font-family: 'Brush Script MT';
 }
 
 .hpage {
-    background-color: #000b14;
+    /* background-color: #000b14; */
+    background-image: url("spback.jpg");
     min-height: 90vh;
     display: flex;
     flex-direction: column;
@@ -14,6 +16,10 @@
 /* basic card stuff */
 .card{
     background-color: #000b14;
+    height: 10rem;
+    width: 10rem;
+    border-radius: 20px;
+    display: flex;
 }
 
 .card-title {
@@ -49,21 +55,40 @@
     background: linear-gradient(to bottom, #F44E3F 0%,#000000  100%); 
 }
 
-.hockey-card:hover{
+/* .hockey-card:hover{
     transform: scale(1.1);
     background: linear-gradient(to bottom, #ffffff 0%,#000000  100%);
     transition-duration: 1s;
-}
+} */
 
 .hockey-card:hover .hockey_text{
     color:black;
     transition-duration: 1s;
 }
 
-.soccer-card:hover{
+/* .soccer-card:hover{
     transform: scale(1.1);
     background: linear-gradient(to bottom, #98D831 0%,#000000  100%);
     transition-duration: 1s;
+} */
+
+
+/* EXPERIMENTS */
+
+.soccer-card:hover{
+    background-image: url("soccerpattern.jpg");
+    transform: scale(1.1);
+    transition-duration: 1s;
 }
+
+.hockey-card:hover{
+    transform: scale(1.1);
+    background-image: url("hockeypattern.jpg");
+    transition-duration: 1s;
+}
+
+/* .card-body home_card basketball-card{
+    background-image: url("spback.jpg");
+} */
 
 
