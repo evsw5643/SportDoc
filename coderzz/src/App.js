@@ -78,21 +78,7 @@ function App() {
                         <Route exact path="/">
                             <Home />
                         </Route>
-                        <Route exact path="/basketball">
-                            <Sport sport="basketball" />
-                        </Route>
-                        <Route exact path="/football">
-                            <Sport sport="football" />
-                        </Route>
-                        <Route exact path="/soccer">
-                            <Sport sport="soccer" />
-                        </Route>
-                        <Route exact path="/baseball">
-                            <Sport sport="baseball" />
-                        </Route>
-                        <Route exact path="/hockey">
-                            <Sport sport="hockey" />
-                        </Route>
+                        <Route exact path="/:sport" children={<SportLoad />} />
                         <Route exact path="/player/:sport/:id" children={<PlayerLoad />} />
                         <Route exact path="/team/:sport/:abb" children={<TeamLoad />} />
                     </Switch>
@@ -108,6 +94,15 @@ function TeamLoad() {
     return (
         <div>
             <Team team={abb} sport={sport} />
+        </div>
+    )
+}
+
+function SportLoad() {
+    let { sport } = useParams()
+    return (
+        <div>
+            <Sport sport={sport} />
         </div>
     )
 }

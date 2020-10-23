@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./player_info.css"
+import Blank from '../blank.png'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function Player(props) {
@@ -10,10 +11,10 @@ function Player(props) {
   const [sport, setsport] = useState("")
 
   useEffect(() => {
-
+    setloading(true)
     setsport(props.sport)
     api(props.player, props.sport)
-  }, [])
+  }, [props.sport, props.player])
 
   function api(apiPlayer, apiSport) {
     fetch(`/${apiSport}/getplayer/${apiPlayer}`)
@@ -38,9 +39,34 @@ function Player(props) {
     setsport(event.target.value);
   }
 
-  function reload() {
-    setloading(true)
-    api(search, sport)
+  function linkGen(type, sport, id) {
+    if (type == "player") {
+      switch (sport) {
+        case "basketball":
+          return (`https://www.basketball-reference.com/req/202010061/images/players/${id}.jpg`)
+        case "football":
+          return (`https://www.pro-football-reference.com/req/20180910/images/headshots/${id}_2019.jpg`)
+        case "baseball":
+          return (`https://www.baseball-reference.com/req/202007270/images/headshots/c/c755fefc_sabr.jpg`)
+        case "hockey":
+          return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
+        case "soccer":
+          return (`https://images-na.ssl-images-amazon.com/images/I/61Jigwd1kKL._AC_SL1500_.jpg`)
+      }
+    } else if (type == "team") {
+      switch (sport) {
+        case "basketball":
+          return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202010091/tlogo/bbr/${id}-2020.png`)
+        case "football":
+          return (Blank)
+        case "baseball":
+          return (Blank)
+        case "hockey":
+          return (Blank)
+        case "soccer":
+          return (Blank)
+      }
+    }
   }
 
   //  window.onload = function () {
@@ -113,7 +139,7 @@ function Player(props) {
               <option value="soccer">Soccer</option>
               <option value="hockey">Hockey</option>
             </select>
-            <Link to={"/player/" + sport + "/" + search}> <input className="submit_button" type="submit" value="Submit" onClick={reload} /> </Link>
+            <Link to={"/player/" + sport + "/" + search}> <input className="submit_button" type="submit" value="Submit" /> </Link>
           </form>
         </div>
         <div className="row justify-content-center">
@@ -122,7 +148,7 @@ function Player(props) {
               <h2 className="card-title player_stat_title"> {player[0].player_name} </h2>
               <div className="card-body player_stat_body">
                 <img className="card-img-top player_stat_img"
-                  src={`https://www.basketball-reference.com/req/202010061/images/players/${player[0].player_id}.jpg`}
+                  src={linkGen("player", sport, player[0].player_id)}
                   alt="Sample Image" />
                 <p className="card-text player_stat_text">
                   <h3>Career Points:</h3> {player[player.length - 1].points}

@@ -1,68 +1,121 @@
-import React from 'react';
-import Blank from './blank.png'
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Blank from '../blank.png'
 import "./sport.css"
 
 function Sport(props) {
-  let attr1 = ""
-  let attr2 = ""
-  let attr3 = ""
-  switch (props.sport) {
-    case "baseball":
-      attr1 = "Runs"
-      attr2 = "RBI"
-      attr3 = "Batting Average"
-      break;
-    case "football":
-      attr1 = "Touchdowns"
-      attr2 = "Sacks"
-      attr3 = "Completed Passes"
-      break;
-    case "basketball":
-      attr1 = "3 Pts Made"
-      attr2 = "Field Goal Attempts"
-      attr3 = "Total Blocks"
-      break;
-    case "soccer":
-      attr1 = "Goals Scored"
-      attr2 = "Shots on Goal"
-      attr3 = "Completed Passes"
-      break;
-    case "hockey":
-      attr1 = "I don't"
-      attr2 = "Know"
-      attr3 = "Hockey"
-      break;
+  const [loading1, setloading1] = useState(true);
+  const [loading2, setloading2] = useState(true);
+  const [totd, settotd] = useState({})
+  const [potd, setpotd] = useState({})
+  const [sport, setsport] = useState("")
+
+  useEffect(() => {
+    setloading1(true)
+    setloading2(true)
+    const now = new Date()
+    const ind = now.getDate() * (now.getMonth() + 1) + now.getUTCFullYear()
+    setsport(props.sport)
+    teamGet(props.sport, ind)
+    playerGet(props.sport, ind)
+  }, [props.sport])
+
+  function teamGet(apiSport, ind) {
+    fetch(`/${apiSport}/getteams`)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          settotd(result[ind % result.length])
+          setloading1(false)
+        },
+        (error) => {
+          console.log(error)
+          setloading1(false)
+        }
+      )
   }
-  return (
-    <div>
-      <div className="content">
-        <div className="card-group">
-          <div className="card">
-            <img className="card-img-top" src={Blank} alt="Blank" />
-            <div className="card-body">
-              <h3 className="card-title">Team of the Day</h3>
-              <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <button type="button" className="btn btn-warning">{attr1}</button>
-              <button type="button" className="btn btn-warning">{attr2}</button>
-              <button type="button" className="btn btn-warning">{attr3}</button>
-              <p className="card-text"><small className="text-muted">Last updated X mins ago</small></p>
+
+  function playerGet(apiSport, ind) {
+    fetch(`/${apiSport}/getplayers`)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setpotd(result[ind % result.length])
+          setloading2(false)
+        },
+        (error) => {
+          console.log(error)
+          setloading2(false)
+        }
+      )
+  }
+
+  function linkGen(type, sport, id) {
+    if (type == "player") {
+      switch (sport) {
+        case "basketball":
+          return (`https://www.basketball-reference.com/req/202010061/images/players/${id}.jpg`)
+        case "football":
+          return (`https://www.pro-football-reference.com/req/20180910/images/headshots/${id}_2019.jpg`)
+        case "baseball":
+          return (`https://www.baseball-reference.com/req/202007270/images/headshots/c/c755fefc_sabr.jpg`)
+        case "hockey":
+          return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
+        case "soccer":
+          return (`https://images-na.ssl-images-amazon.com/images/I/61Jigwd1kKL._AC_SL1500_.jpg`)
+      }
+    } else if (type == "team") {
+      switch (sport) {
+        case "basketball":
+          return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202010091/tlogo/bbr/${id}-2020.png`)
+        case "football":
+          return (Blank)
+        case "baseball":
+          return (Blank)
+        case "hockey":
+          return (Blank)
+        case "soccer":
+          return (Blank)
+      }
+    }
+  }
+
+  if (loading1 || loading2) {
+    return (
+      <div className="d-flex justify-content-center" style={{ marginTop: '5px' }}>
+        <div className="spinner-border text-light" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      </div>
+    )
+  } else if (!loading1 && !loading2) {
+    return (
+      <div>
+        <div className="content">
+          <div className="card-group">
+            <div className="card">
+              <img className="card-img-top" src={linkGen("team", sport, totd.abbreviation)} alt="Blank" />
+              <div className="card-body">
+                <h3 className="card-title">{totd.name}</h3>
+                <Link to={"/team/" + sport + "/" + totd.abbreviation}>
+                  <button type="button" className="btn btn-warning">See Stats</button>
+                </Link>
+              </div>
             </div>
-          </div>
-          <div className="card">
-            <img className="card-img-top" src={Blank} alt="Blank" />
-            <div className="card-body">
-              <h3 className="card-title">Player of the Day</h3>
-              <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-              <button type="button" className="btn btn-warning">{attr1}</button>
-              <button type="button" className="btn btn-warning">{attr2}</button>
-              <button type="button" className="btn btn-warning">{attr3}</button>
-              <p className="card-text"><small className="text-muted">Last updated X mins ago</small></p>
+            <div className="card">
+              <img className="card-img-top" src={linkGen("player", sport, potd.player_id)} alt="Blank" />
+              <div className="card-body">
+                <h3 className="card-title">{potd.player_name} - {potd.team}</h3>
+                <Link to={"/player/" + sport + "/" + potd.player_id}>
+                  <button type="button" className="btn btn-warning">See Stats</button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Sport;
