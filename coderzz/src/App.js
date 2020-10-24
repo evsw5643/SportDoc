@@ -10,6 +10,7 @@ import Home from './Views/Home/Home.js';
 import Sport from './Views/Sport/sport.js'
 import Player from './Views/Player/player_info.js'
 import Team from './Views/Team/team_info.js'
+import Search from './Views/Search/Search.js'
 import './App.css';
 
 function App() {
@@ -71,6 +72,7 @@ function App() {
                                 </Link>
                             </li>
                         </ul>
+                        <Search />
                     </div>
                 </nav>
                 <div className="container-fluid">

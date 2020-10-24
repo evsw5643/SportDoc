@@ -150,7 +150,7 @@ function Player(props) {
                 <img className="card-img-top player_stat_img"
                   src={linkGen("player", sport, player[0].player_id)}
                   alt="Sample Image" />
-                <p className="card-text player_stat_text">
+                <div className="card-text player_stat_text">
                   <h3>Career Points:</h3> {player[player.length - 1].points}
                   <br />
                   <h3>Career Assists:</h3> {player[player.length - 1].assists}
@@ -159,7 +159,7 @@ function Player(props) {
                   <br />
                   <h3>Career Blocks: </h3> {player[player.length - 1].blocks}
                   <br />
-                </p>
+                </div>
               </div>
             </div>
           </div>

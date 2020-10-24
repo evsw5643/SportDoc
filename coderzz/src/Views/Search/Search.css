@@ -1,0 +1,17 @@
+.search_list {
+    position: relative;
+    display: inline-block;
+    width: 300px;
+}
+
+.search_term {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #d4d4d4;
+}

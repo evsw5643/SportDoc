@@ -100,7 +100,7 @@ function Team(props) {
             <div className="col-sm-4">
               <div className="card team-card">
                 <div className="card-body team_stat_card">
-                  <p className="card-text team_stat_text">
+                  <div className="card-text team_stat_text">
                     <div className="container team_stat_title_container">
                       <div className="row">
                         <div className="col">
@@ -126,7 +126,7 @@ function Team(props) {
                     <br />
                     <h1>Total Blocks:</h1> {team[team.length - 1].blocks}
                     <br />
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
