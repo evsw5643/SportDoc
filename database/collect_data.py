@@ -38,7 +38,7 @@ def do_hockey():
             try:
                 frames.to_sql("nhl_teams", con, if_exists='append')
             except:
-                pass
+                traceback.print_exc()
         except Exception as e:
             traceback.print_exc()
             time.sleep(timeout)
@@ -48,7 +48,7 @@ def do_hockey():
             try:
                 frames.to_sql("nhl_teams", con, if_exists='append')
             except:
-                pass
+                traceback.print_exc()
 
         for team in teams:
             do_players(team)
@@ -70,7 +70,7 @@ def do_hockey():
                 try:
                     pdf.to_sql("nhl_players", con, if_exists='append')
                 except:
-                    pass
+                    traceback.print_exc()
             except Exception as e:
                 traceback.print_exc()
                 time.sleep(timeout)
@@ -81,7 +81,7 @@ def do_hockey():
                 try:
                     pdf.to_sql("nhl_players", con, if_exists='append')
                 except:
-                    pass
+                    traceback.print_exc()
 
     def do_games():
         games = NHLBoxscores(datetime(year, 10, 2), datetime(year + 1, 9, 28))
@@ -117,7 +117,7 @@ def do_basketball():
             try:
                 frames.to_sql("nba_teams", con, if_exists='append')
             except:
-                pass
+                traceback.print_exc()
         except Exception as e:
             traceback.print_exc()
             time.sleep(timeout)
@@ -128,7 +128,7 @@ def do_basketball():
             try:
                 frames.to_sql("nba_teams", con, if_exists='append')
             except:
-                pass
+                traceback.print_exc()
 
         for team in teams:
             do_players(team)
@@ -151,7 +151,7 @@ def do_basketball():
                 try:
                     pdf.to_sql("nba_players", con, if_exists='append')
                 except:
-                    pass
+                    traceback.print_exc()
             except Exception as e:
                 traceback.print_exc()
                 time.sleep(timeout)
@@ -163,7 +163,7 @@ def do_basketball():
                 try:
                     pdf.to_sql("nba_players", con, if_exists='append')
                 except:
-                    pass
+                    traceback.print_exc()
 
     def do_games():
         games = NBABoxscores(datetime(year, 9, 1), datetime(year + 1, 7, 1))
@@ -177,7 +177,7 @@ def do_basketball():
         try:
             df.to_sql("nba_games", con, if_exists='append')
         except:
-            pass
+            traceback.print_exc()
 
     for year in range(2011, 2021):
         try:
@@ -208,7 +208,7 @@ def do_soccer():
             try:
                 df.to_sql("soccer_teams", con, if_exists='append')
             except:
-                pass
+                traceback.print_exc()
         except Exception as e:
             traceback.print_exc()
             time.sleep(timeout)
@@ -216,7 +216,7 @@ def do_soccer():
             try:
                 df.to_sql("soccer_teams", con, if_exists='append')
             except:
-                pass
+                traceback.print_exc()
 
         try:
             do_players(team)
@@ -243,7 +243,7 @@ def do_soccer():
                 try:
                     pdf.to_sql("soccer_players", con, if_exists='append')
                 except:
-                    pass
+                    traceback.print_exc()
             except Exception as e:
                 traceback.print_exc()
                 time.sleep(timeout)
@@ -253,7 +253,7 @@ def do_soccer():
                 try:
                     pdf.to_sql("soccer_players", con, if_exists='append')
                 except:
-                    pass
+                    traceback.print_exc()
 
     def do_games(team):
         games = team.schedule
@@ -265,7 +265,7 @@ def do_soccer():
         try:
             df.to_sql("soccer_games", con, if_exists='append')
         except:
-            pass
+            traceback.print_exc()
 
     for tid in squad_ids.SQUAD_IDS.values():
         try:
@@ -291,7 +291,7 @@ def do_football():
             try:
                 frames.to_sql("nfl_teams", con, if_exists='append')
             except:
-                pass
+                traceback.print_exc()
         except Exception as e:
             traceback.print_exc()
             time.sleep(timeout)
@@ -302,7 +302,7 @@ def do_football():
             try:
                 frames.to_sql("nfl_teams", con, if_exists='append')
             except:
-                pass
+                traceback.print_exc()
 
         for team in teams:
             do_players(team)
@@ -326,7 +326,7 @@ def do_football():
                 try:
                     pdf.to_sql("nfl_players", con, if_exists='append')
                 except:
-                    pass
+                    traceback.print_exc()
             except Exception as e:
                 traceback.print_exc()
                 time.sleep(timeout)
@@ -337,7 +337,7 @@ def do_football():
                 try:
                     pdf.to_sql("nfl_players", con, if_exists='append')
                 except:
-                    pass
+                    traceback.print_exc()
 
     def do_games():
         games = NFLBoxscores(datetime(year, 9, 1), datetime(year + 1, 2, 1))
@@ -351,7 +351,7 @@ def do_football():
         try:
             df.to_sql("nfl_games", con, if_exists='append')
         except:
-            pass
+            traceback.print_exc()
 
     for year in range(2011, 2021):
         try:
@@ -377,7 +377,8 @@ def do_baseball():
             try:
                 frames.to_sql("mlb_teams", con, if_exists='append')
             except:
-                pass
+                traceback.print_exc()
+
         except Exception as e:
             traceback.print_exc()
             time.sleep(timeout)
@@ -388,7 +389,7 @@ def do_baseball():
             try:
                 frames.to_sql("mlb_teams", con, if_exists='append')
             except:
-                pass
+                traceback.print_exc()
 
         for team in teams:
             do_players(team)
@@ -410,7 +411,8 @@ def do_baseball():
                 try:
                     pdf.to_sql("mlb_players", con, if_exists='append')
                 except:
-                    pass
+                    traceback.print_exc()
+
             except Exception as e:
                 traceback.print_exc()
                 time.sleep(timeout)
@@ -421,7 +423,7 @@ def do_baseball():
                 try:
                     pdf.to_sql("mlb_players", con, if_exists='append')
                 except:
-                    pass
+                    traceback.print_exc()
 
     def do_games():
         games = MLBBoxscores(datetime(year, 9, 1), datetime(year + 1, 2, 1))
@@ -435,7 +437,7 @@ def do_baseball():
         try:
             df.to_sql("mlb_games", con, if_exists='append')
         except:
-            pass
+            traceback.print_exc()
 
     for year in range(2011, 2021):
         try:
