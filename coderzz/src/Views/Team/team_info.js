@@ -98,6 +98,7 @@ function Team(props) {
         </div>
       </div>
     </div>
+    
     )
   }
 }

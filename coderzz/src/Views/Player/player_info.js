@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./player_info.css"
 import Blank from '../blank.png'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import PlayerCharts from '../../Components/Charts/PlayerCharts';
 
 
 function Player(props) {
@@ -128,19 +129,36 @@ function Player(props) {
       <div className="hpage">
         <div className="card player_stat_card">
           <h2 className="card-title player_stat_title"> {player[0].player_name} </h2>
-          <div className="card-body player_stat_body">
-            <img className="card-img-top player_stat_img"
-              src={linkGen("player", sport, player[0].player_id)}
-              alt="Sample Image" />
-            <div className="card-text player_stat_text">
-              <div> Career Points: {player[player.length - 1].points} </div>
-              <br />
-              <div> Career Assists: {player[player.length - 1].assists} </div>
-              <br />
-              <div> Career Rebounds: {player[player.length - 1].total_rebounds} </div>
-              <br />
-              <div> Career Blocks: {player[player.length - 1].blocks} </div>
-              <br />
+          <div className="card player_stat_img">
+            <div className="card-body player_stat_body">
+              <img className="card-img-top player_stat_img_item"
+                src={linkGen("player", sport, player[0].player_id)}
+                alt="Sample Image" />
+            </div>
+          </div>
+          <div className="card player_stat_stats">
+            <div className="card-body player_stat_body">
+              <div className="card-text player_stat_text">
+                <div> Career Points: {player[player.length - 1].points} </div>
+                <br />
+                <div> Career Assists: {player[player.length - 1].assists} </div>
+                <br />
+                <div> Career Rebounds: {player[player.length - 1].total_rebounds} </div>
+                <br />
+                <div> Career Blocks: {player[player.length - 1].blocks} </div>
+                <br />
+              </div>
+            </div>
+          </div>
+          <div className="card player_stat_graph">
+            <div className="card-body player_stat_body">
+              <div id="PlayerGraph">
+                <PlayerCharts
+                  CareerPoints={parseInt(player[player.length - 1].points)}
+                  CareerAssists={parseInt(player[player.length - 1].assists)}
+                  CareerBlocks={parseInt(player[player.length - 1].blocks)}
+                  CareerRebounds={parseInt(player[player.length - 1].total_rebounds)} />
+              </div>
             </div>
           </div>
         </div>

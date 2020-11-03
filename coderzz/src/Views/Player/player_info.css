@@ -5,13 +5,51 @@
     margin-left: 300px;
     background-color: #001427;
     align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+    grid-template-areas: 
+        "Title Title Title"
+        "player-img player-stats player-graphs"
+        "Footer Footer Footer"
+    ;   
 }
+
 .player_stat_title {
     color:  #2A9D8F;
     font-family: 'Cairo', sans-serif;
-
+    grid-area: Title;
+    margin: auto;
 }
+.player_stat_stats{
+    background-color: #002A52;
+    border: none;
+    grid-area: player-stats;
+    height: 92%;
+    width: 50%;
+}
+.player_stat_img { 
+    background-color: #002A52;
+    border: none;
+    grid-area: player-img;
+    margin: auto;
+    height: 92%;
+}
+
+.player_stat_graph{
+    width: 50rem;
+    background-color: #001427;
+    border: none;
+    grid-area: player-graphs;
+}
+
+.player_stat_img_item { 
+    background-color: #002A52;
+    border: none;
+}
+
 .player_stat_text {
     color:  #2A9D8F;
     font-family: 'Cairo', sans-serif;
+
 }
