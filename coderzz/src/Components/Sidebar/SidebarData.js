@@ -5,7 +5,7 @@ export const SidebarData = [
     {
         title: "Home",
         icon: <i class="fas fa-home"></i>,
-        link: "/Home"
+        link: "/"
     },
     {
         title: "Basketball",

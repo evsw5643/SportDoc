@@ -91,25 +91,23 @@ function Sport(props) {
   } else if (!loading1 && !loading2) {
     return (
       <div>
-        <div className="content">
-          <div className="card-deck">
-            <div className="card totd-card">
-              {/* <img className="card-img-top totd-img" src={linkGen("team", sport, totd.abbreviation)} alt="Blank" /> */}
-              <div className="card-body">
-                {/* <h3 className="card-title">{totd.name}</h3> */}
-                {/* <Link to={"/team/" + sport + "/" + totd.abbreviation}> */}
-                  {/* <button type="button" className="btn btn-warning">See Stats</button> */}
-                {/* </Link> */}
-              </div>
-            </div>
-            <div className="card potd-card">
-              <img className="card-img-top potd-img" src={linkGen("player", sport, potd.player_id)} alt="Blank" />
-              <div className="card-body">
-                <h3 className="card-title">{potd.player_name} - {potd.team}</h3>
-                <Link to={"/player/" + sport + "/" + potd.player_id}>
-                  <button type="button" className="btn btn-warning">See Stats</button>
-                </Link>
-              </div>
+        {/* <div className="card totd-card"> */}
+        {/* <img className="card-img-top totd-img" src={linkGen("team", sport, totd.abbreviation)} alt="Blank" /> */}
+        {/* <div className="card-body"> */}
+        {/* <h3 className="card-title">{totd.name}</h3> */}
+        {/* <Link to={"/team/" + sport + "/" + totd.abbreviation}> */}
+        {/* <button type="button" className="btn btn-warning">See Stats</button> */}
+        {/* </Link> */}
+        {/* </div> */}
+        {/* </div> */}
+        <div className="hpage">
+          <div className="card potd-card">
+            <img className="card-img-top potd-img" src={linkGen("player", sport, potd.player_id)} alt="Blank" />
+            <div className="card-body">
+              <h3 className="card-title">{potd.player_name} - {potd.team}</h3>
+              <Link to={"/player/" + sport + "/" + potd.player_id}>
+                <button type="button" className="btn btn-warning">See Stats</button>
+              </Link>
             </div>
           </div>
         </div>

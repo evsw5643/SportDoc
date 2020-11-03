@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../App.css'
+import './Sidebar.css'
 import { SidebarData } from './SidebarData'
 import Search from '../../Views/Search/Search'
 

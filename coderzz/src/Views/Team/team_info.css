@@ -1,25 +1,20 @@
 .team_stat_card{
+    height: 48vh;
+    width: 75vw;
+    margin-top: 20px;
+    margin-left: 300px;
     background-color: #001427;
-    border-radius: 20px;
-    display: flex;
     align-items: center;
-    justify-content: center;
-    margin: auto;
-    height: 40rem;
-    width: 40rem;
 }
 
 .team_stat_text{
-    color: #F94E62;
+    color:  #2A9D8F;
+    font-family: 'Cairo', sans-serif;
 }
 
 .team_stat_title{
-    color: #F94E62;
-}
-
-.team_stat_img{
-    height: 100px;
-    width: 100px;
+    color:  #2A9D8F;
+    font-family: 'Cairo', sans-serif;
 }
 
 .search_box{

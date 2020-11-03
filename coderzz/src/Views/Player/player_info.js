@@ -3,6 +3,7 @@ import "./player_info.css"
 import Blank from '../blank.png'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
+
 function Player(props) {
 
   const [loading, setloading] = useState(true);
@@ -29,7 +30,6 @@ function Player(props) {
           setloading(false)
         }
       )
-
   }
   function handleChange(event) {
     setsearch(event.target.value);
@@ -125,46 +125,25 @@ function Player(props) {
     )
   } else if (!loading) {
     return (
-      <div className="content">
-        <div className="search_box">
-          <form>
-            <label>
-              <input type="text" onChange={handleChange} />
-            </label>
-            <select id="sports" onChange={handleChangeD}>
-              <option value="" selected disabled hidden>Choose Sport</option>
-              <option value="basketball">Basketball</option>
-              <option value="baseball">Baseball</option>
-              <option value="football">Football</option>
-              <option value="soccer">Soccer</option>
-              <option value="hockey">Hockey</option>
-            </select>
-            <Link to={"/player/" + sport + "/" + search}> <input className="submit_button" type="submit" value="Submit" /> </Link>
-          </form>
-        </div>
-        <div className="row justify-content-center">
-          <div className="col-sm-4">
-            <div className="card player_stat_card">
-              <h2 className="card-title player_stat_title"> {player[0].player_name} </h2>
-              <div className="card-body player_stat_body">
-                <img className="card-img-top player_stat_img"
-                  src={linkGen("player", sport, player[0].player_id)}
-                  alt="Sample Image" />
-                <div className="card-text player_stat_text">
-                  <h3>Career Points:</h3> {player[player.length - 1].points}
-                  <br />
-                  <h3>Career Assists:</h3> {player[player.length - 1].assists}
-                  <br />
-                  <h3>Career Rebounds: </h3> {player[player.length - 1].total_rebounds}
-                  <br />
-                  <h3>Career Blocks: </h3> {player[player.length - 1].blocks}
-                  <br />
-                </div>
-              </div>
+      <div className="hpage">
+        <div className="card player_stat_card">
+          <h2 className="card-title player_stat_title"> {player[0].player_name} </h2>
+          <div className="card-body player_stat_body">
+            <img className="card-img-top player_stat_img"
+              src={linkGen("player", sport, player[0].player_id)}
+              alt="Sample Image" />
+            <div className="card-text player_stat_text">
+              <div> Career Points: {player[player.length - 1].points} </div>
+              <br />
+              <div> Career Assists: {player[player.length - 1].assists} </div>
+              <br />
+              <div> Career Rebounds: {player[player.length - 1].total_rebounds} </div>
+              <br />
+              <div> Career Blocks: {player[player.length - 1].blocks} </div>
+              <br />
             </div>
           </div>
         </div>
-        <br />
       </div>
     )
   }

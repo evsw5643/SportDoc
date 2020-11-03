@@ -78,60 +78,26 @@ function Team(props) {
     )
   } else if (!loading) {
     return (
-      <div className="content">
-        <div className="search_box">
-          <form>
-            <label>
-              <input type="text" onChange={handleChange} />
-            </label>
-            <select id="sports" onChange={handleChangeD}>
-              <option value="" selected disabled hidden>Choose Sport</option>
-              <option value="basketball">Basketball</option>
-              <option value="baseball">Baseball</option>
-              <option value="football">Football</option>
-              <option value="soccer">Soccer</option>
-              <option value="hockey">Hockey</option>
-            </select>
-            <Link to={"/team/" + sport + "/" + search}> <input className="submit_button" type="submit" value="Submit" /> </Link>
-          </form>
-        </div>
-        <div>
-          <div className="row justify-content-center">
-            <div className="col-sm-4">
-                <div className="card-body team_stat_card">
-                  <div className="card-text team_stat_text">
-                    <div className="container team_stat_title_container">
-                      <div className="row">
-                        <div className="col">
-                          <h2 className="card-title team_stat_title"> {team[0].name} </h2>
-                        </div>
-                        <div className="col">
-                          <img className="card-img-top"
-                            src={linkGen("team", sport, team[0].abbreviation)}
-                            alt="Sample Image"
-                            className="team_stat_img" />
-                        </div>
-                      </div>
-                    </div>
-                    <h1>Year:</h1>  {team[team.length - 1].year}
-                    <br />
-                    <h1>Total Points:</h1>  {team[team.length - 1].points}
-                    <br />
-                    <h1>Total Assists:</h1> {team[team.length - 1].assists}
-                    <br />
-                    <h1>Total Rebounds:</h1> {team[team.length - 1].total_rebounds}
-                    <br />
-                    <h1>Total Steals:</h1> {team[team.length - 1].steals}
-                    <br />
-                    <h1>Total Blocks:</h1> {team[team.length - 1].blocks}
-                    <br />
-                  </div>
-                </div>
-            </div>
+      <div className="hpage">
+      <div className="card team_stat_card">
+        <h2 className="card-title team_stat_title"> {team[0].name} </h2>
+        <div className="card-body team_stat_body">
+          <img className="card-img-top team_stat_img"
+            src={linkGen("team", sport, team[0].abbreviation)}
+            alt="Sample Image" />
+          <div className="card-text team_stat_text">
+            <div> Career Points: {team[team.length - 1].points} </div>
+            <br />
+            <div> Career Assists: {team[team.length - 1].assists} </div>
+            <br />
+            <div> Career Rebounds: {team[team.length - 1].total_rebounds} </div>
+            <br />
+            <div> Career Blocks: {team[team.length - 1].blocks} </div>
+            <br />
           </div>
-          <br />
         </div>
       </div>
+    </div>
     )
   }
 }

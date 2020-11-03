@@ -1,0 +1,78 @@
+.Sidebar {
+    position: absolute;
+    width: 300px;
+    height: 100%;
+    background-color: #001427;
+    z-index: 10;
+}
+
+.SidebarList {
+    height: auto;
+    padding: 0;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.SidebarList .row:hover {
+    cursor: pointer;
+    background-color: #002A52;
+}
+
+.SidebarList .row {
+    width: 100%;
+    height: 50px;
+    list-style-type: none;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Cairo', sans-serif;
+    color: #2A9D8F;
+}
+
+.SidebarSearch {
+    width: 90%;
+    margin-left: 30px;
+    list-style-type: none;
+}
+
+.row #icon {
+    flex: 30%;
+    display: grid;
+    place-items: center;
+}
+
+.row #title {
+    flex: 70%;
+}
+
+.search_list {
+    position: relative;
+    display: inline-block;
+    width: 300px;
+}
+
+.search_term {
+    position: relative;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #d4d4d4;
+}
+
+
+
+#SearchBar {
+    background-color: #001427;
+    border: 1px solid #2A9D8F;
+
+}   
+
+#SearchBar::placeholder{
+    color: #2A9D8F;
+}
+
