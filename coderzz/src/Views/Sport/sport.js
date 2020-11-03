@@ -61,8 +61,8 @@ function Sport(props) {
           return (`https://www.baseball-reference.com/req/202007270/images/headshots/c/c755fefc_sabr.jpg`)
         case "hockey":
           return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
-        case "soccer":
-          return (`https://images-na.ssl-images-amazon.com/images/I/61Jigwd1kKL._AC_SL1500_.jpg`)
+        // case "soccer":
+        //   return (`https://images-na.ssl-images-amazon.com/images/I/61Jigwd1kKL._AC_SL1500_.jpg`)
       }
     } else if (type == "team") {
       switch (sport) {
@@ -74,8 +74,8 @@ function Sport(props) {
           return (Blank)
         case "hockey":
           return (Blank)
-        case "soccer":
-          return (Blank)
+        // case "soccer":
+        //   return (Blank)
       }
     }
   }
@@ -91,15 +91,15 @@ function Sport(props) {
   } else if (!loading1 && !loading2) {
     return (
       <div>
-        {/* <div className="card totd-card"> */}
-        {/* <img className="card-img-top totd-img" src={linkGen("team", sport, totd.abbreviation)} alt="Blank" /> */}
-        {/* <div className="card-body"> */}
-        {/* <h3 className="card-title">{totd.name}</h3> */}
-        {/* <Link to={"/team/" + sport + "/" + totd.abbreviation}> */}
-        {/* <button type="button" className="btn btn-warning">See Stats</button> */}
-        {/* </Link> */}
-        {/* </div> */}
-        {/* </div> */}
+        {/* <div className="card totd-card">
+          <img className="card-img-top totd-img" style={{ "height": 100, "width": 100 }} src={linkGen("team", sport, totd.abbreviation)} alt="Blank" />
+          <div className="card-body">
+            <h3 className="card-title">{totd.name}</h3>
+            <Link to={"/team/" + sport + "/" + totd.abbreviation}>
+              <button type="button" className="btn btn-warning">See Stats</button>
+            </Link>
+          </div>
+        </div> */}
         <div className="hpage">
           <div className="card potd-card">
             <img className="card-img-top potd-img" src={linkGen("player", sport, potd.player_id)} alt="Blank" />

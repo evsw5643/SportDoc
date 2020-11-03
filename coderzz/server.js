@@ -165,7 +165,7 @@ app.get('/hockey/getplayer/:player', (req, res) => {
 app.get('/hockey/getteams', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT name, abbreviation FROM nhl_teams WHERE year=2017`, (err, reso) => {
+        client.query(`SELECT name, abbreviation FROM nhl_teams WHERE year=2011`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -191,61 +191,61 @@ app.get('/hockey/getplayers', (req, res) => {
 });
 
 //! Soccer
-app.get('/soccer/getteam/:team', (req, res) => {
-    pool.connect((err, client, done) => {
-        if (err) throw err;
-        client.query(`SELECT * FROM soccer_teams WHERE abbreviation = '${req.params.team}'`, (err, reso) => {
-            done();
-            if (err) {
-                console.log(err.stack);
-            } else {
-                res.send(reso.rows);
-            }
-        });
-    });
-});
+// app.get('/soccer/getteam/:team', (req, res) => {
+//     pool.connect((err, client, done) => {
+//         if (err) throw err;
+//         client.query(`SELECT * FROM soccer_teams WHERE abbreviation = '${req.params.team}'`, (err, reso) => {
+//             done();
+//             if (err) {
+//                 console.log(err.stack);
+//             } else {
+//                 res.send(reso.rows);
+//             }
+//         });
+//     });
+// });
 
-app.get('/soccer/getplayer/:player', (req, res) => {
-    pool.connect((err, client, done) => {
-        if (err) throw err;
-        client.query(`SELECT * FROM soccer_players WHERE player_id = '${req.params.player}' AND year = 2020`, (err, reso) => {
-            done();
-            if (err) {
-                console.log(err.stack);
-            } else {
-                res.send(reso.rows);
-            }
-        });
-    });
-});
+// app.get('/soccer/getplayer/:player', (req, res) => {
+//     pool.connect((err, client, done) => {
+//         if (err) throw err;
+//         client.query(`SELECT * FROM soccer_players WHERE player_id = '${req.params.player}' AND year = 2020`, (err, reso) => {
+//             done();
+//             if (err) {
+//                 console.log(err.stack);
+//             } else {
+//                 res.send(reso.rows);
+//             }
+//         });
+//     });
+// });
 
-app.get('/soccer/getteams', (req, res) => {
-    pool.connect((err, client, done) => {
-        if (err) throw err;
-        client.query(`SELECT name, abbreviation FROM soccer_teams WHERE year=2020`, (err, reso) => {
-            done();
-            if (err) {
-                console.log(err.stack);
-            } else {
-                res.send(reso.rows);
-            }
-        });
-    });
-});
+// app.get('/soccer/getteams', (req, res) => {
+//     pool.connect((err, client, done) => {
+//         if (err) throw err;
+//         client.query(`SELECT name, abbreviation FROM soccer_teams WHERE year=2020`, (err, reso) => {
+//             done();
+//             if (err) {
+//                 console.log(err.stack);
+//             } else {
+//                 res.send(reso.rows);
+//             }
+//         });
+//     });
+// });
 
-app.get('/soccer/getplayers', (req, res) => {
-    pool.connect((err, client, done) => {
-        if (err) throw err;
-        client.query(`SELECT player_name, player_id, team FROM soccer_players WHERE year=2020 and index='Career'`, (err, reso) => {
-            done();
-            if (err) {
-                console.log(err.stack);
-            } else {
-                res.send(reso.rows);
-            }
-        });
-    });
-});
+// app.get('/soccer/getplayers', (req, res) => {
+//     pool.connect((err, client, done) => {
+//         if (err) throw err;
+//         client.query(`SELECT player_name, player_id, team FROM soccer_players WHERE year=2020 and index='Career'`, (err, reso) => {
+//             done();
+//             if (err) {
+//                 console.log(err.stack);
+//             } else {
+//                 res.send(reso.rows);
+//             }
+//         });
+//     });
+// });
 
 //! Baseball
 app.get('/baseball/getteam/:team', (req, res) => {
@@ -279,7 +279,7 @@ app.get('/baseball/getplayer/:player', (req, res) => {
 app.get('/baseball/getteams', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT name, abbreviation FROM mlb_teams WHERE year=2020`, (err, reso) => {
+        client.query(`SELECT name, abbreviation FROM mlb_teams WHERE year=2011`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
