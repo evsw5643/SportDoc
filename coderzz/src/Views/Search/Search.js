@@ -45,6 +45,8 @@ function Search() {
                 jsx.push(<li key={i} className="list-group-item SearchText"><Link className="search_term" to={`/player/basketball/${terms[i].player_id}`}><strong>{newName[0].substr(0, len)}</strong>{newName[0].substr(len)} {newName[1]} - {terms[i].team}</Link></li>)
             } else if (newName[1].substr(0, len).toUpperCase() == stro.toUpperCase()) {
                 jsx.push(<li key={i} className="list-group-item SearchText"><Link className="search_term" to={`/player/basketball/${terms[i].player_id}`}>{newName[0]} <strong>{newName[1].substr(0, len)}</strong>{newName[1].substr(len)} - {terms[i].team}</Link></li>)
+            }else if (terms[i].player_name.substr(0, len).toUpperCase() == stro.toUpperCase()) {
+                jsx.push(<li key={i} className="list-group-item SearchText"><Link className="search_term" to={`/player/basketball/${terms[i].player_id}`}><strong>{terms[i].player_name.substr(0, len)}</strong>{terms[i].player_name.substr(len)} - {terms[i].team}</Link></li>)
             }
         }
         setdropp(jsx)
