@@ -98,7 +98,6 @@ function Team(props) {
         <div>
           <div className="row justify-content-center">
             <div className="col-sm-4">
-              <div className="card team-card">
                 <div className="card-body team_stat_card">
                   <div className="card-text team_stat_text">
                     <div className="container team_stat_title_container">
@@ -128,7 +127,6 @@ function Team(props) {
                     <br />
                   </div>
                 </div>
-              </div>
             </div>
           </div>
           <br />

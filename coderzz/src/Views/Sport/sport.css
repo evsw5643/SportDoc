@@ -6,6 +6,32 @@
 }
 
 .card-text {
-    font-family: 'Brush Script MT';
     color: white;
+}
+
+.totd-card {
+    border-radius: 20px;
+    display: flex;
+    margin: auto;
+    transition-duration: 1s;
+    background-color: #00203D;
+}
+.totd-img {
+    height: 10rem;
+    width: 10rem;
+    border-radius: 20px;
+    margin: auto;
+}
+.potd-card{
+    border-radius: 20px;
+    display: flex;
+    margin: auto;
+    transition-duration: 1s;
+    background-color: #00203D;
+}
+.potd-img {
+    height: 10rem;
+    border-radius: 20px;
+    width: 10rem;
+    margin: auto;
 }

@@ -12,13 +12,14 @@ import Player from './Views/Player/player_info.js'
 import Team from './Views/Team/team_info.js'
 import Search from './Views/Search/Search.js'
 import './App.css';
+import Sidebar from './Components/Sidebar/Sidebar.js';
 
 function App() {
     return (
         <Router>
             <div className="App">
                 {/* navbar */}
-                <nav className="navbar navbar-expand-lg navbar-dark">
+                {/* <nav className="navbar navbar-expand-lg navbar-dark">
                     <Link to="/" className="navbar-brand">
                         Sport Doc
                     </Link>
@@ -32,10 +33,10 @@ function App() {
                         aria-label="Toggle navigation"
                     >
                         <span className="navbar-toggler-icon" />
-                    </button>
-
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav mr-auto">
+                    </button> */}
+                    {/* Sports In Navbar */}
+                    {/* <div className="collapse navbar-collapse" id="navbarSupportedContent"> */}
+                        {/* <ul className="navbar-nav mr-auto">
                             <li className="nav-item">
                                 <Link className="nav-link" to="/basketball">
                                     Basketball
@@ -57,11 +58,6 @@ function App() {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/soccer">
-                                    Soccer
-                                </Link>
-                            </li>
-                            <li className="nav-item">
                                 <Link className="nav-link" to="/player/basketball/jamesle01">
                                     Player Stats
                                 </Link>
@@ -71,10 +67,11 @@ function App() {
                                     Team Stats
                                 </Link>
                             </li>
-                        </ul>
-                        <Search />
-                    </div>
-                </nav>
+                        </ul> */}
+                        {/* <Search /> */}
+                    {/* </div> */}
+                {/* </nav> */}
+                <Sidebar/>
                 <div className="container-fluid">
                     <Switch>
                         <Route exact path="/">
@@ -90,6 +87,7 @@ function App() {
     );
 }
 
+// * Loads team abbreviation and sport
 function TeamLoad() {
     let { abb } = useParams()
     let { sport } = useParams()
@@ -100,6 +98,7 @@ function TeamLoad() {
     )
 }
 
+// * Loads sport 
 function SportLoad() {
     let { sport } = useParams()
     return (
@@ -109,6 +108,7 @@ function SportLoad() {
     )
 }
 
+// * Loads player according to player id and sport
 function PlayerLoad() {
     let { id } = useParams()
     let { sport } = useParams()

@@ -1,4 +1,6 @@
 .player_stat_card{
+    height: 100%;
+    width: 300px;
     background-color: #001427;
     border-radius: 20px;
     align-items: center;
