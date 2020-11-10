@@ -1,11 +1,33 @@
-.content {
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1200px;
+.card-text {
+    color: white;
 }
 
-.card-text {
-    font-family: 'Brush Script MT';
-    color: white;
+/* .totd-card {
+    border-radius: 20px;
+    display: flex;
+    margin: auto;
+    transition-duration: 1s;
+    background-color: #00203D;
+}
+.totd-img {
+    height: 10rem;
+    width: 10rem;
+    border-radius: 20px;
+    margin: auto;
+} */
+
+.potd-card{
+    height: 48vh;
+    width: 75vw;
+    display: absolute;
+    margin-top: 20px;
+    margin-left: 300px;
+    background-color: #001427;
+    color:  #2A9D8F;
+    font-family: 'Cairo', sans-serif;
+}
+.potd-img {
+    border-radius: 20px;
+    width: 10rem;
+    margin: auto;
 }
