@@ -19,7 +19,8 @@ Elo = (function () {
 
     return {
         getRatingDelta: getRatingDelta,
-        getNewRating: getNewRating
+        getNewRating: getNewRating,
+        getWinChance: getWinChance // Elo.getWinChance
     };
 })();
 
