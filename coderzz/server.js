@@ -65,7 +65,7 @@ app.get('/basketball/getteams', (req, res) => {
 app.get('/basketball/getplayers', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT player_name, player_id, team FROM nba_players WHERE year=2020 and index='Career'`, (err, reso) => {
+        client.query(`SELECT player_name, player_id, team, 'basketball' as sportname FROM nba_players WHERE year=2020 and index='Career'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -122,7 +122,7 @@ app.get('/football/getteams', (req, res) => {
 app.get('/football/getplayers', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT player_name, player_id, team FROM nfl_players WHERE year=2011 and index='Career'`, (err, reso) => {
+        client.query(`SELECT player_name, player_id, team, 'football' as sportname FROM nfl_players WHERE year=2020 and index='Career'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -179,7 +179,7 @@ app.get('/hockey/getteams', (req, res) => {
 app.get('/hockey/getplayers', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT player_name, player_id, team FROM nhl_players WHERE year=2017 and index='Career'`, (err, reso) => {
+        client.query(`SELECT player_name, player_id, team, 'hockey' as sportname FROM nhl_players WHERE year=2020 and index='Career'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -293,7 +293,7 @@ app.get('/baseball/getteams', (req, res) => {
 app.get('/baseball/getplayers', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT player_name, player_id, team FROM mlb_players WHERE year=2020 and index='Career'`, (err, reso) => {
+        client.query(`SELECT player_name, player_id, team, 'baseball' as sportname FROM mlb_players WHERE year=2020 and index='Career'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);

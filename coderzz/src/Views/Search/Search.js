@@ -3,12 +3,14 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import "../../Components/Sidebar/Sidebar.css"
 
 function Search() {
-    const [terms, setterms] = useState([])
     const [dropdown, setdropdown] = useState(false)
     const [dropp, setdropp] = useState([])
-
+    var terms = []
     useEffect(() => {
         playerGet("basketball")
+        playerGet("baseball")
+        playerGet("football")
+        playerGet("hockey")
     }, [])
 
     function playerGet(apiSport) {
@@ -16,7 +18,7 @@ function Search() {
             .then(res => res.json())
             .then(
                 (result) => {
-                    setterms(result)
+                    terms += result
                 },
                 (error) => {
                     console.log(error)
@@ -37,16 +39,15 @@ function Search() {
 
     function createDropdown(stro) {
         let jsx = []
-        console.log(stro)
         let len = stro.length
         for (let i = 0; i < terms.length; i++) {
             let newName = terms[i].player_name.split(" ")
             if (newName[0].substr(0, len).toUpperCase() == stro.toUpperCase()) {
-                jsx.push(<li key={i} className="list-group-item SearchText"><Link className="search_term" to={`/player/basketball/${terms[i].player_id}`}><strong>{newName[0].substr(0, len)}</strong>{newName[0].substr(len)} {newName[1]} - {terms[i].team}</Link></li>)
+                jsx.push(<li key={i} className="list-group-item SearchText"><Link className="search_term" to={`/player/${terms[i].sportname}/${terms[i].player_id}`}><strong>{newName[0].substr(0, len)}</strong>{newName[0].substr(len)} {newName[1]} - {terms[i].team}</Link></li>)
             } else if (newName[1].substr(0, len).toUpperCase() == stro.toUpperCase()) {
-                jsx.push(<li key={i} className="list-group-item SearchText"><Link className="search_term" to={`/player/basketball/${terms[i].player_id}`}>{newName[0]} <strong>{newName[1].substr(0, len)}</strong>{newName[1].substr(len)} - {terms[i].team}</Link></li>)
-            }else if (terms[i].player_name.substr(0, len).toUpperCase() == stro.toUpperCase()) {
-                jsx.push(<li key={i} className="list-group-item SearchText"><Link className="search_term" to={`/player/basketball/${terms[i].player_id}`}><strong>{terms[i].player_name.substr(0, len)}</strong>{terms[i].player_name.substr(len)} - {terms[i].team}</Link></li>)
+                jsx.push(<li key={i} className="list-group-item SearchText"><Link className="search_term" to={`/player/${terms[i].sportname}/${terms[i].player_id}`}>{newName[0]} <strong>{newName[1].substr(0, len)}</strong>{newName[1].substr(len)} - {terms[i].team}</Link></li>)
+            } else if (terms[i].player_name.substr(0, len).toUpperCase() == stro.toUpperCase()) {
+                jsx.push(<li key={i} className="list-group-item SearchText"><Link className="search_term" to={`/player/${terms[i].sportname}/${terms[i].player_id}`}><strong>{terms[i].player_name.substr(0, len)}</strong>{terms[i].player_name.substr(len)} - {terms[i].team}</Link></li>)
             }
         }
         setdropp(jsx)
