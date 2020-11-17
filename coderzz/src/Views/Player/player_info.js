@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./player_info.css"
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Blank from '../blank.png'
-import PlayerCharts from '../../Components/Charts/PlayerCharts';
+import PlayerCharts from '../../Components/Charts/PlayerCharts.js';
 
 
 function Player(props) {
@@ -148,16 +148,15 @@ function Player(props) {
               </div>
             </div>
           </div>
-          <div className="card player_stat_graph">
-            <div className="card-body player_stat_body">
-              <div id="PlayerGraph">
-                <PlayerCharts
-                  CareerPoints={parseInt(player[career].points)}
-                  CareerAssists={parseInt(player[career].assists)}
-                  CareerBlocks={parseInt(player[career].blocks)}
-                  CareerRebounds={parseInt(player[career].total_rebounds)} />
-              </div>
-            </div>
+        </div>
+        <hr></hr>
+        <div className="card player_stat_graph">
+          <div id="PlayerGraph">
+            <PlayerCharts
+              CareerPoints={parseInt(player[career].points)}
+              CareerAssists={parseInt(player[career].assists)}
+              CareerBlocks={parseInt(player[career].blocks)}
+              CareerRebounds={parseInt(player[career].total_rebounds)} />
           </div>
         </div>
       </div>
