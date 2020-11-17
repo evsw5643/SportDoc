@@ -37,7 +37,7 @@ app.get('/basketball/getteam/:team', (req, res) => {
 app.get('/basketball/getplayer/:player', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT * FROM nba_players WHERE player_id = '${req.params.player}' AND year = 2020`, (err, reso) => {
+        client.query(`SELECT * FROM nba_players WHERE player_id = '${req.params.player}' AND year = 2019`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -94,7 +94,7 @@ app.get('/football/getteam/:team', (req, res) => {
 app.get('/football/getplayer/:player', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT * FROM nfl_players WHERE player_id = '${req.params.player}' AND year = 2020`, (err, reso) => {
+        client.query(`SELECT * FROM nfl_players WHERE player_id = '${req.params.player}' AND year = 2019`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -151,7 +151,7 @@ app.get('/hockey/getteam/:team', (req, res) => {
 app.get('/hockey/getplayer/:player', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT * FROM nhl_players WHERE player_id = '${req.params.player}' AND year = 2020`, (err, reso) => {
+        client.query(`SELECT * FROM nhl_players WHERE player_id = '${req.params.player}' AND year = 2019`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -265,7 +265,7 @@ app.get('/baseball/getteam/:team', (req, res) => {
 app.get('/baseball/getplayer/:player', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT * FROM mlb_players WHERE player_id = '${req.params.player}' AND year = 2020`, (err, reso) => {
+        client.query(`SELECT * FROM mlb_players WHERE player_id = '${req.params.player}' AND year = 2019`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
