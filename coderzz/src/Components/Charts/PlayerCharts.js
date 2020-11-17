@@ -61,27 +61,28 @@ import { Line } from "react-chartjs-2";
 
 
 
-function PlayerCharts(props){
+function PlayerCharts(props) {
     const data = {
-    labels: ["2011-2012", "2012-2013", "2013-2014", "2014-2015", "2015-2016", "2016-2017"],
-    data: [
-        {
-        label: "Blocks",
-        //text: "Blocks",
-        data: [33, 25, 35, 51, 54, 76],
-        fill: false,
-        borderColor: "#742774",
-        indexLabelFontColor: "#2A9D8F",
-        gridColor: "#2A9D8F",
-        lineColor: "#2A9D8F",
-        }
-    ]
+        labels: ["2011-2012", "2012-2013", "2013-2014", "2014-2015", "2015-2016", "2016-2017"],
+        datasets: [
+            {
+                label: "Blocks",
+                //text: "Blocks",
+                data: [33, 25, 35, 51, 54, 76],
+                fill: false,
+                backgroundColor: 'rgba(75,192,192,1)',
+                borderColor: "#742774",
+                indexLabelFontColor: "#2A9D8F",
+                gridColor: "#2A9D8F",
+                lineColor: "#2A9D8F",
+            }
+        ]
     };
     return (
         <div className="App">
-          <Line data={data} />
+            <Line data={data} />
         </div>
-      );
+    );
 }
 
 export default PlayerCharts
