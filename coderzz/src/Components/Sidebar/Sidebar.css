@@ -15,7 +15,7 @@
 
 .SidebarList .row:hover {
     cursor: pointer;
-    background-color: #002A52;
+    background-color: #002a52;
 }
 
 .SidebarList .row {
@@ -27,7 +27,7 @@
     justify-content: center;
     align-items: center;
     font-family: 'Cairo', sans-serif;
-    color: #2A9D8F;
+    color: #2a9d8f;
 }
 
 .SidebarSearch {
@@ -64,15 +64,20 @@
     background-color: #d4d4d4;
 }
 
-
-
-#SearchBar {
+#SearchBar + .search_list {
     background-color: #001427;
-    border: 1px solid #2A9D8F;
-
-}   
-
-#SearchBar::placeholder{
-    color: #2A9D8F;
+    border: 1px solid #2a9d8f;
+    display: none;
 }
 
+#SearchBar:focus + .search_list {
+    display: inline-block;
+}
+
+.search_list:hover {
+    display: inline-block;
+}
+
+#SearchBar::placeholder {
+    color: #2a9d8f;
+}
