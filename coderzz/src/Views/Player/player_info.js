@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import "./player_info.css"
-import Blank from '../blank.png'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Blank from '../blank.png'
 import PlayerCharts from '../../Components/Charts/PlayerCharts';
 
 
 function Player(props) {
 
   const [loading, setloading] = useState(true);
+  const [career, setcareer] = useState(0);
   const [player, setplayer] = useState([])
-  const [search, setsearch] = useState("")
   const [sport, setsport] = useState("")
 
   useEffect(() => {
@@ -24,6 +24,11 @@ function Player(props) {
       .then(
         (result) => {
           setplayer(result)
+          for (let i = 0; i < result.length; i++) {
+            if (result[i].index === 'Career') {
+              setcareer(i)
+            }
+          }
           setloading(false)
         },
         (error) => {
@@ -32,29 +37,22 @@ function Player(props) {
         }
       )
   }
-  function handleChange(event) {
-    setsearch(event.target.value);
-  }
-
-  function handleChangeD(event) {
-    setsport(event.target.value);
-  }
 
   function linkGen(type, sport, id) {
-    if (type == "player") {
+    if (type === "player") {
       switch (sport) {
         case "basketball":
           return (`https://www.basketball-reference.com/req/202010061/images/players/${id}.jpg`)
         case "football":
-          return (`https://www.pro-football-reference.com/req/20180910/images/headshots/${id}_2019.jpg`)
+          return (`https://www.pro-football-reference.com/req/20180910/images/headshots/${id}_2017.jpg`)
         case "baseball":
           return (`https://www.baseball-reference.com/req/202007270/images/headshots/c/c755fefc_sabr.jpg`)
         case "hockey":
           return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
-        case "soccer":
-          return (`https://images-na.ssl-images-amazon.com/images/I/61Jigwd1kKL._AC_SL1500_.jpg`)
+        default:
+          return (Blank)
       }
-    } else if (type == "team") {
+    } else if (type === "team") {
       switch (sport) {
         case "basketball":
           return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202010091/tlogo/bbr/${id}-2020.png`)
@@ -64,7 +62,7 @@ function Player(props) {
           return (Blank)
         case "hockey":
           return (Blank)
-        case "soccer":
+        default:
           return (Blank)
       }
     }
@@ -133,19 +131,19 @@ function Player(props) {
             <div className="card-body player_stat_body">
               <img className="card-img-top player_stat_img_item"
                 src={linkGen("player", sport, player[0].player_id)}
-                alt="Sample Image" />
+                alt="Headshot" />
             </div>
           </div>
           <div className="card player_stat_stats">
             <div className="card-body player_stat_body">
               <div className="card-text player_stat_text">
-                <div> Career Points: {player[player.length - 1].points} </div>
+                <div> Career Points: {player[career].points} </div>
                 <br />
-                <div> Career Assists: {player[player.length - 1].assists} </div>
+                <div> Career Assists: {player[career].assists} </div>
                 <br />
-                <div> Career Rebounds: {player[player.length - 1].total_rebounds} </div>
+                <div> Career Rebounds: {player[career].total_rebounds} </div>
                 <br />
-                <div> Career Blocks: {player[player.length - 1].blocks} </div>
+                <div> Career Blocks: {player[career].blocks} </div>
                 <br />
               </div>
             </div>
@@ -154,10 +152,10 @@ function Player(props) {
             <div className="card-body player_stat_body">
               <div id="PlayerGraph">
                 <PlayerCharts
-                  CareerPoints={parseInt(player[player.length - 1].points)}
-                  CareerAssists={parseInt(player[player.length - 1].assists)}
-                  CareerBlocks={parseInt(player[player.length - 1].blocks)}
-                  CareerRebounds={parseInt(player[player.length - 1].total_rebounds)} />
+                  CareerPoints={parseInt(player[career].points)}
+                  CareerAssists={parseInt(player[career].assists)}
+                  CareerBlocks={parseInt(player[career].blocks)}
+                  CareerRebounds={parseInt(player[career].total_rebounds)} />
               </div>
             </div>
           </div>

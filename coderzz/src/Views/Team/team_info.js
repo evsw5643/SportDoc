@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import "./team_info.css"
 import Blank from '../blank.png'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+// import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 function Team(props) {
 
   const [loading, setloading] = useState(true);
   const [team, setteam] = useState([])
-  const [search, setsearch] = useState("")
   const [sport, setsport] = useState("")
 
   useEffect(() => {
@@ -30,16 +29,8 @@ function Team(props) {
       )
   }
 
-  function handleChange(event) {
-    setsearch(event.target.value.toUpperCase());
-  }
-
-  function handleChangeD(event) {
-    setsport(event.target.value);
-  }
-
   function linkGen(type, sport, id) {
-    if (type == "player") {
+    if (type === "player") {
       switch (sport) {
         case "basketball":
           return (`https://www.basketball-reference.com/req/202010061/images/players/${id}.jpg`)
@@ -49,10 +40,10 @@ function Team(props) {
           return (`https://www.baseball-reference.com/req/202007270/images/headshots/c/c755fefc_sabr.jpg`)
         case "hockey":
           return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
-        case "soccer":
-          return (`https://images-na.ssl-images-amazon.com/images/I/61Jigwd1kKL._AC_SL1500_.jpg`)
+        default:
+          return (Blank)
       }
-    } else if (type == "team") {
+    } else if (type === "team") {
       switch (sport) {
         case "basketball":
           return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202010091/tlogo/bbr/${id}-2020.png`)
@@ -62,7 +53,7 @@ function Team(props) {
           return (Blank)
         case "hockey":
           return (Blank)
-        case "soccer":
+        default:
           return (Blank)
       }
     }
@@ -79,26 +70,26 @@ function Team(props) {
   } else if (!loading) {
     return (
       <div className="hpage">
-      <div className="card team_stat_card">
-        <h2 className="card-title team_stat_title"> {team[0].name} </h2>
-        <div className="card-body team_stat_body">
-          <img className="card-img-top team_stat_img"
-            src={linkGen("team", sport, team[0].abbreviation)}
-            alt="Sample Image" />
-          <div className="card-text team_stat_text">
-            <div> Career Points: {team[team.length - 1].points} </div>
-            <br />
-            <div> Career Assists: {team[team.length - 1].assists} </div>
-            <br />
-            <div> Career Rebounds: {team[team.length - 1].total_rebounds} </div>
-            <br />
-            <div> Career Blocks: {team[team.length - 1].blocks} </div>
-            <br />
+        <div className="card team_stat_card">
+          <h2 className="card-title team_stat_title"> {team[0].name} </h2>
+          <div className="card-body team_stat_body">
+            <img className="card-img-top team_stat_img"
+              src={linkGen("team", sport, team[0].abbreviation)}
+              alt="Team logo" />
+            <div className="card-text team_stat_text">
+              <div> Career Points: {team[team.length - 1].points} </div>
+              <br />
+              <div> Career Assists: {team[team.length - 1].assists} </div>
+              <br />
+              <div> Career Rebounds: {team[team.length - 1].total_rebounds} </div>
+              <br />
+              <div> Career Blocks: {team[team.length - 1].blocks} </div>
+              <br />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    
+
     )
   }
 }

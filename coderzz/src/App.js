@@ -17,15 +17,15 @@ function App() {
     return (
         <Router>
             <div className="App">
-                <Sidebar/>
-                    <Switch>
-                        <Route exact path="/">
-                            <Home />
-                        </Route>
-                        <Route exact path="/:sport" children={<SportLoad />} />
-                        <Route exact path="/player/:sport/:id" children={<PlayerLoad />} />
-                        <Route exact path="/team/:sport/:abb" children={<TeamLoad />} />
-                    </Switch>
+                <Sidebar />
+                <Switch>
+                    <Route exact path="/">
+                        <Home />
+                    </Route>
+                    <Route exact path="/:sport" children={<SportLoad />} />
+                    <Route exact path="/player/:sport/:id" children={<PlayerLoad />} />
+                    <Route exact path="/team/:sport/:abb" children={<TeamLoad />} />
+                </Switch>
 
             </div>
         </Router>
