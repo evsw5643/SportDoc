@@ -1,4 +1,5 @@
 import React from 'react'
+import { Line } from "react-chartjs-2";
 // import CanvasJSReact from '../../canvasjs.react';
 // var CanvasJS = CanvasJSReact.CanvasJS;
 // var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -58,7 +59,7 @@ import React from 'react'
 
 // export default PlayerCharts
 
-import { Line } from "react-chartjs-2";
+
 
 function PlayerCharts(props){
     const data = {
