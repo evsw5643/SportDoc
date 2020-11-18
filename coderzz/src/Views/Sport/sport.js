@@ -51,7 +51,7 @@ function Sport(props) {
   }
 
   function linkGen(type, sport, id) {
-    if (type == "player") {
+    if (type === "player") {
       switch (sport) {
         case "basketball":
           return (`https://www.basketball-reference.com/req/202010061/images/players/${id}.jpg`)
@@ -64,7 +64,7 @@ function Sport(props) {
         // case "soccer":
         //   return (`https://images-na.ssl-images-amazon.com/images/I/61Jigwd1kKL._AC_SL1500_.jpg`)
       }
-    } else if (type == "team") {
+    } else if (type === "team") {
       switch (sport) {
         case "basketball":
           return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202010091/tlogo/bbr/${id}-2020.png`)

@@ -37,7 +37,7 @@ app.get('/basketball/getteam/:team', (req, res) => {
 app.get('/basketball/getplayer/:player', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT * FROM nba_players WHERE player_id = '${req.params.player}' AND year = 2020`, (err, reso) => {
+        client.query(`SELECT * FROM nba_players WHERE player_id = '${req.params.player}'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -51,7 +51,7 @@ app.get('/basketball/getplayer/:player', (req, res) => {
 app.get('/basketball/getteams', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT name, abbreviation FROM nba_teams WHERE year=2020`, (err, reso) => {
+        client.query(`SELECT DISTINCT name, abbreviation FROM nba_teams`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -65,7 +65,7 @@ app.get('/basketball/getteams', (req, res) => {
 app.get('/basketball/getplayers', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT player_name, player_id, team, 'basketball' as sportname FROM nba_players WHERE year=2020 and index='Career'`, (err, reso) => {
+        client.query(`SELECT DISTINCT player_name, player_id, team, 'basketball' as sportname FROM nba_players WHERE index='Career'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -94,7 +94,7 @@ app.get('/football/getteam/:team', (req, res) => {
 app.get('/football/getplayer/:player', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT * FROM nfl_players WHERE player_id = '${req.params.player}' AND year = 2020`, (err, reso) => {
+        client.query(`SELECT * FROM nfl_players WHERE player_id = '${req.params.player}'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -108,7 +108,7 @@ app.get('/football/getplayer/:player', (req, res) => {
 app.get('/football/getteams', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT name, abbreviation FROM nfl_teams WHERE year=2011`, (err, reso) => {
+        client.query(`SELECT DISTINCT name, abbreviation FROM nfl_teams`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -122,7 +122,7 @@ app.get('/football/getteams', (req, res) => {
 app.get('/football/getplayers', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT player_name, player_id, team, 'football' as sportname FROM nfl_players WHERE year=2020 and index='Career'`, (err, reso) => {
+        client.query(`SELECT DISTINCT player_name, player_id, team, 'football' as sportname FROM nfl_players WHERE index='Career'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -151,7 +151,7 @@ app.get('/hockey/getteam/:team', (req, res) => {
 app.get('/hockey/getplayer/:player', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT * FROM nhl_players WHERE player_id = '${req.params.player}' AND year = 2020`, (err, reso) => {
+        client.query(`SELECT * FROM nhl_players WHERE player_id = '${req.params.player}'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -165,7 +165,7 @@ app.get('/hockey/getplayer/:player', (req, res) => {
 app.get('/hockey/getteams', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT name, abbreviation FROM nhl_teams WHERE year=2011`, (err, reso) => {
+        client.query(`SELECT DISTINCT name, abbreviation FROM nhl_teams`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -179,7 +179,7 @@ app.get('/hockey/getteams', (req, res) => {
 app.get('/hockey/getplayers', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT player_name, player_id, team, 'hockey' as sportname FROM nhl_players WHERE year=2020 and index='Career'`, (err, reso) => {
+        client.query(`SELECT DISTINCT player_name, player_id, team, 'hockey' as sportname FROM nhl_players WHERE index='Career'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -265,7 +265,7 @@ app.get('/baseball/getteam/:team', (req, res) => {
 app.get('/baseball/getplayer/:player', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT * FROM mlb_players WHERE player_id = '${req.params.player}' AND year = 2020`, (err, reso) => {
+        client.query(`SELECT * FROM mlb_players WHERE player_id = '${req.params.player}'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -279,7 +279,7 @@ app.get('/baseball/getplayer/:player', (req, res) => {
 app.get('/baseball/getteams', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT name, abbreviation FROM mlb_teams WHERE year=2011`, (err, reso) => {
+        client.query(`SELECT DISTINCT name, abbreviation FROM mlb_teams`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -293,7 +293,7 @@ app.get('/baseball/getteams', (req, res) => {
 app.get('/baseball/getplayers', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT player_name, player_id, team, 'baseball' as sportname FROM mlb_players WHERE year=2020 and index='Career'`, (err, reso) => {
+        client.query(`SELECT DISTINCT player_name, player_id, team, 'baseball' as sportname FROM mlb_players WHERE index='Career'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
