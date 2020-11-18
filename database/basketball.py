@@ -102,7 +102,7 @@ def do_basketball():
         except:
             traceback.print_exc()
 
-    for year in range(2000, 2011):
+    for year in range(2000, 2020):
         try:
             do_year(year)
         except Exception as e:

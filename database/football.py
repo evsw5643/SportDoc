@@ -90,11 +90,11 @@ def do_football():
                     traceback.print_exc()
 
     def do_games():
-        games = NFLBoxscores(datetime(year, 9, 1), datetime(year + 1, 2, 1))
+        games = NFLBoxscores(week=1, year=year, end_week=17)
         ngames = []
-        for month, games in games.games.items():
+        for week, games in games.games.items():
             for game in games:
-                game["date"] = datetime.strptime(month, "%m-%d-%Y")
+                game["date"] = datetime.strptime(game['boxscore'], "%m%d%Y")
                 ngames.append(game)
 
         df = pd.DataFrame(ngames)
@@ -103,7 +103,7 @@ def do_football():
         except:
             traceback.print_exc()
 
-    for year in range(2018, 2021):
+    for year in range(2000, 2018):
         do_games()
         # wraprun(do_year, year)
         # threading.Thread(target=wraprun, args=(do_year, year)).start()

@@ -103,7 +103,7 @@ def do_baseball():
         except:
             traceback.print_exc()
 
-    for year in range(2011, 2018):
+    for year in range(2000, 2011):
         wraprun(do_year, year)
         # threading.Thread(target=wraprun, args=(do_year, year)).start()
 
