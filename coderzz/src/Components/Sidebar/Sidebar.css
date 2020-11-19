@@ -30,12 +30,6 @@
     color: #2a9d8f;
 }
 
-.SidebarSearch {
-    width: 90%;
-    margin-left: 30px;
-    list-style-type: none;
-}
-
 .row #icon {
     flex: 30%;
     display: grid;
@@ -47,37 +41,68 @@
 }
 
 .search_list {
-    position: relative;
-    display: inline-block;
-    width: 300px;
+    position: absolute;
+    width: 100%;
 }
 
 .search_term {
-    position: relative;
-    border: 1px solid #d4d4d4;
+    list-style-type: none;
+    text-decoration: none;
     border-bottom: none;
     border-top: none;
+    color: #2a9d8f;
     z-index: 99;
     top: 100%;
     left: 0;
     right: 0;
-    background-color: #d4d4d4;
 }
 
-#SearchBar + .search_list {
+.search_term:hover {
+    list-style-type: none;
+    text-decoration: none;
+    color: #6edfcf;
+}
+
+.search-box {
+    padding: 10px;
+}
+
+.search-box:hover {
     background-color: #001427;
+}
+
+.search_group {
+    position: relative;
+    display: inline-block;
+}
+
+#SearchBar {
+    padding: 10px;
     border: 1px solid #2a9d8f;
-    display: none;
+    width: 220px;
+    border-radius: 5px;
 }
 
 #SearchBar:focus + .search_list {
-    display: inline-block;
+    display: block;
+}
+
+.search_list {
+    display: none;
+    background-color: #002a52;
+    border: 1px solid #2a9d8f;
 }
 
 .search_list:hover {
-    display: inline-block;
+    display: block;
 }
 
 #SearchBar::placeholder {
     color: #2a9d8f;
+}
+
+.SidebarSearch {
+    width: 100%;
+    margin-left: 30px;
+    list-style-type: none;
 }
