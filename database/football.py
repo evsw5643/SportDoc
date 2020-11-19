@@ -94,7 +94,7 @@ def do_football():
         ngames = []
         for week, games in games.games.items():
             for game in games:
-                game["date"] = datetime.strptime(game['boxscore'], "%m%d%Y")
+                game["date"] = datetime.strptime(game['boxscore'][:-4], "%Y%m%d")
                 ngames.append(game)
 
         df = pd.DataFrame(ngames)
@@ -103,9 +103,9 @@ def do_football():
         except:
             traceback.print_exc()
 
-    for year in range(2000, 2018):
-        do_games()
-        # wraprun(do_year, year)
+    for year in range(2000, 2021):
+        #do_games()
+        wraprun(do_year, year)
         # threading.Thread(target=wraprun, args=(do_year, year)).start()
 
     con.close()
