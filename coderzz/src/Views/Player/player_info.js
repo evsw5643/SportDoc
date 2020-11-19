@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./player_info.css"
+// eslint-disable-next-line
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Blank from '../blank.png'
 import PlayerCharts from '../../Components/Charts/PlayerCharts.js';

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import "./team_info.css"
 import Blank from '../blank.png'
-// import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+// eslint-disable-next-line
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 function Team(props) {
 
   const [elo, setelo] = useState({})

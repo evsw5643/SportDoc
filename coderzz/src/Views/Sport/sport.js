@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// eslint-disable-next-line
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Blank from '../blank.png'
 import "./sport.css"
@@ -6,6 +7,7 @@ import "./sport.css"
 function Sport(props) {
   const [loading1, setloading1] = useState(true);
   const [loading2, setloading2] = useState(true);
+  // eslint-disable-next-line
   const [totd, settotd] = useState({})
   const [potd, setpotd] = useState({})
   const [sport, setsport] = useState("")
@@ -61,8 +63,8 @@ function Sport(props) {
           return (`https://www.baseball-reference.com/req/202007270/images/headshots/c/c755fefc_sabr.jpg`)
         case "hockey":
           return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
-        // case "soccer":
-        //   return (`https://images-na.ssl-images-amazon.com/images/I/61Jigwd1kKL._AC_SL1500_.jpg`)
+        default:
+          return (Blank)
       }
     } else if (type === "team") {
       switch (sport) {
@@ -74,8 +76,8 @@ function Sport(props) {
           return (Blank)
         case "hockey":
           return (Blank)
-        // case "soccer":
-        //   return (Blank)
+        default:
+          return (Blank)
       }
     }
   }

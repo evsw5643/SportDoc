@@ -1,4 +1,3 @@
-var $ = require("jquery");
 const fetch = require("node-fetch");
 
 
