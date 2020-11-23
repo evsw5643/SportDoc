@@ -23,7 +23,7 @@ const pool = new Pool({
 app.get('/basketball/getteam/:team', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT * FROM nba_teams WHERE abbreviation = '${req.params.team}'`, (err, reso) => {
+        client.query(`SELECT *, 'basketball' as sportname FROM nba_teams WHERE abbreviation = '${req.params.team}'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -37,7 +37,7 @@ app.get('/basketball/getteam/:team', (req, res) => {
 app.get('/basketball/getplayer/:player', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT * FROM nba_players WHERE player_id = '${req.params.player}'`, (err, reso) => {
+        client.query(`SELECT *, 'basketball' as sportname FROM nba_players WHERE player_id = '${req.params.player}'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -80,7 +80,7 @@ app.get('/basketball/getplayers', (req, res) => {
 app.get('/football/getteam/:team', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT * FROM nfl_teams WHERE abbreviation = '${req.params.team}'`, (err, reso) => {
+        client.query(`SELECT *, 'football' as sportname FROM nfl_teams WHERE abbreviation = '${req.params.team}'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -94,7 +94,7 @@ app.get('/football/getteam/:team', (req, res) => {
 app.get('/football/getplayer/:player', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT * FROM nfl_players WHERE player_id = '${req.params.player}'`, (err, reso) => {
+        client.query(`SELECT *, 'football' as sportname FROM nfl_players WHERE player_id = '${req.params.player}'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -137,7 +137,7 @@ app.get('/football/getplayers', (req, res) => {
 app.get('/hockey/getteam/:team', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT * FROM nhl_teams WHERE abbreviation = '${req.params.team}'`, (err, reso) => {
+        client.query(`SELECT *, 'hockey' as sportname FROM nhl_teams WHERE abbreviation = '${req.params.team}'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -151,7 +151,7 @@ app.get('/hockey/getteam/:team', (req, res) => {
 app.get('/hockey/getplayer/:player', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT * FROM nhl_players WHERE player_id = '${req.params.player}'`, (err, reso) => {
+        client.query(`SELECT *, 'hockey' as sportname FROM nhl_players WHERE player_id = '${req.params.player}'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -251,7 +251,7 @@ app.get('/hockey/getplayers', (req, res) => {
 app.get('/baseball/getteam/:team', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT * FROM mlb_teams WHERE abbreviation = '${req.params.team}'`, (err, reso) => {
+        client.query(`SELECT *, 'baseball' as sportname FROM mlb_teams WHERE abbreviation = '${req.params.team}'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
@@ -265,7 +265,7 @@ app.get('/baseball/getteam/:team', (req, res) => {
 app.get('/baseball/getplayer/:player', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT * FROM mlb_players WHERE player_id = '${req.params.player}'`, (err, reso) => {
+        client.query(`SELECT *, 'baseball' as sportname FROM mlb_players WHERE player_id = '${req.params.player}'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
