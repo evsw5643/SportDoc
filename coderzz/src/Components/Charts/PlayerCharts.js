@@ -1,6 +1,5 @@
 import React from 'react'
 import { Line, Bar, HorizontalBar } from "react-chartjs-2";
-import './PlayerCharts.css'
 // import CanvasJSReact from '../../canvasjs.react';
 // var CanvasJS = CanvasJSReact.CanvasJS;
 // var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -83,7 +82,6 @@ function PlayerCharts(props) {
                 backgroundColor: 'rgba(75,192,192,1)',
                 borderColor: "crimson",
                 indexLabelFontColor: "#2A9D8F",
-                gridColor: "#2A9D8F",
                 lineColor: "#2A9D8F",
             },
             {
@@ -93,13 +91,10 @@ function PlayerCharts(props) {
                 backgroundColor: 'rgba(75,192,192,1)',
                 borderColor: "white",
                 indexLabelFontColor: "#2A9D8F",
-                gridColor: "#2A9D8F",
                 lineColor: "#FFFFF",
             }
         ]
     };
-
-
     return (
         <Line data={data}/>
     );

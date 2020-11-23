@@ -149,13 +149,14 @@ function Player(props) {
               </div>
             </div>
           </div>
-        </div>
-        <hr></hr>
-        <div className="card player_stat_graph">
-          <div id="PlayerGraph">
-            <PlayerCharts SeasonStats={player} />
+          <div className="card player_stat_graph">
+            <div id="PlayerGraph">
+              <PlayerCharts SeasonStats={player} />
+            </div>
           </div>
         </div>
+        <hr></hr>
+
       </div>
     )
   }
