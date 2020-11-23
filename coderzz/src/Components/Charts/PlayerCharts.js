@@ -1,5 +1,6 @@
 import React from 'react'
-import { Line } from "react-chartjs-2";
+import { Line, Bar, HorizontalBar } from "react-chartjs-2";
+import './PlayerCharts.css'
 // import CanvasJSReact from '../../canvasjs.react';
 // var CanvasJS = CanvasJSReact.CanvasJS;
 // var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -62,26 +63,45 @@ import { Line } from "react-chartjs-2";
 
 
 function PlayerCharts(props) {
+    var playerAssists = []
+    var playerPoints = []
+    var xAxesLabel = []
+    for(let i = 0; i < props.SeasonStats.length; i++){
+        if(props.SeasonStats[i].index == "Career")
+            break;
+        playerAssists[i] = props.SeasonStats[i].assists
+        playerPoints[i] = props.SeasonStats[i].points
+        xAxesLabel[i] = props.SeasonStats[i].index
+    }
     const data = {
-        labels: ["2011-2012", "2012-2013", "2013-2014", "2014-2015", "2015-2016", "2016-2017"],
+        labels: xAxesLabel,
         datasets: [
             {
-                label: "Blocks",
-                //text: "Blocks",
-                data: [33, 25, 35, 51, 54, 76],
+                label: "Assists",
+                data: playerAssists,
                 fill: false,
                 backgroundColor: 'rgba(75,192,192,1)',
-                borderColor: "#742774",
+                borderColor: "crimson",
                 indexLabelFontColor: "#2A9D8F",
                 gridColor: "#2A9D8F",
                 lineColor: "#2A9D8F",
+            },
+            {
+                label: "Points",
+                data: playerPoints,
+                fill: false,
+                backgroundColor: 'rgba(75,192,192,1)',
+                borderColor: "white",
+                indexLabelFontColor: "#2A9D8F",
+                gridColor: "#2A9D8F",
+                lineColor: "#FFFFF",
             }
         ]
     };
+
+
     return (
-        <div className="App">
-            <Line data={data} />
-        </div>
+        <Line data={data}/>
     );
 }
 

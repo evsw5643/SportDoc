@@ -153,11 +153,7 @@ function Player(props) {
         <hr></hr>
         <div className="card player_stat_graph">
           <div id="PlayerGraph">
-            <PlayerCharts
-              CareerPoints={parseInt(player[career].points)}
-              CareerAssists={parseInt(player[career].assists)}
-              CareerBlocks={parseInt(player[career].blocks)}
-              CareerRebounds={parseInt(player[career].total_rebounds)} />
+            <PlayerCharts SeasonStats={player} />
           </div>
         </div>
       </div>

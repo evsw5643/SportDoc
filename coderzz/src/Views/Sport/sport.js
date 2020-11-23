@@ -104,12 +104,13 @@ function Sport(props) {
         </div> */}
         <div className="hpage">
           <div className="card potd-card">
-            <img className="card-img-top potd-img" src={linkGen("player", sport, potd.player_id)} alt="Blank" />
+            {/* <img className="card-img-top potd-img" src={linkGen("player", sport, potd.player_id)} alt="Blank" /> */}
             <div className="card-body">
-              <h3 className="card-title">{potd.player_name} - {potd.team}</h3>
-              <Link to={"/player/" + sport + "/" + potd.player_id}>
+              {/* <h3 className="card-title">{potd.player_name} - {potd.team}</h3> */}
+              {/* <Link to={"/player/" + sport + "/" + potd.player_id}>
                 <button type="button" className="btn btn-warning">See Stats</button>
-              </Link>
+              </Link> */}
+              
             </div>
           </div>
         </div>
