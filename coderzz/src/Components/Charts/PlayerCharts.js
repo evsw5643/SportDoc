@@ -59,8 +59,6 @@ import { Line, Bar, HorizontalBar } from "react-chartjs-2";
 
 // export default PlayerCharts
 
-
-
 function PlayerCharts(props) {
     var playerAssists = []
     var playerPoints = []
@@ -70,8 +68,11 @@ function PlayerCharts(props) {
             break;
         playerAssists[i] = props.SeasonStats[i].assists
         playerPoints[i] = props.SeasonStats[i].points
-        xAxesLabel[i] = props.SeasonStats[i].index
+        xAxesLabel[i] = props.SeasonStats[i].index       
     }
+    playerAssists = [...new Set(playerAssists)]
+    playerPoints = [...new Set(playerPoints)]
+    xAxesLabel = [...new Set(xAxesLabel)]
     const data = {
         labels: xAxesLabel,
         datasets: [

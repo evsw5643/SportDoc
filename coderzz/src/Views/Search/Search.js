@@ -208,7 +208,7 @@ function Search() {
     return (
         <div>
             <form className="search_group">
-                <input id="SearchBar" type="search" placeholder="Search" aria-label="Search" autocomplete="off" onChange={handleChange} />
+                <input id="SearchBar" type="search" placeholder="Search" aria-label="Search" autoComplete="off" onChange={handleChange} />
                 {dropdown &&
                     <div className="search_list">{dropp}</div>
                 }
