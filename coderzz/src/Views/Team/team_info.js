@@ -3,6 +3,8 @@ import "./team_info.css"
 import Blank from '../blank.png'
 // eslint-disable-next-line
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import TeamCharts from '../../Components/Charts/TeamCharts.js';
+
 function Team(props) {
 
   const [elo, setelo] = useState({})
@@ -133,31 +135,67 @@ function Team(props) {
       </div>
     )
   } else if (!loading) {
-    return (
-      <div className="hpage">
-        <div className="card team_stat_card">
-          <h2 className="card-title team_stat_title"> {team[0].name} </h2>
-          <div className="card-body team_stat_body">
-            <img className="card-img-top team_stat_img"
-              src={linkGen("team", sport, team[0].abbreviation)}
-              alt="Team logo" />
-            <div className="card-text team_stat_text">
-              <div> ELO: {get(elo, 'DEN', 1000)} </div>
-              <br />
-              <div> Career Points: {team[team.length - 1].points} </div>
-              <br />
-              <div> Career Assists: {team[team.length - 1].assists} </div>
-              <br />
-              <div> Career Rebounds: {team[team.length - 1].total_rebounds} </div>
-              <br />
-              <div> Career Blocks: {team[team.length - 1].blocks} </div>
-              <br />
+    if (team[0].sportname == "basketball") {
+      return (
+        <div className="hpage">
+          <div className="card team_stat_card">
+            <h2 className="card-title team_stat_title"> {team[0].name} </h2>
+            <div className="card-body team_stat_body">
+                <img className="card-img-top team_stat_img"
+                  src={linkGen("team", sport, team[0].abbreviation)}
+                  alt="Headshot" />
+            </div>
+            <div className="card team_stat_stats">
+              <div className="card-body team_stat_body">
+                <div className="card-text team_stat_text">
+                  <div> ELO: {get(elo, 'DEN', 1000)} </div>
+                  <div>  Points: {team[team.length - 1].points} </div>
+                  <br />
+                  <div>  Assists: {team[team.length - 1].assists} </div>
+                  <br />
+                  <div>  Rebounds: {team[team.length - 1].total_rebounds} </div>
+                  <br />
+                  <div>  Blocks: {team[team.length - 1].blocks} </div>
+                  <br />
+                </div>
+              </div>
+            </div>
+            <div className="card team_stat_graph">
+              <div id="teamGraph">
+                <TeamCharts SeasonStats={team} />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )
+    }
+    else {
+      return (
+        <div className="hpage">
+          <div className="card team_stat_card">
+            <h2 className="card-title team_stat_title"> {team[0].name} </h2>
+            <div className="card-body team_stat_body">
+              <img className="card-img-top team_stat_img"
+                src={linkGen("team", sport, team[0].abbreviation)}
+                alt="Team logo" />
+              <div className="card-text team_stat_text">
 
-    )
+                <br />
+                <div> Career Points: {team[team.length - 1].points} </div>
+                <br />
+                <div> Career Assists: {team[team.length - 1].assists} </div>
+                <br />
+                <div> Career Rebounds: {team[team.length - 1].total_rebounds} </div>
+                <br />
+                <div> Career Blocks: {team[team.length - 1].blocks} </div>
+                <br />
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
   }
 }
 

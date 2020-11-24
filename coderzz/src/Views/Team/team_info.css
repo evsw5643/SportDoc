@@ -1,24 +1,55 @@
-.team_stat_card{
+.team_stat_card {
     height: 48vh;
     width: 75vw;
     margin-top: 20px;
     margin-left: 300px;
     background-color: #001427;
     align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+    grid-template-areas: 
+        "Title Title Title"
+        "team-img team-stats team-graphs"
+        "Footer Footer Footer"
+    ;   
 }
 
-.team_stat_text{
+.team_stat_title {
     color:  #2A9D8F;
     font-family: 'Cairo', sans-serif;
+    grid-area: Title;
+    margin: auto;
+}
+.team_stat_stats{
+    background-color: #002A52;
+    border: none;
+    grid-area: team-stats;
+    height: 92%;
+    width: 50%;
+}
+.team_stat_img { 
+    background-color: #002A52;
+    border: none;
+    grid-area: team-img;
+    margin: auto;
+    height: 92%;
 }
 
-.team_stat_title{
+.team_stat_graph{
+    width: 50rem;
+    background-color: #002A52;
+    border: none;
+    grid-area: team-graphs;
+}
+
+.team_stat_img_item { 
+    background-color: #002A52;
+    border: none;
+}
+
+.team_stat_text {
     color:  #2A9D8F;
     font-family: 'Cairo', sans-serif;
-}
 
-.search_box{
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }

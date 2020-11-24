@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Blank from '../blank.png'
 import "./sport.css"
+import Player from '../Player/player_info'
 
 function Sport(props) {
   const [loading1, setloading1] = useState(true);
@@ -92,29 +93,7 @@ function Sport(props) {
     )
   } else if (!loading1 && !loading2) {
     return (
-      <div>
-        {/* <div className="card totd-card">
-          <img className="card-img-top totd-img" style={{ "height": 100, "width": 100 }} src={linkGen("team", sport, totd.abbreviation)} alt="Blank" />
-          <div className="card-body">
-            <h3 className="card-title">{totd.name}</h3>
-            <Link to={"/team/" + sport + "/" + totd.abbreviation}>
-              <button type="button" className="btn btn-warning">See Stats</button>
-            </Link>
-          </div>
-        </div> */}
-        <div className="hpage">
-          <div className="card potd-card">
-            {/* <img className="card-img-top potd-img" src={linkGen("player", sport, potd.player_id)} alt="Blank" /> */}
-            <div className="card-body">
-              {/* <h3 className="card-title">{potd.player_name} - {potd.team}</h3> */}
-              {/* <Link to={"/player/" + sport + "/" + potd.player_id}>
-                <button type="button" className="btn btn-warning">See Stats</button>
-              </Link> */}
-              
-            </div>
-          </div>
-        </div>
-      </div>
+      <Player sport={props.sport} player={potd.player_id}></Player>
     );
   }
 }
