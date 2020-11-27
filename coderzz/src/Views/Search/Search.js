@@ -189,8 +189,9 @@ function Search() {
                         let indi = false
                         for (let i = 0; i < newName.length; i++) {
                             if (newName[i].substr(0, len).toUpperCase() === stro.toUpperCase()) {
-                                teamname.push(<span><strong>{newName[i].substr(0, len)}</strong>{newName[i].substr(len)}&nbsp;</span>)
+                                teamname.push(<span key={i}><strong>{newName[i].substr(0, len)}</strong>{newName[i].substr(len)}&nbsp;</span>)
                                 indi = true
+                                found = true
                             } else {
                                 teamname.push(newName[i] + " ")
                             }
