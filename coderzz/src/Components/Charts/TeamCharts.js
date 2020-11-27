@@ -2,9 +2,7 @@ import React from 'react'
 import { Line, Bar, HorizontalBar } from "react-chartjs-2";
 
 function TeamCharts(props) {
-    for(let i = 0; i < props.SeasonStats.length; i++){
-        console.log(props.SeasonStats[i])
-    }
+
     if(props.SeasonStats[0].sportname === "basketball"){
         let teamAssists = []
         let teamPoints = []
@@ -12,8 +10,6 @@ function TeamCharts(props) {
         let teamBlocks = []
         let xAxesLabel = []
         for(let i = 0; i < props.SeasonStats.length; i++){
-            if(props.SeasonStats[i].year === "Career")
-                break;
             teamAssists[i] = props.SeasonStats[i].assists
             teamPoints[i] = props.SeasonStats[i].points
             teamRebounds[i] = props.SeasonStats[i].total_rebounds
@@ -24,7 +20,7 @@ function TeamCharts(props) {
         teamPoints = [...new Set(teamPoints)]
         teamRebounds = [...new Set(teamRebounds)]
         teamBlocks = [...new Set(teamBlocks)]
-        xAxesLabel = [...new Set(xAxesLabel)]
+        xAxesLabel = [...new Set(xAxesLabel)].sort()
         const data = {
             labels: xAxesLabel,
             datasets: [
@@ -66,9 +62,13 @@ function TeamCharts(props) {
                 }
             ]
         };
+        for(let i = 0; i < xAxesLabel.length; i++){
+            console.log(xAxesLabel)
+        }
         return (
             <Line data={data}/>
         );
+
     }
     else if(props.SeasonStats[0].sportname === "baseball"){
         let teamBattingAvg = []
