@@ -12,6 +12,14 @@ function Player(props) {
   const [career, setcareer] = useState(0);
   const [player, setplayer] = useState([])
   const [sport, setsport] = useState("")
+  const [statname1, setstatname1] = useState("")
+  const [statname2, setstatname2] = useState("")
+  const [statname3, setstatname3] = useState("")
+  const [statname4, setstatname4] = useState("")
+  const [stat1, setstat1] = useState(0)
+  const [stat2, setstat2] = useState(0)
+  const [stat3, setstat3] = useState(0)
+  const [stat4, setstat4] = useState(0)
 
   useEffect(() => {
     setloading(true)
@@ -19,17 +27,67 @@ function Player(props) {
     api(props.player, props.sport)
   }, [props.sport, props.player])
 
+  function perSport(spo, player, career) {
+    switch (spo) {
+      case "basketball":
+        setstatname1("Points")
+        setstatname2("Assists")
+        setstatname3("Rebounds")
+        setstatname4("Blocks")
+        setstat1(player[career].points)
+        setstat2(player[career].assists)
+        setstat3(player[career].total_rebounds)
+        setstat4(player[career].blocks)
+        break
+      case "baseball":
+        setstatname1("Batting Average")
+        setstatname2("On-Base Percentage")
+        setstatname3("Slugging Percentage")
+        setstatname4("Fielding Percentage")
+        setstat1(player[career].batting_average)
+        setstat2(player[career].on_base_percentage)
+        setstat3(player[career].slugging_percentage)
+        setstat4(player[career].fielding_percentage)
+        break
+      case "football":
+        setstatname1("Points")
+        setstatname2("Assists")
+        setstatname3("Rebounds")
+        setstatname4("Blocks")
+        setstat1(player[career].points)
+        setstat2(player[career].assists)
+        setstat3(player[career].total_rebounds)
+        setstat4(player[career].blocks)
+        break
+      case "hockey":
+        setstatname1("Points")
+        setstatname2("Assists")
+        setstatname3("Rebounds")
+        setstatname4("Blocks")
+        setstat1(player[career].points)
+        setstat2(player[career].assists)
+        setstat3(player[career].total_rebounds)
+        setstat4(player[career].blocks)
+        break
+    }
+
+  }
+
+
   function api(apiPlayer, apiSport) {
     fetch(`/${apiSport}/getplayer/${apiPlayer}`)
       .then(res => res.json())
       .then(
         (result) => {
           setplayer(result)
+          let car = 0
           for (let i = 0; i < result.length; i++) {
             if (result[i].index === 'Career') {
               setcareer(i)
+              car = i
             }
           }
+          perSport(apiSport, result, car)
           setloading(false)
         },
         (error) => {
@@ -77,90 +135,16 @@ function Player(props) {
       </div>
     )
   } else if (!loading) {
-    if (player[0].sportname == "basketball") {
-      let playerTeamHistory = []
-      for (let i = 0; i < player.length; i++) {
-        playerTeamHistory[i] = player[i].team
-      }
-      playerTeamHistory = [... new Set(playerTeamHistory)]
-      if (playerTeamHistory.length >= 1) {
-        return (
-          <div className="hpage">
-            <div className="card player_stat_card">
-              <h2 className="card-title player_stat_title"> {player[0].player_name} </h2>
-              <div className="card player_stat_img">
-                <div className="card-body player_stat_body">
-                  <img className="card-img-top player_stat_img_item"
-                    src={linkGen("player", sport, player[0].player_id)}
-                    alt="Headshot" />
-                  <div className="card-text player_img_text">
-                    <h2> {player[0].player_name}</h2>
-                  </div>
-                </div>
-              </div>
-              <div className="card player_stat_stats">
-                <div className="card-body player_stat_body">
-                  <div className="card-text player_stat_text">
-                    <div> Career Points: {player[career].points} </div>
-                    <br />
-                    <div> Career Assists: {player[career].assists} </div>
-                    <br />
-                    <div> Career Rebounds: {player[career].total_rebounds} </div>
-                    <br />
-                    <div> Career Blocks: {player[career].blocks} </div>
-                    <br />
-                  </div>
-                </div>
-              </div>
-              <div className="card player_stat_graph">
-                <div id="PlayerGraph">
-                  <PlayerCharts SeasonStats={player} />
-                </div>
-              </div>
-            </div>
-          </div>
-        )
-      }
+    let playerTeamHistory = []
+    for (let i = 0; i < player.length; i++) {
+      playerTeamHistory[i] = player[i].team
     }
-    else if (player[0].sportname == "baseball") {
+    playerTeamHistory = [... new Set(playerTeamHistory)]
+    if (playerTeamHistory.length >= 1) {
       return (
         <div className="hpage">
           <div className="card player_stat_card">
             <h2 className="card-title player_stat_title"> {player[0].player_name} </h2>
-            <div className="card player_stat_img">
-              <div className="card-body player_stat_body">
-                <img className="card-img-top player_stat_img_item"
-                  src={linkGen("player", sport, player[0].player_id)}
-                  alt="Headshot" />
-              </div>
-            </div>
-            <div className="card player_stat_stats">
-              <div className="card-body player_stat_body">
-                <div className="card-text player_stat_text">
-                  <div> Career Batting Average: {player[career].batting_average} </div>
-                  <br />
-                  <div> Career On-Base Percentage: {player[career].on_base_percentage} </div>
-                  <br />
-                  <div> Career Slugging Percentage: {player[career].slugging_percentage} </div>
-                  <br />
-                  <div> Career Fielding Percentage: {player[career].fielding_percentage} </div>
-                  <br />
-                </div>
-              </div>
-            </div>
-            <div className="card player_stat_graph">
-              <div id="PlayerGraph">
-                <PlayerCharts SeasonStats={player} />
-              </div>
-            </div>
-          </div>
-        </div>
-      )
-    }
-    else if (player[0].sportname == "football") {
-      return (
-        <div className="hpage">
-          <div className="card player_stat_card">
             <div className="card player_stat_img">
               <div className="card-body player_stat_body">
                 <img className="card-img-top player_stat_img_item"
@@ -174,48 +158,13 @@ function Player(props) {
             <div className="card player_stat_stats">
               <div className="card-body player_stat_body">
                 <div className="card-text player_stat_text">
-                  <div> Career Points: {player[career].points} </div>
+                  <div> Career {statname1}: {stat1} </div>
                   <br />
-                  <div> Career Assists: {player[career].assists} </div>
+                  <div> Career {statname2}: {stat2} </div>
                   <br />
-                  <div> Career Rebounds: {player[career].total_rebounds} </div>
+                  <div> Career {statname3}: {stat3} </div>
                   <br />
-                  <div> Career Blocks: {player[career].blocks} </div>
-                  <br />
-                </div>
-              </div>
-            </div>
-            <div className="card player_stat_graph">
-              <div id="PlayerGraph">
-                <PlayerCharts SeasonStats={player} />
-              </div>
-            </div>
-          </div>
-        </div>
-      )
-    }
-    else if (player[0].sportname == "hockey") {
-      return (
-        <div className="hpage">
-          <div className="card player_stat_card">
-            <h2 className="card-title player_stat_title"> {player[0].player_name} </h2>
-            <div className="card player_stat_img">
-              <div className="card-body player_stat_body">
-                <img className="card-img-top player_stat_img_item"
-                  src={linkGen("player", sport, player[0].player_id)}
-                  alt="Headshot" />
-              </div>
-            </div>
-            <div className="card player_stat_stats">
-              <div className="card-body player_stat_body">
-                <div className="card-text player_stat_text">
-                  <div> Career Points: {player[career].points} </div>
-                  <br />
-                  <div> Career Assists: {player[career].assists} </div>
-                  <br />
-                  <div> Career Rebounds: {player[career].total_rebounds} </div>
-                  <br />
-                  <div> Career Blocks: {player[career].blocks} </div>
+                  <div> Career {statname4}: {stat4} </div>
                   <br />
                 </div>
               </div>
