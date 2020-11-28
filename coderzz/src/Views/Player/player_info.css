@@ -1,23 +1,19 @@
-
 .player_stat_card {
-    width: 100rem;
+    width: 100%;
     margin: auto;
     background-color: #001427;
     display: grid;
     grid-area: Card1;
-    grid-template-columns: repeat(6,1fr);
-    grid-template-rows: repeat(3,1fr);
-    grid-template-areas: 
-        "Photo Stats Graph Graph Graph Graph"
-        "Photo Stats Graph Graph Graph Graph"
-        "PlayerInfo Season Graph Graph Graph Graph"
-    ;   
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas: "Photo Stats Graph Graph Graph Graph" "Photo Stats Graph Graph Graph Graph"
+        "PlayerInfo Season Graph Graph Graph Graph";
     grid-gap: .1rem;
     position: relative;
 }
 
-.player_stat_img { 
-    background-color: #002A52;
+.player_stat_img {
+    background-color: #002a52;
     border: none;
     grid-area: Photo;
     /* margin: auto; */
@@ -26,12 +22,12 @@
 }
 
 .player_img_text {
-    color:  #2A9D8F;
+    color: #2a9d8f;
     font-family: 'Cairo', sans-serif;
 }
 
-.player_stat_stats{
-    background-color: #002A52;
+.player_stat_stats {
+    background-color: #002a52;
     border: none;
     grid-area: Stats;
     width: 20rem;
@@ -40,19 +36,18 @@
 }
 
 .list-group-item {
-    background-color: #002A52;
-    border-color: #4DD1C2;
-    color:  #2A9D8F;
+    background-color: #002a52;
+    border-color: #4dd1c2;
+    color: #2a9d8f;
 }
 
 .player_stat_text {
-    color:  #2A9D8F;
+    color: #2a9d8f;
     font-family: 'Cairo', sans-serif;
 }
 
-
-.player_stat_graph{
-    background-color: #002A52;
+.player_stat_graph {
+    background-color: #002a52;
     border: none;
     grid-area: Graph;
     grid-column: span 4;
@@ -61,12 +56,12 @@
 }
 
 .player_info {
-    background-color: #002A52;
+    background-color: #002a52;
     width: 10rem;
     /* margin: auto; */
     /* margin-bottom: 1rem; */
 }
-.player_info_text{
-    color:  #2A9D8F;
+.player_info_text {
+    color: #2a9d8f;
     font-family: 'Cairo', sans-serif;
 }

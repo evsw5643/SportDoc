@@ -1,9 +1,11 @@
 .Sidebar {
-    position: absolute;
+    position: fixed;
     width: 17rem;
     height: 100%;
     background-color: #001427;
     z-index: 10;
+    top: 0;
+    left: 0;
 }
 
 .SidebarList {
