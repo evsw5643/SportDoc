@@ -1,38 +1,33 @@
+
 .player_stat_card {
-    width: 100%;
-    margin: auto;
+    height: 10%;
+    width: 90%;
+    margin: 1%;
     background-color: #001427;
     display: grid;
     grid-area: Card1;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-areas: "Photo Stats Graph Graph Graph Graph" "Photo Stats Graph Graph Graph Graph"
-        "PlayerInfo Season Graph Graph Graph Graph";
-    grid-gap: .1rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: 
+        "Photo Stats Graph1" 
+        "PlayerInfo SeasonInfo Graph2";
+    grid-gap: 10px;
     position: relative;
 }
 
-.player_stat_img {
-    background-color: #002a52;
-    border: none;
+.player_stat_img_item {
+    height: 200px;
+    width: 150px;
     grid-area: Photo;
-    /* margin: auto; */
-    height: 20rem;
-    width: 10rem;
-}
-
-.player_img_text {
-    color: #2a9d8f;
-    font-family: 'Cairo', sans-serif;
 }
 
 .player_stat_stats {
     background-color: #002a52;
     border: none;
     grid-area: Stats;
-    width: 20rem;
-    height: 20rem;
-    /* margin: auto; */
+    align-self: center;
+    width: 100%;
+    height: 100%;
 }
 
 .list-group-item {
@@ -46,22 +41,41 @@
     font-family: 'Cairo', sans-serif;
 }
 
-.player_stat_graph {
+.player_stat_graph1 {
     background-color: #002a52;
     border: none;
-    grid-area: Graph;
-    grid-column: span 4;
-    width: 75%;
+    grid-area: Graph1;
+    width: 100%;
+    height: 100%;
     margin: auto;
+    position: relative;
+}
+.player_stat_graph2 {
+    background-color: #002a52;
+    border: none;
+    grid-area: Graph2;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    position: relative;
 }
 
 .player_info {
     background-color: #002a52;
-    width: 10rem;
+    width: 100%;
+    grid-area: PlayerInfo;
     /* margin: auto; */
     /* margin-bottom: 1rem; */
 }
 .player_info_text {
     color: #2a9d8f;
     font-family: 'Cairo', sans-serif;
+}
+
+.season_info {
+    background-color: #002a52;
+    width: 100%;
+    grid-area: SeasonInfo
+    /* margin: auto; */
+    /* margin-bottom: 1rem; */
 }

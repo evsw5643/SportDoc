@@ -27,6 +27,30 @@ function Player(props) {
     api(props.player, props.sport)
   }, [props.sport, props.player])
 
+  function api(apiPlayer, apiSport) {
+    fetch(`/${apiSport}/getplayer/${apiPlayer}`)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setplayer(result)
+          let car = 0
+          for (let i = 0; i < result.length; i++) {
+            if (result[i].index === 'Career') {
+              setcareer(i)
+              car = i
+            }
+          }
+          perSport(apiSport, result, car)
+          setloading(false)
+        },
+        (error) => {
+          console.log(error)
+          setloading(false)
+        }
+      )
+  }
+  let offensivePosFootball = ["C", "OG", "OT", "QB", "HB", "FB", "WR", "TE"]
+  let defensivePosFootball = ["DT", "DE", "MLB", "OLB", "CB", "S"]
   function perSport(spo, player, career) {
     switch (spo) {
       case "basketball":
@@ -50,14 +74,38 @@ function Player(props) {
         setstat4(player[career].fielding_percentage)
         break
       case "football":
-        setstatname1("Points")
-        setstatname2("Assists")
-        setstatname3("Rebounds")
-        setstatname4("Blocks")
-        setstat1(player[career].points)
-        setstat2(player[career].assists)
-        setstat3(player[career].total_rebounds)
-        setstat4(player[career].blocks)
+        let offenseTrue = false
+        for(let i = 0; i < player.length; i++){
+          for(let j = 0; j < offensivePosFootball.length; j++){
+            if(player[i].position === offensivePosFootball[j]){
+              offenseTrue = true
+              break
+            }
+          }
+          if(offenseTrue){
+            break
+          }
+        }
+        if (offenseTrue) {
+          setstatname1("Receptions")
+          setstatname2("Touchdowns")
+          setstatname3("Avg Yards/Play")
+          setstatname4("Receiving Yards")
+          setstat1(player[career].receptions)
+          setstat2(player[career].passing_touchdowns)
+          setstat3(player[career].average)
+          setstat4(player[career].fielding_percentage)
+        }
+        else {
+          setstatname1("KILL")
+          setstatname2("ME")
+          setstatname3("PLEASE")
+          setstatname4("Def4")
+          setstat1(player[career].batting_average)
+          setstat2(player[career].on_base_percentage)
+          setstat3(player[career].slugging_percentage)
+          setstat4(player[career].fielding_percentage)
+        }
         break
       case "hockey":
         setstatname1("Points")
@@ -70,30 +118,6 @@ function Player(props) {
         setstat4(player[career].blocks)
         break
     }
-
-  }
-
-  function api(apiPlayer, apiSport) {
-    fetch(`/${apiSport}/getplayer/${apiPlayer}`)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setplayer(result)
-          let car = 0
-          for (let i = 0; i < result.length; i++) {
-            if (result[i].index === 'Career') {
-              setcareer(i)
-              car = i
-            }
-          }
-          perSport(apiSport, result, car)
-          setloading(false)
-        },
-        (error) => {
-          console.log(error)
-          setloading(false)
-        }
-      )
   }
 
   function linkGen(type, sport, id) {
@@ -134,12 +158,21 @@ function Player(props) {
         </div>
       </div>
     )
-  } else if (!loading) {
+  }
+  else if (!loading) {
     let playerTeamHistory = []
-    for (let i = 0; i < player.length; i++) {
-      playerTeamHistory[i] = player[i].name
+    if (sport != "football") {
+      for (let i = 0; i < player.length; i++) {
+        playerTeamHistory[i] = player[i].name
+      }
+      playerTeamHistory = [... new Set(playerTeamHistory)]
     }
-    playerTeamHistory = [... new Set(playerTeamHistory)]
+    else {
+      for (let i = 0; i < player.length; i++) {
+        playerTeamHistory[i] = player[i].team
+      }
+      playerTeamHistory = [... new Set(playerTeamHistory)]
+    }
     function printTeamHistory() {
       let teamArr = []
       for (let i = 0; i < playerTeamHistory.length; i++) {
@@ -147,29 +180,31 @@ function Player(props) {
       }
       return teamArr
     }
+    console.log(player)
+    console.log("CASE STATEMENT FOOTBALL")
+    console.log({ statname1 })
+    console.log(player[player.length - 2].position)
     return (
       <div className="hpage">
         <div className="card player_stat_card">
-          <div className="card player_stat_img">
-            <div className="card-body player_stat_body">
-              <img className="card-img-top player_stat_img_item"
-                src={linkGen("player", sport, player[0].player_id)}
-                alt="Headshot" />
-            </div>
+          <div className="card-body player_stat_body">
+            <img className="card-img-top player_stat_img_item"
+              src={linkGen("player", sport, player[0].player_id)}
+              alt="Headshot" />
           </div>
           <div className="card player_stat_stats">
             <div className="card-body player_stat_body">
               <ul className="list-group player_stat_list">
-                <li className="list-group-item"> Points: {player[career].points} </li>
-                <li className="list-group-item"> Assists: {player[career].assists} </li>
-                <li className="list-group-item"> Rebounds: {player[career].total_rebounds} </li>
-                <li className="list-group-item"> Blocks: {player[career].blocks} </li>
+                <li className="list-group-item"> {statname1}: {stat1} </li>
+                <li className="list-group-item"> {statname2}: {stat2} </li>
+                <li className="list-group-item"> {statname3}: {stat3} </li>
+                <li className="list-group-item"> {statname4}: {stat4} </li>
               </ul>
             </div>
           </div>
-          <div className="card player_stat_graph">
+          <div className="card player_stat_graph1">
             <div className="PlayerGraph">
-              <PlayerCharts SeasonStats={player} />
+              <PlayerCharts SeasonStats={player} title="offensive" />
             </div>
           </div>
           <div className="card player_info">
@@ -183,6 +218,24 @@ function Player(props) {
                 <br />
                 Current Position: {player[player.length - 1].position}
               </div>
+            </div>
+          </div>
+          <div className="card season_info">
+            <div className="card-body player_stat_body">
+              <div className="card-text player_info_text">
+                Name: {player[0].player_name}
+                <br />
+                Teams: {printTeamHistory()}
+                <br />
+                Most Recent Team: {playerTeamHistory[playerTeamHistory.length - 1]}
+                <br />
+                Current Position: {player[player.length - 1].position}
+              </div>
+            </div>
+          </div>
+          <div className="card player_stat_graph2">
+            <div className="PlayerGraph">
+              <PlayerCharts SeasonStats={player} title="defensive" />
             </div>
           </div>
         </div>
