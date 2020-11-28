@@ -12,13 +12,14 @@ function Sport(props) {
   const [totd, settotd] = useState({})
   const [potd, setpotd] = useState({})
   const [sport, setsport] = useState("")
-
   useEffect(() => {
+    const now = new Date()
+    const ind = now.getDate() * (now.getMonth() + 1) + now.getUTCFullYear()
     setloading1(true)
     setloading2(true)
     setsport(props.sport)
-    teamGet(props.sport, props.num)
-    playerGet(props.sport, props.num)
+    teamGet(props.sport, ind)
+    playerGet(props.sport, ind)
   }, [props.sport])
 
   function teamGet(apiSport, ind) {
