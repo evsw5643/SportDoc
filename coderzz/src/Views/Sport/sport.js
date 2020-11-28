@@ -16,11 +16,9 @@ function Sport(props) {
   useEffect(() => {
     setloading1(true)
     setloading2(true)
-    const now = new Date()
-    const ind = now.getDate() * (now.getMonth() + 1) + now.getUTCFullYear()
     setsport(props.sport)
-    teamGet(props.sport, ind)
-    playerGet(props.sport, ind)
+    teamGet(props.sport, props.num)
+    playerGet(props.sport, props.num)
   }, [props.sport])
 
   function teamGet(apiSport, ind) {
@@ -53,35 +51,6 @@ function Sport(props) {
       )
   }
 
-  function linkGen(type, sport, id) {
-    if (type === "player") {
-      switch (sport) {
-        case "basketball":
-          return (`https://www.basketball-reference.com/req/202010061/images/players/${id}.jpg`)
-        case "football":
-          return (`https://www.pro-football-reference.com/req/20180910/images/headshots/${id}_2019.jpg`)
-        case "baseball":
-          return (`https://www.baseball-reference.com/req/202007270/images/headshots/c/c755fefc_sabr.jpg`)
-        case "hockey":
-          return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
-        default:
-          return (Blank)
-      }
-    } else if (type === "team") {
-      switch (sport) {
-        case "basketball":
-          return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202010091/tlogo/bbr/${id}-2020.png`)
-        case "football":
-          return (Blank)
-        case "baseball":
-          return (Blank)
-        case "hockey":
-          return (Blank)
-        default:
-          return (Blank)
-      }
-    }
-  }
 
   if (loading1 || loading2) {
     return (
