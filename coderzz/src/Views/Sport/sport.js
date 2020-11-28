@@ -62,6 +62,8 @@ function Sport(props) {
       </div>
     )
   } else if (!loading1 && !loading2) {
+    console.log(potd)
+    console.log(props.sport)
     return (
       <Player sport={props.sport} player={potd.player_id}></Player>
     );

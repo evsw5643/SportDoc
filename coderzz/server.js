@@ -37,7 +37,7 @@ app.get('/basketball/getteam/:team', (req, res) => {
 app.get('/basketball/getplayer/:player', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT *, 'basketball' as sportname FROM nba_players WHERE player_id = '${req.params.player}'`, (err, reso) => {
+        client.query(`SELECT DISTINCT nba_players.*, 'basketball' as sportname, nba_teams.name FROM nba_players JOIN nba_teams ON nba_players.team_abbreviation = nba_teams.abbreviation WHERE player_id = '${req.params.player}' ORDER BY nba_players.index ASC`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);

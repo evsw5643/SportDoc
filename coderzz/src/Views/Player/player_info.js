@@ -73,7 +73,6 @@ function Player(props) {
 
   }
 
-
   function api(apiPlayer, apiSport) {
     fetch(`/${apiSport}/getplayer/${apiPlayer}`)
       .then(res => res.json())
@@ -126,6 +125,7 @@ function Player(props) {
       }
     }
   }
+
   if (loading) {
     return (
       <div className="d-flex justify-content-center" style={{ marginTop: '5px' }}>
@@ -135,134 +135,60 @@ function Player(props) {
       </div>
     )
   } else if (!loading) {
-<<<<<<< Updated upstream
     let playerTeamHistory = []
     for (let i = 0; i < player.length; i++) {
-      playerTeamHistory[i] = player[i].team
-=======
-    if (player[0].sportname == "basketball") {
-      let playerTeamHistory = []
-      for (let i = 0; i < player.length; i++) {
-        playerTeamHistory[i] = player[i].team
-      }
-      playerTeamHistory = [... new Set(playerTeamHistory)]
-      if (playerTeamHistory.length >= 1) {
-        return (
-          <div className="hpage">
-            <div className="card player_stat_card">
-              <div className="card player_stat_img">
-                <div className="card-body player_stat_body">
-                  <img className="card-img-top player_stat_img_item"
-                    src={linkGen("player", sport, player[0].player_id)}
-                    alt="Headshot" />
-                  <div className="card-text player_stat_text">
-                    <h2> {player[0].player_name} </h2>
-                  </div>
-                </div>
-              </div>
-              <div className="card player_stat_stats">
-                <div className="card-body player_stat_body">
-                  <div className="card-text player_stat_text">
-                    <div> Career Points: {player[career].points} </div>
-                    <br />
-                    <div> Career Assists: {player[career].assists} </div>
-                    <br />
-                    <div> Career Rebounds: {player[career].total_rebounds} </div>
-                    <br />
-                    <div> Career Blocks: {player[career].blocks} </div>
-                    <br />
-                  </div>
-                </div>
-              </div>
-              <div className="card player_stat_graph">
-                <div id="PlayerGraph">
-                  <PlayerCharts SeasonStats={player} />
-                </div>
-              </div>
-            </div>
-          </div>
-        )
-      }
->>>>>>> Stashed changes
+      playerTeamHistory[i] = player[i].name
     }
     playerTeamHistory = [... new Set(playerTeamHistory)]
-    if (playerTeamHistory.length >= 1) {
-      return (
-        <div className="hpage">
-          <div className="card player_stat_card">
-            <div className="card player_stat_img">
-              <div className="card-body player_stat_body">
-                <img className="card-img-top player_stat_img_item"
-                  src={linkGen("player", sport, player[0].player_id)}
-                  alt="Headshot" />
-                <div className="card-text player_img_text">
-                  <h2> {player[0].player_name}</h2>
-                </div>
-              </div>
+    function printTeamHistory() {
+      let teamArr = []
+      for (let i = 0; i < playerTeamHistory.length; i++) {
+        teamArr.push(playerTeamHistory[i] + ", ")
+      }
+      return teamArr
+    }
+    return (
+      <div className="hpage">
+        <div className="card player_stat_card">
+          <div className="card player_stat_img">
+            <div className="card-body player_stat_body">
+              <img className="card-img-top player_stat_img_item"
+                src={linkGen("player", sport, player[0].player_id)}
+                alt="Headshot" />
             </div>
-            <div className="card player_stat_stats">
-              <div className="card-body player_stat_body">
-                <div className="card-text player_stat_text">
-<<<<<<< Updated upstream
-                  <div> Career {statname1}: {stat1} </div>
-=======
-                  <div> Career Points: {player[career].points} </div>
-                  <br />
-                  <div> Career Assists: {player[career].assists} </div>
-                  <br />
-                  <div> Career Rebounds: {player[career].total_rebounds} </div>
-                  <br />
-                  <div> Career Blocks: {player[career].blocks} </div>
-                  <br />
-                </div>
-              </div>
+          </div>
+          <div className="card player_stat_stats">
+            <div className="card-body player_stat_body">
+              <ul className="list-group player_stat_list">
+                <li className="list-group-item"> Points: {player[career].points} </li>
+                <li className="list-group-item"> Assists: {player[career].assists} </li>
+                <li className="list-group-item"> Rebounds: {player[career].total_rebounds} </li>
+                <li className="list-group-item"> Blocks: {player[career].blocks} </li>
+              </ul>
             </div>
-            <div className="card player_stat_graph">
-              <div id="PlayerGraph">
-                <PlayerCharts SeasonStats={player} />
+          </div>
+          <div className="card player_stat_graph">
+            <div className="PlayerGraph">
+              <PlayerCharts SeasonStats={player} />
+            </div>
+          </div>
+          <div className="card player_info">
+            <div className="card-body player_stat_body">
+              <div className="card-text player_info_text">
+                Name: {player[0].player_name}
+                <br />
+                Teams: {printTeamHistory()}
+                <br />
+                Current Team: {playerTeamHistory[playerTeamHistory.length - 1]}
+                <br />
+                Current Position: {player[player.length - 1].position}
               </div>
             </div>
           </div>
         </div>
-      )
-    }
-    else if (player[0].sportname == "hockey") {
-      return (
-        <div className="hpage">
-          <div className="card player_stat_card">
-            <div className="card player_stat_img">
-              <div className="card-body player_stat_body">
-                <img className="card-img-top player_stat_img_item"
-                  src={linkGen("player", sport, player[0].player_id)}
-                  alt="Headshot" />
-              </div>
-            </div>
-            <div className="card player_stat_stats">
-              <div className="card-body player_stat_body">
-                <div className="card-text player_stat_text">
-                  <div> Career Points: {player[career].points} </div>
->>>>>>> Stashed changes
-                  <br />
-                  <div> Career {statname2}: {stat2} </div>
-                  <br />
-                  <div> Career {statname3}: {stat3} </div>
-                  <br />
-                  <div> Career {statname4}: {stat4} </div>
-                  <br />
-                </div>
-              </div>
-            </div>
-            <div className="card player_stat_graph">
-              <div id="PlayerGraph">
-                <PlayerCharts SeasonStats={player} />
-              </div>
-            </div>
-          </div>
-        </div>
-      )
-    }
+      </div>
+    )
   }
 }
-
 
 export default Player;

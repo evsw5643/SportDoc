@@ -166,6 +166,34 @@ function Team(props) {
               </div>
             </div>
           </div>
+          <div className="card team_stat_card">
+            <h2 className="card-title team_stat_title"> {team[0].name} </h2>
+            <div className="card-body team_stat_body">
+                <img className="card-img-top team_stat_img"
+                  src={linkGen("team", sport, team[0].abbreviation)}
+                  alt="Headshot" />
+            </div>
+            <div className="card team_stat_stats">
+              <div className="card-body team_stat_body">
+                <div className="card-text team_stat_text">
+                  <div> ELO: {get(elo, 'DEN', 1000)} </div>
+                  <div>  Points: {team[team.length - 1].points} </div>
+                  <br />
+                  <div>  Assists: {team[team.length - 1].assists} </div>
+                  <br />
+                  <div>  Rebounds: {team[team.length - 1].total_rebounds} </div>
+                  <br />
+                  <div>  Blocks: {team[team.length - 1].blocks} </div>
+                  <br />
+                </div>
+              </div>
+            </div>
+            <div className="card team_stat_graph">
+              <div id="teamGraph">
+                <TeamCharts SeasonStats={team} />
+              </div>
+            </div>
+          </div>
         </div>
       )
     }

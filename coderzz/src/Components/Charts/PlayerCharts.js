@@ -23,14 +23,15 @@ function PlayerCharts(props) {
             for (let i = 0; i < props.SeasonStats.length; i++) {
                 if (props.SeasonStats[i].index === "Career")
                     break;
-                playerstat1[i] = props.SeasonStats[i].assists
-                playerstat2[i] = props.SeasonStats[i].points
+                playerstat1[i] = props.SeasonStats[i].points
+                playerstat2[i] = props.SeasonStats[i].assists
                 playerstat3[i] = props.SeasonStats[i].total_rebounds
                 playerstat4[i] = props.SeasonStats[i].blocks
 
 
                 xAxesLabel[i] = props.SeasonStats[i].index
             }
+            xAxesLabel.sort()
             break
         case "baseball":
             statname1 = "Batting Average"
