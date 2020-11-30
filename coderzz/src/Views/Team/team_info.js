@@ -16,7 +16,6 @@ function Team(props) {
     setloading(true)
     setsport(props.sport)
     api(props.team, props.sport)
-    getEloScores(2019, 2019)
   }, [props.sport, props.team])
 
   function api(apiTeam, apiSport) {
@@ -25,7 +24,7 @@ function Team(props) {
       .then(
         (result) => {
           setteam(result)
-          setloading(false)
+          getEloScores(2019, 2019)
         },
         (error) => {
           console.log(error)
@@ -94,6 +93,7 @@ function Team(props) {
         }
       })
     setelo(scores)
+    setloading(false)
   }
 
   function linkGen(type, sport, id) {
@@ -141,9 +141,9 @@ function Team(props) {
           <div className="card team_stat_card">
             <h2 className="card-title team_stat_title"> {team[0].name} </h2>
             <div className="card-body team_stat_body">
-                <img className="card-img-top team_stat_img"
-                  src={linkGen("team", sport, team[0].abbreviation)}
-                  alt="Headshot" />
+              <img className="card-img-top team_stat_img"
+                src={linkGen("team", sport, team[0].abbreviation)}
+                alt="Headshot" />
             </div>
             <div className="card team_stat_stats">
               <div className="card-body team_stat_body">
@@ -196,8 +196,8 @@ function Team(props) {
       )
     }
 
+
   }
 }
-
 
 export default Team;

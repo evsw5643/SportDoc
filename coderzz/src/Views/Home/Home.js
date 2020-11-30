@@ -5,21 +5,6 @@ import './Home.css';
 import Sport from '../Sport/sport.js'
 
 function Home() {
-  // const now = new Date()
-  // const ind = now.getDate() * (now.getMonth() + 1) + now.getUTCFullYear()
-
-  function handlescroll() {
-    var d = document.documentElement;
-    var offset = d.scrollTop + window.innerHeight;
-    var height = d.offsetHeight;
-
-    //console.log('offset = ' + offset);
-    //console.log('height = ' + height);
-
-    if (offset >= height) {
-      //console.log('At the bottom');
-    }
-  };
 
   return (
     <div>

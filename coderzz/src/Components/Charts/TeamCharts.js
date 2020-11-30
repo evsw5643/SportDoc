@@ -3,18 +3,18 @@ import { Line, Bar, HorizontalBar } from "react-chartjs-2";
 
 function TeamCharts(props) {
 
-    if(props.SeasonStats[0].sportname === "basketball"){
+    if (props.SeasonStats[0].sportname === "basketball") {
         let teamAssists = []
         let teamPoints = []
         let teamRebounds = []
         let teamBlocks = []
         let xAxesLabel = []
-        for(let i = 0; i < props.SeasonStats.length; i++){
+        for (let i = 0; i < props.SeasonStats.length; i++) {
             teamAssists[i] = props.SeasonStats[i].assists
             teamPoints[i] = props.SeasonStats[i].points
             teamRebounds[i] = props.SeasonStats[i].total_rebounds
             teamBlocks[i] = props.SeasonStats[i].blocks
-            xAxesLabel[i] = props.SeasonStats[i].year       
+            xAxesLabel[i] = props.SeasonStats[i].year
         }
         teamAssists = [...new Set(teamAssists)]
         teamPoints = [...new Set(teamPoints)]
@@ -62,28 +62,25 @@ function TeamCharts(props) {
                 }
             ]
         };
-        for(let i = 0; i < xAxesLabel.length; i++){
-            console.log(xAxesLabel)
-        }
         return (
-            <Line data={data}/>
+            <Line data={data} />
         );
 
     }
-    else if(props.SeasonStats[0].sportname === "baseball"){
+    else if (props.SeasonStats[0].sportname === "baseball") {
         let teamBattingAvg = []
         let teamOnBasePct = []
         let teamSluggingPct = []
         let teamFieldingPct = []
         let xAxesLabel = []
-        for(let i = 0; i < props.SeasonStats.length; i++){
-            if(props.SeasonStats[i].index === "Career")
+        for (let i = 0; i < props.SeasonStats.length; i++) {
+            if (props.SeasonStats[i].index === "Career")
                 break;
             teamBattingAvg[i] = props.SeasonStats[i].batting_average
             teamOnBasePct[i] = props.SeasonStats[i].on_base_percentage
             teamSluggingPct[i] = props.SeasonStats[i].slugging_percentage
             teamFieldingPct[i] = props.SeasonStats[i].fielding_percentage
-            xAxesLabel[i] = props.SeasonStats[i].index       
+            xAxesLabel[i] = props.SeasonStats[i].index
         }
         teamBattingAvg = [...new Set(teamBattingAvg)]
         teamOnBasePct = [...new Set(teamOnBasePct)]
@@ -132,23 +129,23 @@ function TeamCharts(props) {
             ]
         };
         return (
-            <Line data={data}/>
+            <Line data={data} />
         );
     }
-    else if(props.SeasonStats[0].sportname === "football"){
+    else if (props.SeasonStats[0].sportname === "football") {
         let teamAssists = []
         let teamPoints = []
         let teamRebounds = []
         let teamBlocks = []
         let xAxesLabel = []
-        for(let i = 0; i < props.SeasonStats.length; i++){
-            if(props.SeasonStats[i].index === "Career")
+        for (let i = 0; i < props.SeasonStats.length; i++) {
+            if (props.SeasonStats[i].index === "Career")
                 break;
             teamAssists[i] = props.SeasonStats[i].assists
             teamPoints[i] = props.SeasonStats[i].points
             teamRebounds[i] = props.SeasonStats[i].total_rebounds
             teamBlocks[i] = props.SeasonStats[i].blocks
-            xAxesLabel[i] = props.SeasonStats[i].index       
+            xAxesLabel[i] = props.SeasonStats[i].index
         }
         teamAssists = [...new Set(teamAssists)]
         teamPoints = [...new Set(teamPoints)]
@@ -197,23 +194,23 @@ function TeamCharts(props) {
             ]
         };
         return (
-            <Line data={data}/>
+            <Line data={data} />
         );
     }
-    else if(props.SeasonStats[0].sportname === "hockey"){
+    else if (props.SeasonStats[0].sportname === "hockey") {
         let teamAssists = []
         let teamPoints = []
         let teamRebounds = []
         let teamBlocks = []
         let xAxesLabel = []
-        for(let i = 0; i < props.SeasonStats.length; i++){
-            if(props.SeasonStats[i].index === "Career")
+        for (let i = 0; i < props.SeasonStats.length; i++) {
+            if (props.SeasonStats[i].index === "Career")
                 break;
             teamAssists[i] = props.SeasonStats[i].assists
             teamPoints[i] = props.SeasonStats[i].points
             teamRebounds[i] = props.SeasonStats[i].total_rebounds
             teamBlocks[i] = props.SeasonStats[i].blocks
-            xAxesLabel[i] = props.SeasonStats[i].index       
+            xAxesLabel[i] = props.SeasonStats[i].index
         }
         teamAssists = [...new Set(teamAssists)]
         teamPoints = [...new Set(teamPoints)]
@@ -262,10 +259,10 @@ function TeamCharts(props) {
             ]
         };
         return (
-            <Line data={data}/>
+            <Line data={data} />
         );
     }
-    
+
 }
 
 export default TeamCharts
