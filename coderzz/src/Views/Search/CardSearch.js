@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 // eslint-disable-next-line
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import "../../Components/Sidebar/Sidebar.css"
+import Player from '../Player/player_info'
 
-function Search(props) {
+function CardSearch(props) {
 
-
-
-
+    const [emptyarr, setemptyarr] = useState([])
     const [baplayers, setbaplayers] = useState([])
     const [bsplayers, setbsplayers] = useState([])
     const [fplayers, setfplayers] = useState([])
@@ -22,7 +21,7 @@ function Search(props) {
 
     useEffect(() => {
         bigApi()
-    }, [])
+    }, [props.sport, props.id1, props.compareType])
 
     //! API CALLS TO GET PLAYERS
 
@@ -78,72 +77,26 @@ function Search(props) {
             )
     }
 
-    function bateamGet() {
-        fetch(`/basketball/getteams`)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    setbateams(result)
-                },
-                (error) => {
-                    console.log(error)
-                }
-            )
-    }
-
-    function bsteamGet() {
-        fetch(`/baseball/getteams`)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    setbsteams(result)
-                },
-                (error) => {
-                    console.log(error)
-                }
-            )
-    }
-
-    function fteamGet() {
-        fetch(`/football/getteams`)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    setfteams(result)
-                },
-                (error) => {
-                    console.log(error)
-                }
-            )
-    }
-
-    function hteamGet() {
-        fetch(`/hockey/getteams`)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    sethteams(result)
-                },
-                (error) => {
-                    console.log(error)
-                }
-            )
-    }
-
     function bigApi() {
-        baplayerGet()
-        bsplayerGet()
-        fplayerGet()
-        hplayerGet()
-        bateamGet()
-        bsteamGet()
-        fteamGet()
-        hteamGet()
+        switch(props.sport) {
+            case "basketball":
+                baplayerGet()
+                break
+            case "baseball":
+                bsplayerGet()
+                break
+            case "football":
+                fplayerGet()
+                break
+            case "hockey":
+                hplayerGet()
+                break
+        }
     }
 
     
     function handleChange(event) {
-        setterms(baplayers.concat(bsplayers, fplayers, hplayers, bateams, bsteams, fteams, hteams))
+        setterms(emptyarr.concat(baplayers, bsplayers, fplayers, hplayers, bateams, bsteams, fteams, hteams))
         createDropdown(event.target.value)
     }
     
@@ -152,6 +105,8 @@ function Search(props) {
         let len = stro.length
         if (len >= 3) {
             let found = false
+            
+            //!setting icons for the dropdown items
             for (let i = 0; i < terms.length; i++) {
                 switch (terms[i].sportname) {
                     case "basketball":
@@ -170,38 +125,21 @@ function Search(props) {
                         terms[i].icon = "table-tennis"
                         break;
                 }
+                //if(props.compareType )
+                
+                //* <div key={i} className="search-box" ><Link to={`compare/${props.sport}/${props.id1}/${terms[i].player_id}`} className="search_term"><i className="fas fa-user"></i> <i className={`fas fa-${terms[i].icon}`}></i> <strong>{newName[0].substr(0, len)}</strong>{newName[0].substr(len)} {newName[1]} </Link></div>
+                
                 if (terms[i].player_name) {
                     let newName = terms[i].player_name.split(" ")
                     if (newName[0].substr(0, len).toUpperCase() === stro.toUpperCase()) {
-                        jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`/player/${terms[i].sportname}/${terms[i].player_id}`}><i className="fas fa-user"></i> <i className={`fas fa-${terms[i].icon}`}></i> <strong>{newName[0].substr(0, len)}</strong>{newName[0].substr(len)} {newName[1]} </Link></div>)
+                        jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`compare/${props.sport}/${props.id1}/${terms[i].player_id}`}><i className="fas fa-user"></i> <i className={`fas fa-${terms[i].icon}`}></i> <strong>{newName[0].substr(0, len)}</strong>{newName[0].substr(len)} {newName[1]} </Link></div>)
                         found = true
                     } else if (newName[1] && newName[1].substr(0, len).toUpperCase() === stro.toUpperCase()) {
-                        jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`/player/${terms[i].sportname}/${terms[i].player_id}`}><i className="fas fa-user"></i> <i className={`fas fa-${terms[i].icon}`}></i> {newName[0]} <strong>{newName[1].substr(0, len)}</strong>{newName[1].substr(len)} </Link></div>)
+                        jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`compare/${props.sport}/${props.id1}/${terms[i].player_id}`}><i className="fas fa-user"></i> <i className={`fas fa-${terms[i].icon}`}></i> {newName[0]} <strong>{newName[1].substr(0, len)}</strong>{newName[1].substr(len)} </Link></div>)
                         found = true
                     } else if (terms[i].player_name.substr(0, len).toUpperCase() === stro.toUpperCase()) {
-                        jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`/player/${terms[i].sportname}/${terms[i].player_id}`}><i className="fas fa-user"></i> <i className={`fas fa-${terms[i].icon}`}></i> <strong>{terms[i].player_name.substr(0, len)}</strong>{terms[i].player_name.substr(len)} </Link></div>)
+                        jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`compare/${props.sport}/${props.id1}/${terms[i].player_id}`}><i className="fas fa-user"></i> <i className={`fas fa-${terms[i].icon}`}></i> <strong>{terms[i].player_name.substr(0, len)}</strong>{terms[i].player_name.substr(len)} </Link></div>)
                         found = true
-                    }
-                } else if (terms[i].abbreviation) {
-                    let newName = terms[i].name.split(" ")
-                    let teamname = []
-                    if (terms[i].name.substr(0, len).toUpperCase() === stro.toUpperCase()) {
-                        jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`/team/${terms[i].sportname}/${terms[i].abbreviation}`}><i className="fas fa-users"></i> <i className={`fas fa-${terms[i].icon}`}></i> <strong>{terms[i].name.substr(0, len)}</strong>{terms[i].name.substr(len)} </Link></div>)
-                        found = true
-                    } else {
-                        let indi = false
-                        for (let i = 0; i < newName.length; i++) {
-                            if (newName[i].substr(0, len).toUpperCase() === stro.toUpperCase()) {
-                                teamname.push(<span key={i}><strong>{newName[i].substr(0, len)}</strong>{newName[i].substr(len)}&nbsp;</span>)
-                                indi = true
-                                found = true
-                            } else {
-                                teamname.push(newName[i] + " ")
-                            }
-                        }
-                        if (indi) {
-                            jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`/team/${terms[i].sportname}/${terms[i].abbreviation}`}><i className="fas fa-users"></i> <i className={`fas fa-${terms[i].icon}`}></i> {teamname} </Link></div>)
-                        }
                     }
                 }
             }
@@ -228,4 +166,4 @@ function Search(props) {
     )
 }
 
-export default Search;
+export default CardSearch;

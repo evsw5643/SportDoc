@@ -8,12 +8,12 @@ function Compare(props) {
     //also loads an empty stat card with the option to compare directly or to add another player card to see 2 different players stats separately or overlayed
     const [playerLoad, setPlayerLoad] = useState(false);
     const [teamLoad, setTeamLoad] = useState(false);
-    
+
     useEffect(() => {
         setPlayerLoad(false)
         setTeamLoad(false)
     }, [])
-
+    
     function playerHandler() {
         setPlayerLoad(true)
     }
@@ -22,11 +22,9 @@ function Compare(props) {
     }
     if (!playerLoad && !teamLoad) {
         return (
-            <div className="hpage">
-                <div className="selection_buttons">
-                    <button type="button" className="btn btn-info playerBtn" onClick={playerHandler}> Players </button>
-                    <button type="button" className="btn btn-info teamBtn" onClick={teamHandler}> Teams </button>
-                </div>
+            <div className="container">
+                <button type="button" className="btn btn-info playerBtn" onClick={playerHandler}> Players </button>
+                <button type="button" className="btn btn-info teamBtn" onClick={teamHandler}> Teams </button>
             </div>
         )
     }
@@ -37,28 +35,28 @@ function Compare(props) {
                 return (
                     <div>
                         <Player sport={props.sport} player="jamesle01" />
-                        <CompareCard cardType={cardType} />
+                        <CompareCard cardType={cardType} sport={props.sport} playerID={props.player2}/>
                     </div>
                 )
             case "baseball":
                 return (
                     <div>
                         <Player sport={props.sport} player="troutmi01" />
-                        <CompareCard cardType={cardType} />
+                        <CompareCard cardType={cardType} sport={props.sport} playerID="troutmi01"/>
                     </div>
                 )
             case "football":
                 return (
                     <div>
                         <Player sport={props.sport} player="BradTo00" />
-                        <CompareCard cardType={cardType} />
+                        <CompareCard cardType={cardType} sport={props.sport} playerID="BradTo00"/>
                     </div>
                 )
             case "hockey":
                 return (
                     <div>
                         <Player sport={props.sport} player="crosbsi01" />
-                        <CompareCard cardType={cardType} />
+                        <CompareCard cardType={cardType} sport={props.sport} playerID="crosbsi01"/>
                     </div>
                 )
         }
