@@ -5,7 +5,7 @@ import Blank from '../blank.png'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import TeamCharts from '../../Components/Charts/TeamCharts.js';
 
-var elo = {}
+// var elo = {}
 function Team(props) {
 
   const [elo, setelo] = useState({})
@@ -139,11 +139,11 @@ function Team(props) {
       </div>
     )
   } else if (!loading) {
-    var replacer = function(k, v) { if (v === undefined || k === "__proto__") { return null; } return v; };
-    var jsonString = JSON.stringify(elo, replacer);
-    console.log(jsonString)
-    console.log(elo);
-    console.log(elo["DEN"])
+    // var replacer = function(k, v) { if (v === undefined || k === "__proto__") { return null; } return v; };
+    // var jsonString = JSON.stringify(elo, replacer);
+    // console.log(jsonString)
+    // console.log(elo);
+    // console.log(elo["DEN"])
 
     if (team[0].sportname == "basketball") {
       return (
