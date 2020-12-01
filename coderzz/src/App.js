@@ -14,7 +14,8 @@ import Player from './Views/Player/player_info.js'
 import Team from './Views/Team/team_info.js'
 import './App.css';
 import Sidebar from './Components/Sidebar/Sidebar.js';
-import Compare from './Views/Compare Page/Compare.js'
+import Compare from './Views/Compare Page/compare.js'
+import comparePage from './Views/Compare Page/comparePage.js'
 
 function App() {
     return (
@@ -26,7 +27,7 @@ function App() {
                         <Route exact path="/">
                             <Home />
                         </Route>
-                        <Route exact path="/:sport" children={<SportLoad />} />
+                        <Route exact path="/:sport/:id" children={<SportLoad />} />
                         <Route exact path="/player/:sport/:id" children={<PlayerLoad />} />
                         <Route exact path="/team/:sport/:abb" children={<TeamLoad />} />
                         <Route exact path="/compare/:sport/:id1/:id2" children={<CompareLoad/>} />
@@ -51,10 +52,11 @@ function TeamLoad() {
 // * Loads sport 
 function SportLoad() {
     let { sport } = useParams()
+    let { id } = useParams()
     return (
         <div>
             {/* <Sport sport={sport} /> */}
-            <Compare sport={sport}/>
+            <Compare player1={id} sport={sport}/>
         </div>
     )
 }
@@ -76,7 +78,7 @@ function CompareLoad() {
     let { id2 } = useParams()
     return (
         <div>
-            <Compare player1={id1} sport={sport} player2={id2} />
+            <comparePage compareType="compare" player1={id1} player2={id2} sport={sport}  />
         </div>
     )
 }

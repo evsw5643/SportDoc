@@ -34,7 +34,6 @@ function CompareCard(props) {
       )
     }
     else if (addPlayer) {
-
       return (
         <div className="hpage">
           <div className="card player_compare_stats">
@@ -43,29 +42,47 @@ function CompareCard(props) {
         </div>
       )
     }
+    else if (comparePlayer) {
+      return (
+        <div className="hpage">
+          <div className="card player_compare_stats">
+            <CardSearch sport={props.sport} id1={props.playerID} compareType="compare" />
+          </div>
+        </div>
+      )
+    }
 
   }
   else {
-    return (
-      <div className="hpage">
-        <div className="card player_stat_card">
-          <div className="card player_stat_stats">
-            <div className="card-body player_stat_body">
-            </div>
-          </div>
-          <div className="card player_stat_graph">
-            <div className="PlayerGraph">
-            </div>
-          </div>
-          <div className="card player_info">
-            <div className="card-body player_stat_body">
-            </div>
+    if (!addPlayer && !comparePlayer && !addTeam && !compareTeam) {
+      return (
+        <div className="hpage">
+          <div className="card player_compare_stats">
+            <button type="button" className="btn btn-info playerBtn" onClick={compareTeamHandler}> Compare Teams </button>
+            <button type="button" className="btn btn-info teamBtn" onClick={addTeamHandler}> Add Team </button>
           </div>
         </div>
-      </div>
-    )
+      )
+    }
+    else if (addTeam) {
+      return (
+        <div className="hpage">
+          <div className="card player_compare_stats">
+            <CardSearch sport={props.sport} id1={props.playerID} compareType="add" />
+          </div>
+        </div>
+      )
+    }
+    else if (compareTeam) {
+      return (
+        <div className="hpage">
+          <div className="card player_compare_stats">
+            <CardSearch sport={props.sport} id1={props.playerID} compareType="add" />
+          </div>
+        </div>
+      )
+    }
   }
-
 }
 
 export default CompareCard
