@@ -96,7 +96,7 @@ def do_hockey():
         df = pd.DataFrame(ngames)
         df.to_sql("nhl_games", con, if_exists='append')
 
-    for year in range(2000, 2011):
+    for year in range(2000, 2021):
         wraprun(do_year, year)
         # threading.Thread(target=wraprun, args=(do_year, year)).start()
 
