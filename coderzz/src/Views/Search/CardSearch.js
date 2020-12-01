@@ -78,7 +78,7 @@ function CardSearch(props) {
     }
 
     function bigApi() {
-        switch(props.sport) {
+        switch (props.sport) {
             case "basketball":
                 baplayerGet()
                 break
@@ -94,18 +94,18 @@ function CardSearch(props) {
         }
     }
 
-    
+
     function handleChange(event) {
         setterms(emptyarr.concat(baplayers, bsplayers, fplayers, hplayers, bateams, bsteams, fteams, hteams))
         createDropdown(event.target.value)
     }
-    
+
     function createDropdown(stro) {
         let jsx = []
         let len = stro.length
         if (len >= 3) {
             let found = false
-            
+
             //!setting icons for the dropdown items
             for (let i = 0; i < terms.length; i++) {
                 switch (terms[i].sportname) {
@@ -126,19 +126,19 @@ function CardSearch(props) {
                         break;
                 }
                 //if(props.compareType )
-                
+
                 //* <div key={i} className="search-box" ><Link to={`compare/${props.sport}/${props.id1}/${terms[i].player_id}`} className="search_term"><i className="fas fa-user"></i> <i className={`fas fa-${terms[i].icon}`}></i> <strong>{newName[0].substr(0, len)}</strong>{newName[0].substr(len)} {newName[1]} </Link></div>
-                
+
                 if (terms[i].player_name) {
                     let newName = terms[i].player_name.split(" ")
                     if (newName[0].substr(0, len).toUpperCase() === stro.toUpperCase()) {
-                        jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`compare/${props.sport}/${props.id1}/${terms[i].player_id}`}><i className="fas fa-user"></i> <i className={`fas fa-${terms[i].icon}`}></i> <strong>{newName[0].substr(0, len)}</strong>{newName[0].substr(len)} {newName[1]} </Link></div>)
+                        jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`/compare/${props.sport}/${props.id1}/${terms[i].player_id}`}><i className="fas fa-user"></i> <i className={`fas fa-${terms[i].icon}`}></i> <strong>{newName[0].substr(0, len)}</strong>{newName[0].substr(len)} {newName[1]} </Link></div>)
                         found = true
                     } else if (newName[1] && newName[1].substr(0, len).toUpperCase() === stro.toUpperCase()) {
-                        jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`compare/${props.sport}/${props.id1}/${terms[i].player_id}`}><i className="fas fa-user"></i> <i className={`fas fa-${terms[i].icon}`}></i> {newName[0]} <strong>{newName[1].substr(0, len)}</strong>{newName[1].substr(len)} </Link></div>)
+                        jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`/compare/${props.sport}/${props.id1}/${terms[i].player_id}`}><i className="fas fa-user"></i> <i className={`fas fa-${terms[i].icon}`}></i> {newName[0]} <strong>{newName[1].substr(0, len)}</strong>{newName[1].substr(len)} </Link></div>)
                         found = true
                     } else if (terms[i].player_name.substr(0, len).toUpperCase() === stro.toUpperCase()) {
-                        jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`compare/${props.sport}/${props.id1}/${terms[i].player_id}`}><i className="fas fa-user"></i> <i className={`fas fa-${terms[i].icon}`}></i> <strong>{terms[i].player_name.substr(0, len)}</strong>{terms[i].player_name.substr(len)} </Link></div>)
+                        jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`/compare/${props.sport}/${props.id1}/${terms[i].player_id}`}><i className="fas fa-user"></i> <i className={`fas fa-${terms[i].icon}`}></i> <strong>{terms[i].player_name.substr(0, len)}</strong>{terms[i].player_name.substr(len)} </Link></div>)
                         found = true
                     }
                 }

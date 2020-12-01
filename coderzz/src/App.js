@@ -14,7 +14,7 @@ import Player from './Views/Player/player_info.js'
 import Team from './Views/Team/team_info.js'
 import './App.css';
 import Sidebar from './Components/Sidebar/Sidebar.js';
-import Compare from './Views/Compare Page/Compare.js'
+import Compare from './Views/Compare Page/compare.js'
 
 function App() {
     return (
@@ -29,7 +29,7 @@ function App() {
                         <Route exact path="/:sport" children={<SportLoad />} />
                         <Route exact path="/player/:sport/:id" children={<PlayerLoad />} />
                         <Route exact path="/team/:sport/:abb" children={<TeamLoad />} />
-                        <Route exact path="/compare/:sport/:id1/:id2" children={<CompareLoad/>} />
+                        <Route exact path="/compare/:sport/:id1/:id2" children={<CompareLoad />} />
                     </Switch>
                 </div>
             </div>
@@ -54,7 +54,7 @@ function SportLoad() {
     return (
         <div>
             {/* <Sport sport={sport} /> */}
-            <Compare sport={sport}/>
+            <Compare sport={sport} />
         </div>
     )
 }
