@@ -190,63 +190,6 @@ app.get('/hockey/getplayers', (req, res) => {
     });
 });
 
-//! Soccer
-// app.get('/soccer/getteam/:team', (req, res) => {
-//     pool.connect((err, client, done) => {
-//         if (err) throw err;
-//         client.query(`SELECT * FROM soccer_teams WHERE abbreviation = '${req.params.team}'`, (err, reso) => {
-//             done();
-//             if (err) {
-//                 console.log(err.stack);
-//             } else {
-//                 res.send(reso.rows);
-//             }
-//         });
-//     });
-// });
-
-// app.get('/soccer/getplayer/:player', (req, res) => {
-//     pool.connect((err, client, done) => {
-//         if (err) throw err;
-//         client.query(`SELECT * FROM soccer_players WHERE player_id = '${req.params.player}' AND year = 2020`, (err, reso) => {
-//             done();
-//             if (err) {
-//                 console.log(err.stack);
-//             } else {
-//                 res.send(reso.rows);
-//             }
-//         });
-//     });
-// });
-
-// app.get('/soccer/getteams', (req, res) => {
-//     pool.connect((err, client, done) => {
-//         if (err) throw err;
-//         client.query(`SELECT name, abbreviation FROM soccer_teams WHERE year=2020`, (err, reso) => {
-//             done();
-//             if (err) {
-//                 console.log(err.stack);
-//             } else {
-//                 res.send(reso.rows);
-//             }
-//         });
-//     });
-// });
-
-// app.get('/soccer/getplayers', (req, res) => {
-//     pool.connect((err, client, done) => {
-//         if (err) throw err;
-//         client.query(`SELECT player_name, player_id, team FROM soccer_players WHERE year=2020 and index='Career'`, (err, reso) => {
-//             done();
-//             if (err) {
-//                 console.log(err.stack);
-//             } else {
-//                 res.send(reso.rows);
-//             }
-//         });
-//     });
-// });
-
 //! Baseball
 app.get('/baseball/getteam/:team', (req, res) => {
     pool.connect((err, client, done) => {
@@ -294,6 +237,20 @@ app.get('/baseball/getplayers', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
         client.query(`SELECT DISTINCT player_name, player_id, 'baseball' as sportname FROM mlb_players WHERE index='Career'`, (err, reso) => {
+            done();
+            if (err) {
+                console.log(err.stack);
+            } else {
+                res.send(reso.rows);
+            }
+        });
+    });
+});
+
+app.get('/baseball/getchadid/:id', (req, res) => {
+    pool.connect((err, client, done) => {
+        if (err) throw err;
+        client.query(`SELECT DISTINCT index, FROM mlb_chadwick WHERE key_retro='${req.params.id}'`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
