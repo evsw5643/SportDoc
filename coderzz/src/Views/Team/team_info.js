@@ -158,7 +158,7 @@ function Team(props) {
             <div className="card team_stat_stats">
               <div className="card-body team_stat_body">
                 <div className="card-text team_stat_text">
-                  <div> ELO: {get(elo, 'DEN', 1000)} </div>
+                  <div> ELO: {get(elo, team[0].abbreviation, 1000)} </div>
                   <div>  Points: {team[team.length - 1].points} </div>
                   <br />
                   <div>  Assists: {team[team.length - 1].assists} </div>
