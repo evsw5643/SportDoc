@@ -157,21 +157,18 @@ function Team(props) {
           <div className="card team_stat_stats">
             <div className="card-body team_stat_body">
               <div className="card-text team_stat_text">
-                <div> 5-year ELO: {get(elo, team[0].abbreviation, 1000)} </div>
-                <div>  Points: {team[team.length - 1].points} </div>
-                <br />
-                <div>  Assists: {team[team.length - 1].assists} </div>
-                <br />
-                <div>  Rebounds: {team[team.length - 1].total_rebounds} </div>
-                <br />
-                <div>  Blocks: {team[team.length - 1].blocks} </div>
-                <br />
+                <ul class="list-group player_stat_list">
+                  <li class="list-group-item"> Points: {team[team.length - 1].points} </li>
+                  <li class="list-group-item"> Assists: {team[team.length - 1].assists} </li>
+                  <li class="list-group-item"> Rebounds: {team[team.length - 1].total_rebounds} </li>
+                  <li class="list-group-item"> Blocks: {team[team.length - 1].blocks} </li>
+                  </ul>
               </div>
             </div>
           </div>
-          <div className="card team_stat_graph">
+          <div className="card team_stat_graph1">
             <div id="teamGraph">
-              <TeamCharts SeasonStats={team} />
+              <TeamCharts SeasonStats={team} title="Season"/>
             </div>
           </div>
         </div>
