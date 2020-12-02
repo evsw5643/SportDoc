@@ -280,6 +280,60 @@ app.get('/basketball/getgames/:fromyear/:toyear', (req, res) => {
     });
 });
 
+app.get('/baseball/getgames/:fromyear/:toyear', (req, res) => {
+    pool.connect((err, client, done) => {
+        if (err) throw err;
+        client.query(`SELECT home_score, away_score, home_abbr, away_abbr, date
+                      FROM mlb_games 
+                      WHERE  TO_TIMESTAMP('${req.params.fromyear}-09-01', 'YYYY-MM-DD') < date 
+                      AND date < TO_TIMESTAMP('${req.params.toyear + 1}-08-01', 'YYYY-MM-DD')
+                      ORDER BY date ASC`, (err, reso) => {
+            done();
+            if (err) {
+                console.log(err.stack);
+            } else {
+                res.send(reso.rows);
+            }
+        });
+    });
+});
+
+app.get('/football/getgames/:fromyear/:toyear', (req, res) => {
+    pool.connect((err, client, done) => {
+        if (err) throw err;
+        client.query(`SELECT home_score, away_score, home_abbr, away_abbr, date
+                      FROM nfl_games 
+                      WHERE  TO_TIMESTAMP('${req.params.fromyear}-09-01', 'YYYY-MM-DD') < date 
+                      AND date < TO_TIMESTAMP('${req.params.toyear + 1}-08-01', 'YYYY-MM-DD')
+                      ORDER BY date ASC`, (err, reso) => {
+            done();
+            if (err) {
+                console.log(err.stack);
+            } else {
+                res.send(reso.rows);
+            }
+        });
+    });
+});
+
+app.get('/hockey/getgames/:fromyear/:toyear', (req, res) => {
+    pool.connect((err, client, done) => {
+        if (err) throw err;
+        client.query(`SELECT home_score, away_score, home_abbr, away_abbr, date
+                      FROM nhl_games 
+                      WHERE  TO_TIMESTAMP('${req.params.fromyear}-09-01', 'YYYY-MM-DD') < date 
+                      AND date < TO_TIMESTAMP('${req.params.toyear + 1}-08-01', 'YYYY-MM-DD')
+                      ORDER BY date ASC`, (err, reso) => {
+            done();
+            if (err) {
+                console.log(err.stack);
+            } else {
+                res.send(reso.rows);
+            }
+        });
+    });
+});
+
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);
 });
