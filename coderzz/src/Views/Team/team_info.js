@@ -25,7 +25,7 @@ function Team(props) {
       .then(
         (result) => {
           setteam(result)
-          getEloScores(2019, 2019)
+          getEloScores(2014, 2019)
         },
         (error) => {
           console.log(error)
@@ -66,7 +66,7 @@ function Team(props) {
   }
 
   function getEloScores(fromyear, toyear) {
-    var url = `/basketball/getgames/${fromyear}/${toyear}`
+    var url = `/${props.sport}/getgames/${fromyear}/${toyear}`
 
     let scores = {}
     fetch(url)
@@ -121,7 +121,7 @@ function Team(props) {
         case "football":
           return (Blank)
         case "baseball":
-          return (Blank)
+          return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202011251/tlogo/br/${id}.png`)
         case "hockey":
           return (Blank)
         default:
@@ -145,66 +145,36 @@ function Team(props) {
     // console.log(elo);
     // console.log(elo["DEN"])
 
-    if (team[0].sportname == "basketball") {
-      return (
-        <div className="hpage">
-          <div className="card team_stat_card">
-            <h2 className="card-title team_stat_title"> {team[0].name} </h2>
-            <div className="card-body team_stat_body">
-              <img className="card-img-top team_stat_img"
-                src={linkGen("team", sport, team[0].abbreviation)}
-                alt="Headshot" />
-            </div>
-            <div className="card team_stat_stats">
-              <div className="card-body team_stat_body">
-                <div className="card-text team_stat_text">
-                  <div> ELO: {get(elo, team[0].abbreviation, 1000)} </div>
-                  <div>  Points: {team[team.length - 1].points} </div>
-                  <br />
-                  <div>  Assists: {team[team.length - 1].assists} </div>
-                  <br />
-                  <div>  Rebounds: {team[team.length - 1].total_rebounds} </div>
-                  <br />
-                  <div>  Blocks: {team[team.length - 1].blocks} </div>
-                  <br />
-                </div>
-              </div>
-            </div>
-            <div className="card team_stat_graph">
-              <div id="teamGraph">
-                <TeamCharts SeasonStats={team} />
-              </div>
-            </div>
+    return (
+      <div className="hpage">
+        <div className="card team_stat_card">
+          {/* <h2 className="card-title team_stat_title"> {team[0].name} </h2> */}
+          <div className="card-body team_stat_body">
+            <img className="card-img-top team_stat_img"
+              src={linkGen("team", sport, team[0].abbreviation)}
+              alt="Headshot" />
           </div>
-        </div>
-      )
-    }
-    else {
-      return (
-        <div className="hpage">
-          <div className="card team_stat_card">
-            <h2 className="card-title team_stat_title"> {team[0].name} </h2>
+          <div className="card team_stat_stats">
             <div className="card-body team_stat_body">
-              <img className="card-img-top team_stat_img"
-                src={linkGen("team", sport, team[0].abbreviation)}
-                alt="Team logo" />
               <div className="card-text team_stat_text">
-
-                <br />
-                <div> Career Points: {team[team.length - 1].points} </div>
-                <br />
-                <div> Career Assists: {team[team.length - 1].assists} </div>
-                <br />
-                <div> Career Rebounds: {team[team.length - 1].total_rebounds} </div>
-                <br />
-                <div> Career Blocks: {team[team.length - 1].blocks} </div>
-                <br />
+                <ul class="list-group player_stat_list">
+                  <li class="list-group-item"> Points: {team[team.length - 1].points} </li>
+                  <li class="list-group-item"> Assists: {team[team.length - 1].assists} </li>
+                  <li class="list-group-item"> Rebounds: {team[team.length - 1].total_rebounds} </li>
+                  <li class="list-group-item"> Blocks: {team[team.length - 1].blocks} </li>
+                  </ul>
               </div>
             </div>
           </div>
+          <div className="card team_stat_graph1">
+            <div id="teamGraph">
+              <TeamCharts SeasonStats={team} title="Season"/>
+            </div>
+          </div>
         </div>
-      )
-    }
+      </div>
+    )
+
 
 
   }

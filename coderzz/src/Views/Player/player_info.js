@@ -183,7 +183,6 @@ function Player(props) {
     // console.log(player)
     // console.log("CASE STATEMENT FOOTBALL")
     // console.log({ statname1 })
-    // console.log(player[player.length - 2].position)
     return (
       <div className="hpage">
         <div className="card player_stat_card">
