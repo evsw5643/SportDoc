@@ -1,6 +1,6 @@
 import React from 'react'
 import Player from '../Player/player_info'
-function comparePage(props) {
+function ComparePage(props) {
     if (props.compareType == "compare") {
         return (
             <div>
@@ -19,4 +19,4 @@ function comparePage(props) {
     }
 }
 
-export default comparePage
+export default ComparePage

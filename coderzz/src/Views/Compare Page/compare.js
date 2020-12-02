@@ -13,6 +13,7 @@ function Compare(props) {
         setPlayerLoad(false)
         setTeamLoad(false)
     }, [])
+
     function playerHandler() {
         setPlayerLoad(true)
     }

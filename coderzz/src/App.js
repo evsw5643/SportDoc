@@ -15,10 +15,7 @@ import Team from './Views/Team/team_info.js'
 import './App.css';
 import Sidebar from './Components/Sidebar/Sidebar.js';
 import Compare from './Views/Compare Page/compare.js'
-<<<<<<< HEAD
-import comparePage from './Views/Compare Page/comparePage.js'
-=======
->>>>>>> master
+import ComparePage from './Views/Compare Page/comparePage.js'
 
 function App() {
     return (
@@ -59,11 +56,7 @@ function SportLoad() {
     return (
         <div>
             {/* <Sport sport={sport} /> */}
-<<<<<<< HEAD
             <Compare player1={id} sport={sport}/>
-=======
-            <Compare sport={sport} />
->>>>>>> master
         </div>
     )
 }
@@ -85,7 +78,7 @@ function CompareLoad() {
     let { id2 } = useParams()
     return (
         <div>
-            <comparePage compareType="compare" player1={id1} player2={id2} sport={sport}  />
+            <ComparePage compareType="compare" player1={id1} player2={id2} sport={sport}  />
         </div>
     )
 }
