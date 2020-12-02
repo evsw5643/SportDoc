@@ -13,7 +13,7 @@ function Compare(props) {
         setPlayerLoad(false)
         setTeamLoad(false)
     }, [])
-    
+
     function playerHandler() {
         setPlayerLoad(true)
     }
@@ -35,7 +35,7 @@ function Compare(props) {
                 return (
                     <div>
                         <Player sport={props.sport} player="jamesle01" />
-                        <CompareCard cardType={cardType} sport={props.sport} playerID={props.player2}/>
+                        <CompareCard cardType={cardType} sport={props.sport} playerID={props.player1}/>
                     </div>
                 )
             case "baseball":
@@ -66,7 +66,7 @@ function Compare(props) {
         return (
             <div>
                 <Team sport={props.sport} team="DEN" />
-                <CompareCard cardType={cardType} />
+                <CompareCard cardType={cardType} playerID={props.player1} />
             </div>
         )
     }

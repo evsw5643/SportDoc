@@ -31,8 +31,6 @@ function PlayerCharts(props) {
                     playerstat2[i] = props.SeasonStats[i].assists
                     playerstat3[i] = props.SeasonStats[i].offensive_rebounds
                     playerstat4[i] = props.SeasonStats[i].three_point_attempts
-
-
                     xAxesLabel[i] = props.SeasonStats[i].index
                 }
                 xAxesLabel.sort()
