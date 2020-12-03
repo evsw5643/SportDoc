@@ -120,11 +120,11 @@ function Team(props) {
         case "basketball":
           return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202010091/tlogo/bbr/${id}-2020.png`)
         case "football":
-          return (Blank)
+          return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202012013/tlogo/pfr/${id}-2020.png`)
         case "baseball":
-          return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202011251/tlogo/br/${id}.png`)
+          return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202012013/tlogo/br/${id}-2020.png`)
         case "hockey":
-          return (Blank)
+          return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202011201/tlogo/hr/${id}.png`)
         default:
           return (Blank)
       }
@@ -159,10 +159,10 @@ function Team(props) {
             <div className="card-body team_stat_body">
               <div className="card-text team_stat_text">
                 <ul class="list-group player_stat_list">
-                  <li class="list-group-item"> Points: {team[team.length - 1].points} </li>
-                  <li class="list-group-item"> Assists: {team[team.length - 1].assists} </li>
-                  <li class="list-group-item"> Rebounds: {team[team.length - 1].total_rebounds} </li>
-                  <li class="list-group-item"> Blocks: {team[team.length - 1].blocks} </li>
+                  <li className="list-group-item"> Points: {team[team.length - 1].points} </li>
+                  <li className="list-group-item"> Assists: {team[team.length - 1].assists} </li>
+                  <li className="list-group-item"> Rebounds: {team[team.length - 1].total_rebounds} </li>
+                  <li className="list-group-item"> Blocks: {team[team.length - 1].blocks} </li>
                 </ul>
               </div>
             </div>
