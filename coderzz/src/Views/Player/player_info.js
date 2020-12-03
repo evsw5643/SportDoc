@@ -139,17 +139,15 @@ function Player(props) {
           return (`https://www.baseball-reference.com/req/202007270/images/headshots/c/${player[0].chadwick_id}_mlbam.jpg`)
           break
         case "hockey":
-          }
-            return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
-          else{
-          }
+          if (player[player.length - 2].index == "2019-20") {
             return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2020.jpg`)
-          if(player[player.length-2].index == "2019-20"){
-          console.log(player[player.length-2].index)
-        default:
-          return (Blank)
+          }
+          else {
+            return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
+          }
       }
-    } else if (type === "team") {
+    }
+    else if (type === "team") {
       switch (sport) {
         case "basketball":
           return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202010091/tlogo/bbr/${id}-2020.png`)

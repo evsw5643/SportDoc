@@ -54,7 +54,7 @@ function Compare(props) {
         return (
             <div>
                 <Team sport={props.sport} team="DEN" />
-                <CompareCard cardType="team" playerID={props.player1} />
+                <CompareCard cardType="team" sport={props.sport} playerID={"DEN"} />
             </div>
         )
     }
