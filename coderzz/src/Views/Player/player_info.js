@@ -49,8 +49,6 @@ function Player(props) {
         }
       )
   }
-  let offensivePosFootball = ["C", "OG", "OT", "QB", "HB", "FB", "WR", "TE"]
-  let defensivePosFootball = ["DT", "DE", "MLB", "OLB", "CB", "S"]
   function perSport(spo, player, career) {
     switch (spo) {
       case "basketball":
@@ -74,39 +72,29 @@ function Player(props) {
         setstat4(player[career].fielding_percentage)
         break
       case "football":
-        let offenseTrue = false
+        let offensivePosFootball = ["C", "OG", "OT", "QB", "HB", "FB", "WR", "TE"]
+        let defensivePosFootball = ["DT", "DE", "MLB", "OLB", "CB", "S"]
+        
         for(let i = 0; i < player.length; i++){
-          for(let j = 0; j < offensivePosFootball.length; j++){
-            if(player[i].position === offensivePosFootball[j]){
-              offenseTrue = true
-              break
+          if(player[i].position != ""){
+            switch (player[i].position){
+              case "C":
+              case "OG":
+              case "OT":
+              case "QB":
+              case "HB":
+              case "FB":
+              case "WR":
+              case "TE":
+              case "DT":
+              case "DE" || "LDE" || "RDE":
+              case "MLB":
+              case "OLB":
+              case "CB":
+              case "S":
             }
           }
-          if(offenseTrue){
-            break
-          }
         }
-        if (offenseTrue) {
-          setstatname1("Receptions")
-          setstatname2("Touchdowns")
-          setstatname3("Avg Yards/Play")
-          setstatname4("Receiving Yards")
-          setstat1(player[career].receptions)
-          setstat2(player[career].passing_touchdowns)
-          setstat3(player[career].average)
-          setstat4(player[career].fielding_percentage)
-        }
-        else {
-          setstatname1("KILL")
-          setstatname2("ME")
-          setstatname3("PLEASE")
-          setstatname4("Def4")
-          setstat1(player[career].batting_average)
-          setstat2(player[career].on_base_percentage)
-          setstat3(player[career].slugging_percentage)
-          setstat4(player[career].fielding_percentage)
-        }
-        break
       case "hockey":
         setstatname1("Points")
         setstatname2("Assists")
@@ -203,7 +191,7 @@ function Player(props) {
           </div>
           <div className="card player_stat_graph1">
             <div className="PlayerGraph">
-              <PlayerCharts SeasonStats={player} title="offensive" />
+              <PlayerCharts player1={player} title="offensive" />
             </div>
           </div>
           <div className="card player_info">
@@ -234,7 +222,7 @@ function Player(props) {
           </div>
           <div className="card player_stat_graph2">
             <div className="PlayerGraph">
-              <PlayerCharts SeasonStats={player} title="defensive" />
+              <PlayerCharts player1={player} title="defensive" />
             </div>
           </div>
         </div>

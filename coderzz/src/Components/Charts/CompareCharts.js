@@ -2,19 +2,29 @@ import React from 'react'
 import { Line, Bar, HorizontalBar } from "react-chartjs-2";
 import { withRouter } from 'react-router-dom';
 
-function PlayerCharts(props) {
+function CompareCharts(props) {
 
     let statname1 = ""
     let statname2 = ""
     let statname3 = ""
     let statname4 = ""
+    let statnameC1 = ""
+    let statnameC2 = ""
+    let statnameC3 = ""
+    let statnameC4 = ""
+
     let chartTitle = ""
-    let playerstat1 = []
-    let playerstat2 = []
-    let playerstat3 = []
-    let playerstat4 = []
+    let playerOneStat1 = []
+    let playerOneStat2 = []
+    let playerOneStat3 = []
+    let playerOneStat4 = []
+    let playerTwoStat1 = []
+    let playerTwoStat2 = []
+    let playerTwoStat3 = []
+    let playerTwoStat4 = []
 
     let xAxesLabel = []
+    // console.log(props.player1[0])
     switch (props.player1[0].sportname) {
         case "basketball":
             if (props.title == "offensive") {
@@ -26,10 +36,10 @@ function PlayerCharts(props) {
                 for (let i = 0; i < props.player1.length; i++) {
                     if (props.player1[i].index === "Career")
                         break;
-                    playerstat1[i] = props.player1[i].points
-                    playerstat2[i] = props.player1[i].assists
-                    playerstat3[i] = props.player1[i].offensive_rebounds
-                    playerstat4[i] = props.player1[i].three_point_attempts
+                    playerOneStat1[i] = props.player1[i].points
+                    playerOneStat2[i] = props.player1[i].assists
+                    playerOneStat3[i] = props.player1[i].offensive_rebounds
+                    playerOneStat4[i] = props.player1[i].three_point_attempts
                     xAxesLabel[i] = props.player1[i].index
                 }
                 xAxesLabel.sort()
@@ -42,8 +52,8 @@ function PlayerCharts(props) {
                 for (let i = 0; i < props.player1.length; i++) {
                     if (props.player1[i].index === "Career")
                         break;
-                    playerstat1[i] = props.player1[i].defensive_rebounds
-                    playerstat2[i] = props.player1[i].blocks
+                    playerOneStat1[i] = props.player1[i].defensive_rebounds
+                    playerOneStat2[i] = props.player1[i].blocks
 
                     xAxesLabel[i] = props.player1[i].index
                 }
@@ -64,17 +74,17 @@ function PlayerCharts(props) {
             for (let i = 0; i < props.player1.length; i++) {
                 if (props.player1[i].index === "Career")
                     break;
-                playerstat1[i] = props.player1[i].batting_average
-                playerstat2[i] = props.player1[i].on_base_percentage
-                playerstat3[i] = props.player1[i].slugging_percentage
-                playerstat4[i] = props.player1[i].fielding_percentage
+                playerOneStat1[i] = props.player1[i].batting_average
+                playerOneStat2[i] = props.player1[i].on_base_percentage
+                playerOneStat3[i] = props.player1[i].slugging_percentage
+                playerOneStat4[i] = props.player1[i].fielding_percentage
 
 
                 xAxesLabel[i] = props.player1[i].index
             }
             break
         case "football":
-            //!MASSIVE CASE STATEMENT FOR
+            //!MASSIVE CASE STATEMENT FOR EVERY POSITION IN FOOTBALL INCOMING
             if (props.title == "offensive") {
                 chartTitle = "Offensive Stats"
             }
@@ -88,10 +98,10 @@ function PlayerCharts(props) {
             for (let i = 0; i < props.player1.length; i++) {
                 if (props.player1[i].index === "Career")
                     break;
-                playerstat1[i] = props.player1[i].assists
-                playerstat2[i] = props.player1[i].points
-                playerstat3[i] = props.player1[i].total_rebounds
-                playerstat4[i] = props.player1[i].blocks
+                playerOneStat1[i] = props.player1[i].assists
+                playerOneStat2[i] = props.player1[i].points
+                playerOneStat3[i] = props.player1[i].total_rebounds
+                playerOneStat4[i] = props.player1[i].blocks
 
 
                 xAxesLabel[i] = props.player1[i].index
@@ -111,20 +121,20 @@ function PlayerCharts(props) {
             for (let i = 0; i < props.player1.length; i++) {
                 if (props.player1[i].index === "Career")
                     break;
-                playerstat1[i] = props.player1[i].assists
-                playerstat2[i] = props.player1[i].points
-                playerstat3[i] = props.player1[i].total_rebounds
-                playerstat4[i] = props.player1[i].blocks
+                playerOneStat1[i] = props.player1[i].assists
+                playerOneStat2[i] = props.player1[i].points
+                playerOneStat3[i] = props.player1[i].total_rebounds
+                playerOneStat4[i] = props.player1[i].blocks
 
 
                 xAxesLabel[i] = props.player1[i].index
             }
             break
     }
-    playerstat1 = [...new Set(playerstat1)]
-    playerstat2 = [...new Set(playerstat2)]
-    playerstat3 = [...new Set(playerstat3)]
-    playerstat4 = [...new Set(playerstat4)]
+    playerOneStat1 = [...new Set(playerOneStat1)]
+    playerOneStat2 = [...new Set(playerOneStat2)]
+    playerOneStat3 = [...new Set(playerOneStat3)]
+    playerOneStat4 = [...new Set(playerOneStat4)]
     xAxesLabel = [...new Set(xAxesLabel)]
     console.log("CHART TITLE: " + chartTitle)
     const data = {
@@ -132,7 +142,7 @@ function PlayerCharts(props) {
         datasets: [
             {
                 label: statname1,
-                data: playerstat1,
+                data: playerOneStat1,
                 fill: false,
                 backgroundColor: 'rgba(75,192,192,1)',
                 borderColor: "#ff6361",
@@ -141,7 +151,7 @@ function PlayerCharts(props) {
             },
             {
                 label: statname2,
-                data: playerstat2,
+                data: playerOneStat2,
                 fill: false,
                 backgroundColor: 'rgba(75,192,192,1)',
                 borderColor: "#bc5090",
@@ -150,7 +160,7 @@ function PlayerCharts(props) {
             },
             {
                 label: statname3,
-                data: playerstat3,
+                data: playerOneStat3,
                 fill: false,
                 backgroundColor: 'rgba(75,192,192,1)',
                 borderColor: "#58508d",
@@ -159,7 +169,7 @@ function PlayerCharts(props) {
             },
             {
                 label: statname4,
-                data: playerstat4,
+                data: playerOneStat4,
                 fill: false,
                 backgroundColor: 'rgba(75,192,192,1)',
                 borderColor: "#003f5c",
@@ -181,6 +191,6 @@ function PlayerCharts(props) {
 
 }
 
-export default PlayerCharts
+export default CompareCharts
 
 
