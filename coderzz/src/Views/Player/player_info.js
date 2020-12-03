@@ -63,6 +63,8 @@ function Player(props) {
         setstat4(player[career].blocks)
         break
       case "baseball":
+        console.log("BASEBALL OBJ:")
+        console.log(player[career])
         setstatname1("Batting Average")
         setstatname2("On-Base Percentage")
         setstatname3("Slugging Percentage")
@@ -97,7 +99,7 @@ function Player(props) {
           }
         }
       case "hockey":
-        setstatname1("Points")
+        setstatname1("Goals")
         setstatname2("Assists")
         setstatname3("Rebounds")
         setstatname4("Blocks")
@@ -119,7 +121,15 @@ function Player(props) {
         case "baseball":
           return (`https://www.baseball-reference.com/req/202007270/images/headshots/c/${player[0].chadwick_id}.jpg`)
         case "hockey":
-          return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
+          console.log("LINKGEN: ")
+          console.log(player[player.length-2].index)
+          if(player[player.length-2].index == "2019-20"){
+            return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2020.jpg`)
+          }
+          else{
+            return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
+          }
+          
         default:
           return (Blank)
       }

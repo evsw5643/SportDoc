@@ -3,18 +3,50 @@
     height: 10%;
     width: 90%;
     margin: 1%;
-    background-color: #001427;
+    background: #001427;
     display: grid;
-    grid-area: Card1;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     grid-template-areas: 
-        "Photo Buttons Graph1" 
-        "PlayerInfo SeasonInfo Graph2";
+        "1 2 3 4 5" 
+        "a b Text d e"
+        "f g h i j";
     grid-gap: 10px;
     position: relative;
+    transition: top, left, right, bottom, 250ms ease-in-out;
+}
+.player_compare_card_static {
+    height: 10%;
+    width: 90%;
+    margin: 1%;
+    background: #001427;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas: 
+        "1 2 3 4 5" 
+        "a b Text d e"
+        "f g h i j";
+    grid-gap: 10px;
+    position: relative;
+    transition: top, left, right, bottom, 250ms ease-in-out;
 }
 
+.player_compare_card:hover{
+    cursor: pointer;
+    background: #002a52;
+}
+
+.gridText{
+    grid-area: Text;
+    align-self: center;
+    justify-content: center;
+}
+
+.selectionText{
+    color: #2a9d8f;
+    font-family: 'Cairo', sans-serif;
+}
 .player_compare_stats {
     grid-area: Buttons;
     background-color: #000B14;
@@ -22,4 +54,26 @@
     align-self: center;
     width: 7%;
     height: 100%;
+}
+
+.container-fluid {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.flex-parent {
+    display: flex;
+    width: 100%;
+}
+
+.jc-center{
+    justify-content: center;
+}
+
+.playerTeamBtns {
+    justify-content: center;
+    margin-top: 25%;
+    margin-right: 10%;
 }

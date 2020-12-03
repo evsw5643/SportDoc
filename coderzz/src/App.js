@@ -23,7 +23,8 @@ function App() {
         <Router>
             <div className="App">
                 <Sidebar />
-                <div style={{ marginLeft: "300px" }}>
+                <div className="page" style={{ marginLeft: "300px" }}>
+                    {/* <div className="container"> */}
                     <Switch>
                         <Route exact path="/">
                             <Home />
@@ -31,8 +32,12 @@ function App() {
                         <Route exact path="/:sport/:id" children={<SportLoad />} />
                         <Route exact path="/player/:sport/:id" children={<PlayerLoad />} />
                         <Route exact path="/team/:sport/:abb" children={<TeamLoad />} />
-                        <Route exact path="/compare/:compareType/:sport/:id1/:id2" children={<CompareLoad />} />
+                        <div className="btnContainerApp">
+                            <Route exact path="/compare/:compareType/:sport/:id1/:id2" children={<CompareLoad />} />
+                        </div>
+
                     </Switch>
+                    {/* </div> */}
                 </div>
             </div>
         </Router>
@@ -56,10 +61,7 @@ function SportLoad() {
     let { sport } = useParams()
     let { id } = useParams()
     return (
-        <div>
-            {/* <Sport sport={sport} /> */}
-            <Compare player1={id} sport={sport} />
-        </div>
+        <Compare player1={id} sport={sport} />
     )
 }
 

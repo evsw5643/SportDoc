@@ -22,28 +22,39 @@ function Compare(props) {
     }
     if (!playerLoad && !teamLoad) {
         return (
-            <div className="container">
-                <button type="button" className="btn btn-info playerBtn" onClick={playerHandler}> Players </button>
-                <button type="button" className="btn btn-info teamBtn" onClick={teamHandler}> Teams </button>
+            <div className="hpage">
+                <div className="flex-parent jc-center">
+                    <div className="card player_compare_card" onClick={playerHandler}>
+                        {/* <button type="button" className="btn btn-info playerBtn" > Players </button> */}
+                        <div className="gridText">
+                            <h1 className="selectionText">Players</h1>
+                        </div>
+                    </div>
+                </div>
+                <div className="flex-parent jc-center">
+                    <div className="card player_compare_card" onClick={teamHandler}>
+                        {/* <button type="button" className="btn btn-info teamBtn" > Teams </button> */}
+                        <div className="gridText">
+                            <h1 className="selectionText">Teams</h1>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
     if (playerLoad === true) {
-        let cardType = "player"
         return (
             <div>
                 <Player sport={props.sport} player={props.player1} />
-                <CompareCard cardType={cardType} sport={props.sport} playerID={props.player1} />
+                <CompareCard cardType="player" sport={props.sport} playerID={props.player1} />
             </div>
-
         )
     }
     if (teamLoad == true) {
-        let cardType = "team"
         return (
             <div>
                 <Team sport={props.sport} team="DEN" />
-                <CompareCard cardType={cardType} playerID={props.player1} />
+                <CompareCard cardType="team" playerID={props.player1} />
             </div>
         )
     }

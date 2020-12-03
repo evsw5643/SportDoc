@@ -12,7 +12,16 @@ function Team(props) {
   const [loading, setloading] = useState(true);
   const [team, setteam] = useState([])
   const [sport, setsport] = useState("")
-
+  const [career, setcareer] = useState(0);
+  const [teamSize, setteamsize] = useState(0)
+  const [statname1, setstatname1] = useState("")
+  const [statname2, setstatname2] = useState("")
+  const [statname3, setstatname3] = useState("")
+  const [statname4, setstatname4] = useState("")
+  const [stat1, setstat1] = useState(0)
+  const [stat2, setstat2] = useState(0)
+  const [stat3, setstat3] = useState(0)
+  const [stat4, setstat4] = useState(0)
   useEffect(() => {
     setloading(true)
     setsport(props.sport)
@@ -25,6 +34,9 @@ function Team(props) {
       .then(
         (result) => {
           setteam(result)
+          setteamsize(result.length)
+          perSport(apiSport, result, teamSize)
+          console.log("TEAM SIZE: " + teamSize)
           getEloScores(2014, 2019)
         },
         (error) => {
@@ -32,6 +44,42 @@ function Team(props) {
           setloading(false)
         }
       )
+  }
+  function perSport(spo, team, teamSize) {
+    switch (spo) {
+      case "basketball":
+        setstatname1("Points")
+        setstatname2("Assists")
+        setstatname3("Rebounds")
+        setstatname4("Blocks")
+        setstat1(team[teamSize].points)
+        setstat2(team[teamSize].assists)
+        setstat3(team[teamSize].total_rebounds)
+        setstat4(team[teamSize].blocks)
+        break
+      case "baseball":
+        console.log("BASEBALL OBJ:")
+        console.log(team[teamSize])
+        setstatname1("Batting Average")
+        setstatname2("On-Base Percentage")
+        setstatname3("Slugging Percentage")
+        setstatname4("Fielding Percentage")
+        setstat1(team[teamSize].batting_average)
+        setstat2(team[teamSize].on_base_percentage)
+        setstat3(team[teamSize].slugging_percentage)
+        setstat4(team[teamSize].fielding_percentage)
+        break
+      case "hockey":
+        setstatname1("Goals")
+        setstatname2("Assists")
+        setstatname3("Rebounds")
+        setstatname4("Blocks")
+        setstat1(team[teamSize].points)
+        setstat2(team[teamSize].assists)
+        setstat3(team[teamSize].total_rebounds)
+        setstat4(team[teamSize].blocks)
+        break
+    }
   }
 
   const Elo = (function () {
@@ -97,11 +145,9 @@ function Team(props) {
         setloading(false)
       })
     // elo = scores;
-
   }
 
   function linkGen(type, sport, id) {
-    console.log(id)
     if (type === "player") {
       switch (sport) {
         case "basketball":
@@ -145,31 +191,51 @@ function Team(props) {
     // console.log(jsonString)
     // console.log(elo);
     // console.log(elo["DEN"])
-
     return (
       <div className="hpage">
         <div className="card team_stat_card">
           {/* <h2 className="card-title team_stat_title"> {team[0].name} </h2> */}
           <div className="card-body team_stat_body">
-            <img className="card-img-top team_stat_img"
+            <img className="card-img-top team_stat_img_item"
               src={linkGen("team", sport, team[0].abbreviation)}
               alt="Headshot" />
           </div>
           <div className="card team_stat_stats">
             <div className="card-body team_stat_body">
               <div className="card-text team_stat_text">
-                <ul class="list-group player_stat_list">
-                  <li class="list-group-item"> Points: {team[team.length - 1].points} </li>
-                  <li class="list-group-item"> Assists: {team[team.length - 1].assists} </li>
-                  <li class="list-group-item"> Rebounds: {team[team.length - 1].total_rebounds} </li>
-                  <li class="list-group-item"> Blocks: {team[team.length - 1].blocks} </li>
+                <ul className="list-group team_stat_list">
+                  <li className="list-group-item"> {statname1}: {stat1} </li>
+                  <li className="list-group-item"> {statname2}: {stat2} </li>
+                  <li className="list-group-item"> {statname3}: {stat3} </li>
+                  <li className="list-group-item"> {statname4}: {stat4} </li>
                 </ul>
+              </div>
+            </div>
+          </div>
+          <div className="card team_info">
+            <div className="card-body team_stat_body">
+              <div className="card-text team_info_text">
+                Name: {team[0].name}
+                <br />
+              </div>
+            </div>
+          </div>
+          <div className="card season_info">
+            <div className="card-body team_stat_body">
+              <div className="card-text team_info_text">
+                Name: {team[0].name} aflkasdh;sklfj
+                <br />
               </div>
             </div>
           </div>
           <div className="card team_stat_graph1">
             <div id="teamGraph">
-              <TeamCharts SeasonStats={team} title="Season" />
+              <TeamCharts SeasonStats={team} title="offensive" />
+            </div>
+          </div>
+          <div className="card team_stat_graph2">
+            <div id="teamGraph">
+              <TeamCharts SeasonStats={team} title="defensive" />
             </div>
           </div>
         </div>

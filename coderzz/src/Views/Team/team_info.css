@@ -7,13 +7,15 @@
     grid-area: Card1;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(1, 1fr);
-    grid-template-areas: "Photo Stats Graph1";
+    grid-template-areas: 
+    "Photo Stats Graph1" 
+    "teamInfo SeasonInfo Graph2";
     grid-gap: 10px;
     position: relative;
 }
 
 .team_stat_img_item {
-    height: 200px;
+    height: 150px;
     width: 150px;
     grid-area: Photo;
 }

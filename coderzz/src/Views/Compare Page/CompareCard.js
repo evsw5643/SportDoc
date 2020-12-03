@@ -26,9 +26,12 @@ function CompareCard(props) {
     if (!addPlayer && !comparePlayer && !addTeam && !compareTeam) {
       return (
         <div className="hpage">
-          <div className="card player_compare_stats">
-            {/* <button type="button" className="btn btn-info playerBtn" onClick={comparePlayerHandler}> Compare Players </button> */}
-            <button type="button" className="btn btn-info teamBtn" onClick={addPlayerHandler}> Add Player </button>
+          <div className="flex-parent jc-center">
+            <div className="card player_compare_card" onClick={addPlayerHandler}>
+              <div className="gridText">
+                <h1 className="selectionText">Add Player</h1>
+              </div>
+            </div>
           </div>
         </div>
       )
@@ -36,30 +39,27 @@ function CompareCard(props) {
     else if (addPlayer) {
       return (
         <div className="hpage">
-          <div className="card player_compare_stats">
-            <CardSearch sport={props.sport} id1={props.playerID} compareType="player" />
+          <div className="flex-parent jc-center">
+            <div className="card player_compare_card_static">
+              <div className="gridText">
+                <CardSearch sport={props.sport} id1={props.playerID} compareType="player" className="selectionText" />
+              </div>
+            </div>
           </div>
         </div>
       )
     }
-    // else if (comparePlayer) {
-    //   return (
-    //     <div className="hpage">
-    //       <div className="card player_compare_stats">
-    //         <CardSearch sport={props.sport} id1={props.playerID} compareType="compare" />
-    //       </div>
-    //     </div>
-    //   )
-    // }
-
   }
   else {
     if (!addPlayer && !comparePlayer && !addTeam && !compareTeam) {
       return (
         <div className="hpage">
-          <div className="card player_compare_stats">
-            {/* <button type="button" className="btn btn-info playerBtn" onClick={compareTeamHandler}> Compare Teams </button> */}
-            <button type="button" className="btn btn-info teamBtn" onClick={addTeamHandler}> Add Team </button>
+          <div className="flex-parent jc-center">
+            <div className="card player_compare_card" onClick={addTeamHandler}>
+              <div className="gridText">
+                <h1 className="selectionText">Add Team</h1>
+              </div>
+            </div>
           </div>
         </div>
       )
@@ -67,10 +67,14 @@ function CompareCard(props) {
     else if (addTeam) {
       return (
         <div className="hpage">
-          <div className="card player_compare_stats">
-            <CardSearch sport={props.sport} id1={props.playerID} compareType="team" />
+        <div className="flex-parent jc-center">
+          <div className="card player_compare_card_static">
+            <div className="gridText">
+            <CardSearch sport={props.sport} id1={props.playerID} compareType="team" className="selectionText"/>
+            </div>
           </div>
         </div>
+      </div>
       )
     }
     // else if (compareTeam) {

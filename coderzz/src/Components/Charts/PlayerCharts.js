@@ -22,14 +22,14 @@ function PlayerCharts(props) {
                 statname1 = "Points"
                 statname2 = "Assists"
                 statname3 = "Offensive-Rebounds"
-                statname4 = "Three Point Attempts"
+                statname4 = "Field Goals"
                 for (let i = 0; i < props.player1.length; i++) {
                     if (props.player1[i].index === "Career")
                         break;
                     playerstat1[i] = props.player1[i].points
                     playerstat2[i] = props.player1[i].assists
                     playerstat3[i] = props.player1[i].offensive_rebounds
-                    playerstat4[i] = props.player1[i].three_point_attempts
+                    playerstat4[i] = props.player1[i].field_goals
                     xAxesLabel[i] = props.player1[i].index
                 }
                 xAxesLabel.sort()
