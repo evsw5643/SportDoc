@@ -10,6 +10,7 @@ function Player(props) {
 
   const [loading, setloading] = useState(true);
   const [career, setcareer] = useState(0);
+  const [year, setyear] = useState(0)
   const [player, setplayer] = useState([])
   const [sport, setsport] = useState("")
   const [statname1, setstatname1] = useState("")
@@ -32,15 +33,25 @@ function Player(props) {
       .then(res => res.json())
       .then(
         (result) => {
-          console.log(result)
           setplayer(result)
           let car = 0
+          let max = 0
           for (let i = 0; i < result.length; i++) {
+            let temp = 0
             if (result[i].index === 'Career') {
               setcareer(i)
               car = i
             }
+            else if (result[i].index.includes("-")) {
+              temp = parseInt(result[i].index.substring(0, 4))
+            } else {
+              temp = parseInt(result[i].index)
+            }
+            if (temp > max) {
+              max = temp
+            }
           }
+          setyear(max)
           perSport(apiSport, result, car)
           setloading(false)
         },
@@ -111,25 +122,30 @@ function Player(props) {
     }
   }
 
+  function otherbslink() {
+    return (`https://www.baseball-reference.com/req/202007270/images/headshots/c/${player[0].chadwick_id}_sabr.jpg`)
+  }
+
   function linkGen(type, sport, id) {
     if (type === "player") {
       switch (sport) {
         case "basketball":
           return (`https://www.basketball-reference.com/req/202010061/images/players/${id}.jpg`)
+          break
         case "football":
-          return (`https://www.pro-football-reference.com/req/20180910/images/headshots/${id}_2017.jpg`)
+          return (`https://www.pro-football-reference.com/req/20180910/images/headshots/${id}_${year}.jpg`)
+          break
         case "baseball":
-          return (`https://www.baseball-reference.com/req/202007270/images/headshots/c/${player[0].chadwick_id}.jpg`)
+          return (`https://www.baseball-reference.com/req/202007270/images/headshots/c/${player[0].chadwick_id}_mlbam.jpg`)
+          break
         case "hockey":
-          console.log("LINKGEN: ")
-          console.log(player[player.length-2].index)
-          if(player[player.length-2].index == "2019-20"){
-            return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2020.jpg`)
           }
-          else{
             return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
+          else{
           }
-          
+            return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2020.jpg`)
+          if(player[player.length-2].index == "2019-20"){
+          console.log(player[player.length-2].index)
         default:
           return (Blank)
       }
@@ -138,11 +154,11 @@ function Player(props) {
         case "basketball":
           return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202010091/tlogo/bbr/${id}-2020.png`)
         case "football":
-          return (Blank)
+          return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202012013/tlogo/pfr/${id}-2020.png`)
         case "baseball":
-          return (Blank)
+          return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202012013/tlogo/br/${id}-2020.png`)
         case "hockey":
-          return (Blank)
+          return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202011201/tlogo/hr/${id}.png`)
         default:
           return (Blank)
       }
@@ -179,15 +195,13 @@ function Player(props) {
       }
       return teamArr
     }
-    // console.log(player)
-    // console.log("CASE STATEMENT FOOTBALL")
-    // console.log({ statname1 })
     return (
       <div className="hpage">
         <div className="card player_stat_card">
           <div className="card-body player_stat_body">
             <img className="card-img-top player_stat_img_item"
               src={linkGen("player", sport, player[0].player_id)}
+              onerror={otherbslink}
               alt="Headshot" />
           </div>
           <div className="card player_stat_stats">

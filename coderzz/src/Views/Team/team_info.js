@@ -166,11 +166,11 @@ function Team(props) {
         case "basketball":
           return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202010091/tlogo/bbr/${id}-2020.png`)
         case "football":
-          return (Blank)
+          return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202012013/tlogo/pfr/${id}-2020.png`)
         case "baseball":
-          return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202011251/tlogo/br/${id}.png`)
+          return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202012013/tlogo/br/${id}-2020.png`)
         case "hockey":
-          return (Blank)
+          return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202011201/tlogo/hr/${id}.png`)
         default:
           return (Blank)
       }
@@ -203,11 +203,11 @@ function Team(props) {
           <div className="card team_stat_stats">
             <div className="card-body team_stat_body">
               <div className="card-text team_stat_text">
-                <ul className="list-group team_stat_list">
-                  <li className="list-group-item"> {statname1}: {stat1} </li>
-                  <li className="list-group-item"> {statname2}: {stat2} </li>
-                  <li className="list-group-item"> {statname3}: {stat3} </li>
                   <li className="list-group-item"> {statname4}: {stat4} </li>
+                  <li className="list-group-item"> {statname3}: {stat3} </li>
+                  <li className="list-group-item"> {statname2}: {stat2} </li>
+                  <li className="list-group-item"> {statname1}: {stat1} </li>
+                <ul className="list-group team_stat_list">
                 </ul>
               </div>
             </div>

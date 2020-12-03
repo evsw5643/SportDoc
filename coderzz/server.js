@@ -208,7 +208,7 @@ app.get('/baseball/getteam/:team', (req, res) => {
 app.get('/baseball/getplayer/:player', (req, res) => {
     pool.connect((err, client, done) => {
         if (err) throw err;
-        client.query(`SELECT *, 'baseball' as sportname, mlb_chadwick.key_person AS chadwick_id FROM mlb_players INNER JOIN mlb_chadwick ON mlb_players.player_id = '${req.params.player}' AND key_bbref = mlb_players.player_id`, (err, reso) => {
+        client.query(`SELECT mlb_players.*, 'baseball' as sportname, mlb_chadwick.key_person AS chadwick_id FROM mlb_players INNER JOIN mlb_chadwick ON mlb_players.player_id = '${req.params.player}' AND key_bbref = mlb_players.player_id`, (err, reso) => {
             done();
             if (err) {
                 console.log(err.stack);
