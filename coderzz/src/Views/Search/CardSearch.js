@@ -77,20 +77,89 @@ function CardSearch(props) {
             )
     }
 
+    function bateamGet() {
+        fetch(`/basketball/getteams`)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setbateams(result)
+                },
+                (error) => {
+                    console.log(error)
+                }
+            )
+    }
+
+    function bsteamGet() {
+        fetch(`/baseball/getteams`)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setbsteams(result)
+                },
+                (error) => {
+                    console.log(error)
+                }
+            )
+    }
+
+    function fteamGet() {
+        fetch(`/football/getteams`)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setfteams(result)
+                },
+                (error) => {
+                    console.log(error)
+                }
+            )
+    }
+
+    function hteamGet() {
+        fetch(`/hockey/getteams`)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    sethteams(result)
+                },
+                (error) => {
+                    console.log(error)
+                }
+            )
+    }
+
     function bigApi() {
-        switch (props.sport) {
-            case "basketball":
-                baplayerGet()
-                break
-            case "baseball":
-                bsplayerGet()
-                break
-            case "football":
-                fplayerGet()
-                break
-            case "hockey":
-                hplayerGet()
-                break
+        if (props.compareType == "player") {
+            switch (props.sport) {
+                case "basketball":
+                    baplayerGet()
+                    break
+                case "baseball":
+                    bsplayerGet()
+                    break
+                case "football":
+                    fplayerGet()
+                    break
+                case "hockey":
+                    hplayerGet()
+                    break
+            }
+        } else {
+            switch (props.sport) {
+                case "basketball":
+                    bateamGet()
+                    break
+                case "baseball":
+                    bsteamGet()
+                    break
+                case "football":
+                    fteamGet()
+                    break
+                case "hockey":
+                    hteamGet()
+                    break
+            }
         }
     }
 
@@ -132,14 +201,35 @@ function CardSearch(props) {
                 if (terms[i].player_name) {
                     let newName = terms[i].player_name.split(" ")
                     if (newName[0].substr(0, len).toUpperCase() === stro.toUpperCase()) {
-                        jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`/compare/${props.sport}/${props.id1}/${terms[i].player_id}`}><i className="fas fa-user"></i> <i className={`fas fa-${terms[i].icon}`}></i> <strong>{newName[0].substr(0, len)}</strong>{newName[0].substr(len)} {newName[1]} </Link></div>)
+                        jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`/compare/player/${props.sport}/${props.id1}/${terms[i].player_id}`}><i className="fas fa-user"></i> <i className={`fas fa-${terms[i].icon}`}></i> <strong>{newName[0].substr(0, len)}</strong>{newName[0].substr(len)} {newName[1]} </Link></div>)
                         found = true
                     } else if (newName[1] && newName[1].substr(0, len).toUpperCase() === stro.toUpperCase()) {
-                        jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`/compare/${props.sport}/${props.id1}/${terms[i].player_id}`}><i className="fas fa-user"></i> <i className={`fas fa-${terms[i].icon}`}></i> {newName[0]} <strong>{newName[1].substr(0, len)}</strong>{newName[1].substr(len)} </Link></div>)
+                        jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`/compare/player/${props.sport}/${props.id1}/${terms[i].player_id}`}><i className="fas fa-user"></i> <i className={`fas fa-${terms[i].icon}`}></i> {newName[0]} <strong>{newName[1].substr(0, len)}</strong>{newName[1].substr(len)} </Link></div>)
                         found = true
                     } else if (terms[i].player_name.substr(0, len).toUpperCase() === stro.toUpperCase()) {
-                        jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`/compare/${props.sport}/${props.id1}/${terms[i].player_id}`}><i className="fas fa-user"></i> <i className={`fas fa-${terms[i].icon}`}></i> <strong>{terms[i].player_name.substr(0, len)}</strong>{terms[i].player_name.substr(len)} </Link></div>)
+                        jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`/compare/player/${props.sport}/${props.id1}/${terms[i].player_id}`}><i className="fas fa-user"></i> <i className={`fas fa-${terms[i].icon}`}></i> <strong>{terms[i].player_name.substr(0, len)}</strong>{terms[i].player_name.substr(len)} </Link></div>)
                         found = true
+                    }
+                } else if (terms[i].abbreviation) {
+                    let newName = terms[i].name.split(" ")
+                    let teamname = []
+                    if (terms[i].name.substr(0, len).toUpperCase() === stro.toUpperCase()) {
+                        jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`/compare/team/${props.sport}/${props.id1}/${terms[i].abbreviation}`}><i className="fas fa-users"></i> <i className={`fas fa-${terms[i].icon}`}></i> <strong>{terms[i].name.substr(0, len)}</strong>{terms[i].name.substr(len)} </Link></div>)
+                        found = true
+                    } else {
+                        let indi = false
+                        for (let i = 0; i < newName.length; i++) {
+                            if (newName[i].substr(0, len).toUpperCase() === stro.toUpperCase()) {
+                                teamname.push(<span key={i}><strong>{newName[i].substr(0, len)}</strong>{newName[i].substr(len)}&nbsp;</span>)
+                                indi = true
+                                found = true
+                            } else {
+                                teamname.push(newName[i] + " ")
+                            }
+                        }
+                        if (indi) {
+                            jsx.push(<div key={i} className="search-box" ><Link className="search_term" to={`/compare/team/${props.sport}/${props.id1}/${terms[i].abbreviation}`}><i className="fas fa-users"></i> <i className={`fas fa-${terms[i].icon}`}></i> {teamname} </Link></div>)
+                        }
                     }
                 }
             }

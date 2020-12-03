@@ -27,7 +27,7 @@ function CompareCard(props) {
       return (
         <div className="hpage">
           <div className="card player_compare_stats">
-            <button type="button" className="btn btn-info playerBtn" onClick={comparePlayerHandler}> Compare Players </button>
+            {/* <button type="button" className="btn btn-info playerBtn" onClick={comparePlayerHandler}> Compare Players </button> */}
             <button type="button" className="btn btn-info teamBtn" onClick={addPlayerHandler}> Add Player </button>
           </div>
         </div>
@@ -37,20 +37,20 @@ function CompareCard(props) {
       return (
         <div className="hpage">
           <div className="card player_compare_stats">
-            <CardSearch sport={props.sport} id1={props.playerID} compareType="add" />
+            <CardSearch sport={props.sport} id1={props.playerID} compareType="player" />
           </div>
         </div>
       )
     }
-    else if (comparePlayer) {
-      return (
-        <div className="hpage">
-          <div className="card player_compare_stats">
-            <CardSearch sport={props.sport} id1={props.playerID} compareType="compare" />
-          </div>
-        </div>
-      )
-    }
+    // else if (comparePlayer) {
+    //   return (
+    //     <div className="hpage">
+    //       <div className="card player_compare_stats">
+    //         <CardSearch sport={props.sport} id1={props.playerID} compareType="compare" />
+    //       </div>
+    //     </div>
+    //   )
+    // }
 
   }
   else {
@@ -58,7 +58,7 @@ function CompareCard(props) {
       return (
         <div className="hpage">
           <div className="card player_compare_stats">
-            <button type="button" className="btn btn-info playerBtn" onClick={compareTeamHandler}> Compare Teams </button>
+            {/* <button type="button" className="btn btn-info playerBtn" onClick={compareTeamHandler}> Compare Teams </button> */}
             <button type="button" className="btn btn-info teamBtn" onClick={addTeamHandler}> Add Team </button>
           </div>
         </div>
@@ -68,20 +68,20 @@ function CompareCard(props) {
       return (
         <div className="hpage">
           <div className="card player_compare_stats">
-            <CardSearch sport={props.sport} id1={props.playerID} compareType="add" />
+            <CardSearch sport={props.sport} id1={props.playerID} compareType="team" />
           </div>
         </div>
       )
     }
-    else if (compareTeam) {
-      return (
-        <div className="hpage">
-          <div className="card player_compare_stats">
-            <CardSearch sport={props.sport} id1={props.playerID} compareType="add" />
-          </div>
-        </div>
-      )
-    }
+    // else if (compareTeam) {
+    //   return (
+    //     <div className="hpage">
+    //       <div className="card player_compare_stats">
+    //         <CardSearch sport={props.sport} id1={props.playerID} compareType="add" />
+    //       </div>
+    //     </div>
+    //   )
+    // }
   }
 }
 

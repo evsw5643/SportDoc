@@ -11,7 +11,7 @@ function Home() {
       <div className="column justify-content-center">
         <Sport sport="basketball" ></Sport>
         <Sport sport="hockey" ></Sport>
-        <Sport sport="football" ></Sport>
+        {/* <Sport sport="football" ></Sport> */}
         <Sport sport="baseball" ></Sport>
       </div>
     </div>

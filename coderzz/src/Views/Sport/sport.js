@@ -62,11 +62,20 @@ function Sport(props) {
       </div>
     )
   } else if (!loading1 && !loading2) {
-    console.log(potd)
-    console.log(props.sport)
-    return (
-      <Player sport={props.sport} player={potd.player_id}></Player>
-    );
+    switch (props.sport) {
+      case "basketball":
+        return (
+          <Player sport={props.sport} player={"jamesle01"}></Player>
+        );
+      case "baseball":
+        return (
+          <Player sport={props.sport} player={"troutmi01"}></Player>
+        );
+      case "hockey":
+        return (
+          <Player sport={props.sport} player={"crosbsi01"}></Player>
+        );
+    }
   }
 }
 

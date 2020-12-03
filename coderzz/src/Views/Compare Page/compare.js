@@ -30,36 +30,13 @@ function Compare(props) {
     }
     if (playerLoad === true) {
         let cardType = "player"
-        switch (props.sport) {
-            case "basketball":
-                return (
-                    <div>
-                        <Player sport={props.sport} player="jamesle01" />
-                        <CompareCard cardType={cardType} sport={props.sport} playerID={props.player1}/>
-                    </div>
-                )
-            case "baseball":
-                return (
-                    <div>
-                        <Player sport={props.sport} player="troutmi01" />
-                        <CompareCard cardType={cardType} sport={props.sport} playerID="troutmi01"/>
-                    </div>
-                )
-            case "football":
-                return (
-                    <div>
-                        <Player sport={props.sport} player="BradTo00" />
-                        <CompareCard cardType={cardType} sport={props.sport} playerID="BradTo00"/>
-                    </div>
-                )
-            case "hockey":
-                return (
-                    <div>
-                        <Player sport={props.sport} player="crosbsi01" />
-                        <CompareCard cardType={cardType} sport={props.sport} playerID="crosbsi01"/>
-                    </div>
-                )
-        }
+        return (
+            <div>
+                <Player sport={props.sport} player={props.player1} />
+                <CompareCard cardType={cardType} sport={props.sport} playerID={props.player1} />
+            </div>
+
+        )
     }
     if (teamLoad == true) {
         let cardType = "team"

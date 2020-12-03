@@ -101,6 +101,7 @@ function Team(props) {
   }
 
   function linkGen(type, sport, id) {
+    console.log(id)
     if (type === "player") {
       switch (sport) {
         case "basketball":
@@ -162,13 +163,13 @@ function Team(props) {
                   <li class="list-group-item"> Assists: {team[team.length - 1].assists} </li>
                   <li class="list-group-item"> Rebounds: {team[team.length - 1].total_rebounds} </li>
                   <li class="list-group-item"> Blocks: {team[team.length - 1].blocks} </li>
-                  </ul>
+                </ul>
               </div>
             </div>
           </div>
           <div className="card team_stat_graph1">
             <div id="teamGraph">
-              <TeamCharts SeasonStats={team} title="Season"/>
+              <TeamCharts SeasonStats={team} title="Season" />
             </div>
           </div>
         </div>

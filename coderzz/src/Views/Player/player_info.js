@@ -32,6 +32,7 @@ function Player(props) {
       .then(res => res.json())
       .then(
         (result) => {
+          console.log(result)
           setplayer(result)
           let car = 0
           for (let i = 0; i < result.length; i++) {
@@ -74,10 +75,10 @@ function Player(props) {
       case "football":
         let offensivePosFootball = ["C", "OG", "OT", "QB", "HB", "FB", "WR", "TE"]
         let defensivePosFootball = ["DT", "DE", "MLB", "OLB", "CB", "S"]
-        
-        for(let i = 0; i < player.length; i++){
-          if(player[i].position != ""){
-            switch (player[i].position){
+
+        for (let i = 0; i < player.length; i++) {
+          if (player[i].position != "") {
+            switch (player[i].position) {
               case "C":
               case "OG":
               case "OT":
@@ -116,7 +117,7 @@ function Player(props) {
         case "football":
           return (`https://www.pro-football-reference.com/req/20180910/images/headshots/${id}_2017.jpg`)
         case "baseball":
-          return (`https://www.baseball-reference.com/req/202007270/images/headshots/c/c755fefc_sabr.jpg`)
+          return (`https://www.baseball-reference.com/req/202007270/images/headshots/c/${player[0].chadwick_id}.jpg`)
         case "hockey":
           return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
         default:
