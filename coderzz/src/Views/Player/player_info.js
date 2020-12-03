@@ -141,11 +141,19 @@ function Player(props) {
         case "hockey":
           if (player[player.length - 2].index == "2019-20") {
             return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2020.jpg`)
+<<<<<<< HEAD
           } 
           else {
             return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
           }
         }
+=======
+          }
+          else {
+            return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
+          }
+      }
+>>>>>>> master
     }
     else if (type === "team") {
       switch (sport) {

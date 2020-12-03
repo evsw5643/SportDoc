@@ -148,33 +148,40 @@ function Team(props) {
   }
 
   function linkGen(type, sport, id) {
-    if (type === "player") {
-      switch (sport) {
-        case "basketball":
-          return (`https://www.basketball-reference.com/req/202010061/images/players/${id}.jpg`)
-        case "football":
-          return (`https://www.pro-football-reference.com/req/20180910/images/headshots/${id}_2019.jpg`)
-        case "baseball":
-          return (`https://www.baseball-reference.com/req/202007270/images/headshots/c/c755fefc_sabr.jpg`)
-        case "hockey":
-          return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
-        default:
-          return (Blank)
-      }
-    } else if (type === "team") {
-      switch (sport) {
-        case "basketball":
-          return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202010091/tlogo/bbr/${id}-2020.png`)
-        case "football":
-          return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202012013/tlogo/pfr/${id}-2020.png`)
-        case "baseball":
-          return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202012013/tlogo/br/${id}-2020.png`)
-        case "hockey":
-          return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202011201/tlogo/hr/${id}.png`)
-        default:
-          return (Blank)
-      }
+    // if (type === "player") {
+    //   switch (sport) {
+    //     case "basketball":
+    //       return (`https://www.basketball-reference.com/req/202010061/images/players/${id}.jpg`)
+    //       break
+    //     case "football":
+    //       return (`https://www.pro-football-reference.com/req/20180910/images/headshots/${id}_${year}.jpg`)
+    //       break
+    //     case "baseball":
+    //       return (`https://www.baseball-reference.com/req/202007270/images/headshots/c/${player[0].chadwick_id}_mlbam.jpg`)
+    //       break
+    //     case "hockey":
+    //       if (player[player.length - 2].index == "2019-20") {
+    //         return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2020.jpg`)
+    //       }
+    //       else {
+    //         return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
+    //       }
+    //   }
+    // }
+    // else if (type === "team") {
+    switch (sport) {
+      case "basketball":
+        return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202010091/tlogo/bbr/${id}-2020.png`)
+      case "football":
+        return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202012013/tlogo/pfr/${id}-2020.png`)
+      case "baseball":
+        return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202012013/tlogo/br/${id}-2020.png`)
+      case "hockey":
+        return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202011201/tlogo/hr/${id}.png`)
+      default:
+        return (Blank)
     }
+    // }
   }
 
   if (loading) {
@@ -203,10 +210,10 @@ function Team(props) {
           <div className="card team_stat_stats">
             <div className="card-body team_stat_body">
               <div className="card-text team_stat_text">
-                  <li className="list-group-item"> {statname4}: {stat4} </li>
-                  <li className="list-group-item"> {statname3}: {stat3} </li>
-                  <li className="list-group-item"> {statname2}: {stat2} </li>
-                  <li className="list-group-item"> {statname1}: {stat1} </li>
+                <li className="list-group-item"> {statname4}: {stat4} </li>
+                <li className="list-group-item"> {statname3}: {stat3} </li>
+                <li className="list-group-item"> {statname2}: {stat2} </li>
+                <li className="list-group-item"> {statname1}: {stat1} </li>
                 <ul className="list-group team_stat_list">
                 </ul>
               </div>
@@ -223,7 +230,7 @@ function Team(props) {
           <div className="card season_info">
             <div className="card-body team_stat_body">
               <div className="card-text team_info_text">
-                Name: {team[0].name} aflkasdh;sklfj
+                Name: {team[0].name}
                 <br />
               </div>
             </div>
