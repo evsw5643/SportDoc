@@ -198,6 +198,7 @@ function Team(props) {
     // console.log(jsonString)
     // console.log(elo);
     // console.log(elo["DEN"])
+    console.log()
     return (
       <div className="hpage">
         <div className="card team_stat_card">
@@ -210,10 +211,10 @@ function Team(props) {
           <div className="card team_stat_stats">
             <div className="card-body team_stat_body">
               <div className="card-text team_stat_text">
-                <li className="list-group-item"> {statname4}: {stat4} </li>
-                <li className="list-group-item"> {statname3}: {stat3} </li>
-                <li className="list-group-item"> {statname2}: {stat2} </li>
                 <li className="list-group-item"> {statname1}: {stat1} </li>
+                <li className="list-group-item"> {statname2}: {stat2} </li>
+                <li className="list-group-item"> {statname3}: {stat3} </li>
+                <li className="list-group-item"> {statname4}: {stat4} </li>
                 <ul className="list-group team_stat_list">
                 </ul>
               </div>
@@ -248,9 +249,6 @@ function Team(props) {
         </div>
       </div>
     )
-
-
-
   }
 }
 

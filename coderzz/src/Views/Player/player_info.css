@@ -71,10 +71,3 @@
     font-family: 'Cairo', sans-serif;
 }
 
-.season_info {
-    background-color: #002a52;
-    width: 100%;
-    grid-area: SeasonInfo
-    /* margin: auto; */
-    /* margin-bottom: 1rem; */
-}

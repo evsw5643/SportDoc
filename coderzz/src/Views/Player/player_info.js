@@ -17,11 +17,12 @@ function Player(props) {
   const [statname2, setstatname2] = useState("")
   const [statname3, setstatname3] = useState("")
   const [statname4, setstatname4] = useState("")
+  const [statname5, setstatname5] = useState("")
   const [stat1, setstat1] = useState(0)
   const [stat2, setstat2] = useState(0)
   const [stat3, setstat3] = useState(0)
   const [stat4, setstat4] = useState(0)
-
+  const [stat5, setstat5] = useState(0)
   useEffect(() => {
     setloading(true)
     setsport(props.sport)
@@ -68,10 +69,12 @@ function Player(props) {
         setstatname2("Assists")
         setstatname3("Rebounds")
         setstatname4("Blocks")
+        setstatname5("Player Efficiency Rating")
         setstat1(player[career].points)
         setstat2(player[career].assists)
         setstat3(player[career].total_rebounds)
         setstat4(player[career].blocks)
+        setstat5(player[career].player_efficiency_rating)
         break
       case "baseball":
         console.log("BASEBALL OBJ:")
@@ -141,19 +144,11 @@ function Player(props) {
         case "hockey":
           if (player[player.length - 2].index == "2019-20") {
             return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2020.jpg`)
-<<<<<<< HEAD
-          } 
-          else {
-            return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
-          }
-        }
-=======
           }
           else {
             return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
           }
       }
->>>>>>> master
     }
     else if (type === "team") {
       switch (sport) {
@@ -170,97 +165,99 @@ function Player(props) {
       }
     }
   }
- 
 
-if (loading) {
-  return (
-    <div className="d-flex justify-content-center" style={{ marginTop: '5px' }}>
-      <div className="spinner-border text-light" role="status">
-        <span className="sr-only">Loading...</span>
+
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center" style={{ marginTop: '5px' }}>
+        <div className="spinner-border text-light" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
       </div>
-    </div>
-  )
-}
-else if (!loading) {
-  let playerTeamHistory = []
-  if (sport != "football") {
-    for (let i = 0; i < player.length; i++) {
-      playerTeamHistory[i] = player[i].name
-    }
-    playerTeamHistory = [... new Set(playerTeamHistory)]
+    )
   }
-  else {
-    for (let i = 0; i < player.length; i++) {
-      playerTeamHistory[i] = player[i].team
+  else if (!loading) {
+    let playerTeamHistory = []
+    if (sport != "football") {
+      for (let i = 0; i < player.length; i++) {
+        playerTeamHistory[i] = player[i].name
+      }
+      playerTeamHistory = [... new Set(playerTeamHistory)]
     }
-    playerTeamHistory = [... new Set(playerTeamHistory)]
-  }
-  function printTeamHistory() {
-    let teamArr = []
-    for (let i = 0; i < playerTeamHistory.length; i++) {
-      teamArr.push(playerTeamHistory[i] + ", ")
+    else {
+      for (let i = 0; i < player.length; i++) {
+        playerTeamHistory[i] = player[i].team
+      }
+      playerTeamHistory = [... new Set(playerTeamHistory)]
     }
-    return teamArr
-  }
-  return (
-    <div className="hpage">
-      <div className="card player_stat_card">
-        <div className="card-body player_stat_body">
-          <img className="card-img-top player_stat_img_item"
-            src={linkGen("player", sport, player[0].player_id)}
-            onerror={otherbslink}
-            alt="Headshot" />
-        </div>
-        <div className="card player_stat_stats">
+    function printTeamHistory() {
+      let teamArr = []
+      for (let i = 0; i < playerTeamHistory.length; i++) {
+        if (i === playerTeamHistory.length - 1) {
+          teamArr.push(playerTeamHistory[i])
+          break
+        }
+        teamArr.push(playerTeamHistory[i] + ", ")
+      }
+      return teamArr
+    }
+    console.log(player[0])
+    return (
+      <div className="hpage">
+        <div className="card player_stat_card">
           <div className="card-body player_stat_body">
-            <ul className="list-group player_stat_list">
-              <li className="list-group-item"> {statname1}: {stat1} </li>
-              <li className="list-group-item"> {statname2}: {stat2} </li>
-              <li className="list-group-item"> {statname3}: {stat3} </li>
-              <li className="list-group-item"> {statname4}: {stat4} </li>
-            </ul>
+            <img className="card-img-top player_stat_img_item"
+              src={linkGen("player", sport, player[0].player_id)}
+              onerror={otherbslink}
+              alt="Headshot" />
           </div>
-        </div>
-        <div className="card player_stat_graph1">
-          <div className="PlayerGraph">
-            <PlayerCharts player1={player} title="offensive" />
+          <div className="card player_stat_stats">
+            <div className="card-body player_stat_body">
+              <ul className="list-group player_stat_list">
+                <li className="list-group-item"> {statname1}: {stat1} </li>
+                <li className="list-group-item"> {statname2}: {stat2} </li>
+                <li className="list-group-item"> {statname3}: {stat3} </li>
+                <li className="list-group-item"> {statname4}: {stat4} </li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <div className="card player_info">
-          <div className="card-body player_stat_body">
-            <div className="card-text player_info_text">
-              Name: {player[0].player_name}
-              <br />
-                Teams: {printTeamHistory()}
-              <br />
-                Current Team: {playerTeamHistory[playerTeamHistory.length - 1]}
-              <br />
-                Current Position: {player[player.length - 1].position}
+          <div className="card player_stat_graph1">
+            <div className="PlayerGraph">
+              <PlayerCharts player1={player} title="offensive" />
+            </div>
+          </div>
+          <div className="card player_info">
+            <div className="card-body player_stat_body">
+              <div className="card-text player_info_text">
+                <h1> Player Name: {player[0].player_name}  </h1>
+                <strong>Teams: </strong> {printTeamHistory()}
+                <br />
+                <strong>Last Team:</strong> {playerTeamHistory[playerTeamHistory.length - 1]}
+                <br />
+                <strong>Current Position:</strong> {player[player.length - 1].position}
+                <br />
+                <strong>Nationality: </strong> {player[player.length - 1].nationality}
+                <br />
+                <strong>{statname5} </strong> {stat5}
+              </div>
+            </div>
+          </div>
+          <div className="card season_info">
+            <div className="card-body player_stat_body">
+              <div className="card-text player_info_text">
+                <h1 className="season_info_text"> Season Stats: Career  </h1>
+              </div>
+            </div>
+          </div>
+          <div className="card player_stat_graph2">
+            <div className="PlayerGraph">
+              <PlayerCharts player1={player} title="defensive" />
             </div>
           </div>
         </div>
-        <div className="card season_info">
-          <div className="card-body player_stat_body">
-            <div className="card-text player_info_text">
-              Name: {player[0].player_name}
-              <br />
-                Teams: {printTeamHistory()}
-              <br />
-                Most Recent Team: {playerTeamHistory[playerTeamHistory.length - 1]}
-              <br />
-                Current Position: {player[player.length - 1].position}
-            </div>
-          </div>
-        </div>
-        <div className="card player_stat_graph2">
-          <div className="PlayerGraph">
-            <PlayerCharts player1={player} title="defensive" />
-          </div>
-        </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
 }
 
 export default Player;
