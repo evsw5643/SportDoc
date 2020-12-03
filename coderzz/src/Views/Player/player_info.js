@@ -112,12 +112,12 @@ function Player(props) {
       case "hockey":
         setstatname1("Goals")
         setstatname2("Assists")
-        setstatname3("Rebounds")
-        setstatname4("Blocks")
+        setstatname3("Offensive Point Shares")
+        setstatname4("Goals Created")
         setstat1(player[career].points)
         setstat2(player[career].assists)
-        setstat3(player[career].total_rebounds)
-        setstat4(player[career].blocks)
+        setstat3(player[career].offensive_point_shares)
+        setstat4(player[career].goals_created)
         break
     }
   }
@@ -139,17 +139,15 @@ function Player(props) {
           return (`https://www.baseball-reference.com/req/202007270/images/headshots/c/${player[0].chadwick_id}_mlbam.jpg`)
           break
         case "hockey":
-          }
-            return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
-          else{
-          }
+          if (player[player.length - 2].index == "2019-20") {
             return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2020.jpg`)
-          if(player[player.length-2].index == "2019-20"){
-          console.log(player[player.length-2].index)
-        default:
-          return (Blank)
-      }
-    } else if (type === "team") {
+          } 
+          else {
+            return (`https://www.hockey-reference.com/req/202008181/images/headshots/${id}-2017.jpg`)
+          }
+        }
+    }
+    else if (type === "team") {
       switch (sport) {
         case "basketball":
           return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202010091/tlogo/bbr/${id}-2020.png`)
@@ -164,96 +162,97 @@ function Player(props) {
       }
     }
   }
+ 
 
-  if (loading) {
-    return (
-      <div className="d-flex justify-content-center" style={{ marginTop: '5px' }}>
-        <div className="spinner-border text-light" role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
+if (loading) {
+  return (
+    <div className="d-flex justify-content-center" style={{ marginTop: '5px' }}>
+      <div className="spinner-border text-light" role="status">
+        <span className="sr-only">Loading...</span>
       </div>
-    )
+    </div>
+  )
+}
+else if (!loading) {
+  let playerTeamHistory = []
+  if (sport != "football") {
+    for (let i = 0; i < player.length; i++) {
+      playerTeamHistory[i] = player[i].name
+    }
+    playerTeamHistory = [... new Set(playerTeamHistory)]
   }
-  else if (!loading) {
-    let playerTeamHistory = []
-    if (sport != "football") {
-      for (let i = 0; i < player.length; i++) {
-        playerTeamHistory[i] = player[i].name
-      }
-      playerTeamHistory = [... new Set(playerTeamHistory)]
+  else {
+    for (let i = 0; i < player.length; i++) {
+      playerTeamHistory[i] = player[i].team
     }
-    else {
-      for (let i = 0; i < player.length; i++) {
-        playerTeamHistory[i] = player[i].team
-      }
-      playerTeamHistory = [... new Set(playerTeamHistory)]
+    playerTeamHistory = [... new Set(playerTeamHistory)]
+  }
+  function printTeamHistory() {
+    let teamArr = []
+    for (let i = 0; i < playerTeamHistory.length; i++) {
+      teamArr.push(playerTeamHistory[i] + ", ")
     }
-    function printTeamHistory() {
-      let teamArr = []
-      for (let i = 0; i < playerTeamHistory.length; i++) {
-        teamArr.push(playerTeamHistory[i] + ", ")
-      }
-      return teamArr
-    }
-    return (
-      <div className="hpage">
-        <div className="card player_stat_card">
+    return teamArr
+  }
+  return (
+    <div className="hpage">
+      <div className="card player_stat_card">
+        <div className="card-body player_stat_body">
+          <img className="card-img-top player_stat_img_item"
+            src={linkGen("player", sport, player[0].player_id)}
+            onerror={otherbslink}
+            alt="Headshot" />
+        </div>
+        <div className="card player_stat_stats">
           <div className="card-body player_stat_body">
-            <img className="card-img-top player_stat_img_item"
-              src={linkGen("player", sport, player[0].player_id)}
-              onerror={otherbslink}
-              alt="Headshot" />
+            <ul className="list-group player_stat_list">
+              <li className="list-group-item"> {statname1}: {stat1} </li>
+              <li className="list-group-item"> {statname2}: {stat2} </li>
+              <li className="list-group-item"> {statname3}: {stat3} </li>
+              <li className="list-group-item"> {statname4}: {stat4} </li>
+            </ul>
           </div>
-          <div className="card player_stat_stats">
-            <div className="card-body player_stat_body">
-              <ul className="list-group player_stat_list">
-                <li className="list-group-item"> {statname1}: {stat1} </li>
-                <li className="list-group-item"> {statname2}: {stat2} </li>
-                <li className="list-group-item"> {statname3}: {stat3} </li>
-                <li className="list-group-item"> {statname4}: {stat4} </li>
-              </ul>
-            </div>
+        </div>
+        <div className="card player_stat_graph1">
+          <div className="PlayerGraph">
+            <PlayerCharts player1={player} title="offensive" />
           </div>
-          <div className="card player_stat_graph1">
-            <div className="PlayerGraph">
-              <PlayerCharts player1={player} title="offensive" />
-            </div>
-          </div>
-          <div className="card player_info">
-            <div className="card-body player_stat_body">
-              <div className="card-text player_info_text">
-                Name: {player[0].player_name}
-                <br />
+        </div>
+        <div className="card player_info">
+          <div className="card-body player_stat_body">
+            <div className="card-text player_info_text">
+              Name: {player[0].player_name}
+              <br />
                 Teams: {printTeamHistory()}
-                <br />
+              <br />
                 Current Team: {playerTeamHistory[playerTeamHistory.length - 1]}
-                <br />
+              <br />
                 Current Position: {player[player.length - 1].position}
-              </div>
-            </div>
-          </div>
-          <div className="card season_info">
-            <div className="card-body player_stat_body">
-              <div className="card-text player_info_text">
-                Name: {player[0].player_name}
-                <br />
-                Teams: {printTeamHistory()}
-                <br />
-                Most Recent Team: {playerTeamHistory[playerTeamHistory.length - 1]}
-                <br />
-                Current Position: {player[player.length - 1].position}
-              </div>
-            </div>
-          </div>
-          <div className="card player_stat_graph2">
-            <div className="PlayerGraph">
-              <PlayerCharts player1={player} title="defensive" />
             </div>
           </div>
         </div>
+        <div className="card season_info">
+          <div className="card-body player_stat_body">
+            <div className="card-text player_info_text">
+              Name: {player[0].player_name}
+              <br />
+                Teams: {printTeamHistory()}
+              <br />
+                Most Recent Team: {playerTeamHistory[playerTeamHistory.length - 1]}
+              <br />
+                Current Position: {player[player.length - 1].position}
+            </div>
+          </div>
+        </div>
+        <div className="card player_stat_graph2">
+          <div className="PlayerGraph">
+            <PlayerCharts player1={player} title="defensive" />
+          </div>
+        </div>
       </div>
-    )
-  }
+    </div>
+  )
+}
 }
 
 export default Player;

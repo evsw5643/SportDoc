@@ -44,7 +44,6 @@ function PlayerCharts(props) {
                         break;
                     playerstat1[i] = props.player1[i].defensive_rebounds
                     playerstat2[i] = props.player1[i].blocks
-
                     xAxesLabel[i] = props.player1[i].index
                 }
                 xAxesLabel.sort()
@@ -74,7 +73,6 @@ function PlayerCharts(props) {
             }
             break
         case "football":
-            //!MASSIVE CASE STATEMENT FOR
             if (props.title == "offensive") {
                 chartTitle = "Offensive Stats"
             }
@@ -98,28 +96,39 @@ function PlayerCharts(props) {
             }
             break
         case "hockey":
+            console.log(props.player1[props.player1.length-1])
             if (props.title == "offensive") {
                 chartTitle = "Offensive Stats"
+                statname1 = "Goals"
+                statname2 = "Assists"
+                statname3 = "Offensive Point Shares"
+                statname4 = "Goals Created"
+                for (let i = 0; i < props.player1.length; i++) {
+                    if (props.player1[i].index === "Career")
+                        break;
+                    playerstat1[i] = props.player1[i].points
+                    playerstat2[i] = props.player1[i].assists
+                    playerstat3[i] = props.player1[i].offensive_point_shares
+                    playerstat4[i] = props.player1[i].goals_created
+                    xAxesLabel[i] = props.player1[i].index
+                }
+                xAxesLabel.sort()
+                break
             }
             else {
                 chartTitle = "Defensive Stats"
+                statname1 = "Defensive Point Shares"
+                statname2 = "Giveaways"
+                for (let i = 0; i < props.player1.length; i++) {
+                    if (props.player1[i].index === "Career")
+                        break;
+                    playerstat1[i] = props.player1[i].defensive_point_shares
+                    playerstat2[i] = props.player1[i].giveaways
+                    xAxesLabel[i] = props.player1[i].index
+                }
+                xAxesLabel.sort()
+                break
             }
-            statname1 = "Points"
-            statname2 = "Assists"
-            statname3 = "Rebounds"
-            statname4 = "Blocks"
-            for (let i = 0; i < props.player1.length; i++) {
-                if (props.player1[i].index === "Career")
-                    break;
-                playerstat1[i] = props.player1[i].assists
-                playerstat2[i] = props.player1[i].points
-                playerstat3[i] = props.player1[i].total_rebounds
-                playerstat4[i] = props.player1[i].blocks
-
-
-                xAxesLabel[i] = props.player1[i].index
-            }
-            break
     }
     playerstat1 = [...new Set(playerstat1)]
     playerstat2 = [...new Set(playerstat2)]
