@@ -45,38 +45,48 @@ function Team(props) {
       )
   }
   function perSport(spo, team, teamSize) {
+    //console.log(team)
+    for(let i = 0; i < team.length; i++){
+      if(team[i].year === "2018"){
+        console.log(team[i])
+      }
+    }
+    let currentYearIndex = team.length-1
     switch (spo) {
       case "basketball":
+        let basketball_losses = parseInt(team[currentYearIndex].games_played) - parseInt(team[currentYearIndex].wins)
         setstatname1("Points")
         setstatname2("Assists")
-        setstatname3("Rebounds")
-        setstatname4("Blocks")
-        setstat1(team[teamSize].points)
-        setstat2(team[teamSize].assists)
-        setstat3(team[teamSize].total_rebounds)
-        setstat4(team[teamSize].blocks)
+        setstatname3("Offensive Rebounds")
+        setstatname4("Field Goals")
+        setstat1(team[currentYearIndex].points)
+        setstat2(team[currentYearIndex].assists)
+        setstat3(team[currentYearIndex].offensive_rebounds)
+        setstat4(team[currentYearIndex].points)
         break
       case "baseball":
-        console.log("BASEBALL OBJ:")
-        console.log(team[teamSize])
-        setstatname1("Batting Average")
-        setstatname2("On-Base Percentage")
-        setstatname3("Slugging Percentage")
-        setstatname4("Fielding Percentage")
-        setstat1(team[teamSize].batting_average)
-        setstat2(team[teamSize].on_base_percentage)
-        setstat3(team[teamSize].slugging_percentage)
-        setstat4(team[teamSize].fielding_percentage)
+        let baseball_wins = parseInt(team[currentYearIndex].home_wins) + parseInt(team[currentYearIndex].away_wins)
+        let baseball_losses = parseInt(team[currentYearIndex].home_losses) + parseInt(team[currentYearIndex].away_losses)
+        let baseball_games_played = baseball_wins + baseball_losses
+        setstatname1("Wins")
+        setstatname2("Losses")
+        setstatname3("Games Played")
+        setstatname4("Home Runs")
+        setstat1(baseball_wins)
+        setstat2(baseball_losses)
+        setstat3(baseball_games_played)
+        setstat4(team[currentYearIndex].hits)
         break
       case "hockey":
-        setstatname1("Goals")
-        setstatname2("Assists")
-        setstatname3("Rebounds")
-        setstatname4("Blocks")
-        setstat1(team[teamSize].points)
-        setstat2(team[teamSize].assists)
-        setstat3(team[teamSize].total_rebounds)
-        setstat4(team[teamSize].blocks)
+        let hockey_wins = parseInt(team[currentYearIndex].games_played) - parseInt(team[currentYearIndex].losses)
+        setstatname1("Wins")
+        setstatname2("Losses")
+        setstatname3("Games Played")
+        setstatname4("Goals")
+        setstat1(hockey_wins)
+        setstat2(team[currentYearIndex].losses)
+        setstat3(team[currentYearIndex].games_played)
+        setstat4(team[currentYearIndex].goals_for)
         break
     }
   }

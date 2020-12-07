@@ -18,6 +18,9 @@
     height: 200px;
     width: 150px;
     grid-area: Photo;
+    margin-left: 36%;
+    margin-top: 12%;
+    margin-top: 8%;
 }
 
 .player_stat_stats {

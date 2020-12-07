@@ -50,50 +50,152 @@ function PlayerCharts(props) {
                 break
             }
         case "baseball":
+            console.log(props.player1)
             if (props.title == "offensive") {
                 chartTitle = "Batting Stats"
+                for (let i = 0; i < props.player1.length; i++) {
+                    if (props.player1[i].index === "Career")
+                        break;
+                    statname1 = "Batting Average"
+                    statname2 = "On-Base Percentage"
+                    statname3 = "Slugging Percentage"
+                    statname4 = "Fielding Percentage"
+                    playerstat1[i] = props.player1[i].batting_average
+                    playerstat2[i] = props.player1[i].on_base_percentage
+                    playerstat3[i] = props.player1[i].slugging_percentage
+                    playerstat4[i] = props.player1[i].fielding_percentage
+
+
+                    xAxesLabel[i] = props.player1[i].index
+                }
+                xAxesLabel.sort()
             }
             else {
                 chartTitle = "Pitching Stats"
-            }
-            statname1 = "Batting Average"
-            statname2 = "On-Base Percentage"
-            statname3 = "Slugging Percentage"
-            statname4 = "Fielding Percentage"
-            for (let i = 0; i < props.player1.length; i++) {
-                if (props.player1[i].index === "Career")
-                    break;
-                playerstat1[i] = props.player1[i].batting_average
-                playerstat2[i] = props.player1[i].on_base_percentage
-                playerstat3[i] = props.player1[i].slugging_percentage
-                playerstat4[i] = props.player1[i].fielding_percentage
+                for (let i = 0; i < props.player1.length; i++) {
+                    if (props.player1[i].index === "Career")
+                        break;
+                    statname1 = "Hits"
+                    statname2 = "Runs"
+                    statname3 = "Base on Balls"
+                    statname4 = "Putouts"
+                    playerstat1[i] = props.player1[i].hits
+                    playerstat2[i] = props.player1[i].runs
+                    playerstat3[i] = props.player1[i].bases_on_balls
+                    playerstat4[i] = props.player1[i].putouts
 
 
-                xAxesLabel[i] = props.player1[i].index
+                    xAxesLabel[i] = props.player1[i].index
+                }
+                xAxesLabel.sort()
             }
+
+
             break
         case "football":
-            if (props.title == "offensive") {
-                chartTitle = "Offensive Stats"
-            }
-            else {
-                chartTitle = "Defensive Stats"
-            }
-            statname1 = "Points"
-            statname2 = "Assists"
-            statname3 = "Rebounds"
-            statname4 = "Blocks"
+            console.log(props.player1)
             for (let i = 0; i < props.player1.length; i++) {
-                if (props.player1[i].index === "Career")
-                    break;
-                playerstat1[i] = props.player1[i].assists
-                playerstat2[i] = props.player1[i].points
-                playerstat3[i] = props.player1[i].total_rebounds
-                playerstat4[i] = props.player1[i].blocks
-
-
+                if (props.player1[i].index === "Career" || props.player1[i].index === undefined)
+                    break
+                switch (props.player1[i].position.toUpperCase()) {
+                    case "C":
+                        if (props.title === "offensive") {
+                            chartTitle = "Approx Player Value (APR)"
+                            statname1 = "APR"
+                            playerstat1[i] = (props.player1[i].approximate_value)
+                        }
+                        else {
+                            chartTitle = "Fumbles"
+                            statname1 = ("Fumbles")
+                            statname2 = ("Touchdowns")
+                            playerstat1[i] = (props.player1[i].fumbles)
+                            playerstat2[i] = (parseInt(props.player1[i].rushing_and_receiving_touchdowns) + parseInt(props.player1[i].passing_touchdowns))
+                            statname3 = ("Quarterback Rating")
+                            playerstat3[i] = props.player1[i].espn_qbr
+                        }
+                        break
+                    case "QB":
+                        if (props.title === "offensive") {
+                            chartTitle = "Passing Stats"
+                            statname1 = "Passing Yards"
+                            playerstat1[i] = (props.player1[i].passing_yards)
+                        }
+                        else {
+                            chartTitle = "Rushing Stats"
+                            statname1 = ("Rushing Yards")
+                            statname2 = ("Touchdowns")
+                            playerstat1[i] = (props.player1[i].rush_yards)
+                            playerstat2[i] = (parseInt(props.player1[i].rushing_and_receiving_touchdowns) + parseInt(props.player1[i].passing_touchdowns))
+                            statname3 = ("Quarterback Rating")
+                            playerstat3[i] = props.player1[i].espn_qbr
+                        }
+                        break
+                    case "TE":
+                        if (props.title === "offensive") {
+                            chartTitle = "Passing Stats"
+                            statname1 = "Passing Yards"
+                            playerstat1[i] = (props.player1[i].passing_yards)
+                        }
+                        else {
+                            chartTitle = "Rushing Stats"
+                            statname1 = ("Rushing Yards")
+                            statname2 = ("Touchdowns")
+                            playerstat1[i] = (props.player1[i].rush_yards)
+                            playerstat2[i] = (parseInt(props.player1[i].rushing_and_receiving_touchdowns) + parseInt(props.player1[i].passing_touchdowns))
+                            statname3 = ("Quarterback Rating")
+                            playerstat3[i] = props.player1[i].espn_qbr
+                        }
+                        break
+                    case "DE":
+                        statname1 = ("Tackles")
+                        statname2 = ("Interceptions")
+                        statname3 = ("Sacks")
+                        statname4 = ("Fumbles Forced")
+                        playerstat1[i] = (props.player1[i].tackles)
+                        playerstat2[i] = (props.player1[i].interceptions)
+                        playerstat3[i] = (props.player1[i].sacks)
+                        playerstat4[i] = (props.player1[i].fumbles_forced)
+                        break
+                    case "LDE":
+                        statname1 = ("Tackles")
+                        statname2 = ("Interceptions")
+                        statname3 = ("Sacks")
+                        statname4 = ("Fumbles Forced")
+                        playerstat1[i] = (props.player1[i].tackles)
+                        playerstat2[i] = (props.player1[i].interceptions)
+                        playerstat3[i] = (props.player1[i].sacks)
+                        playerstat4[i] = (props.player1[i].fumbles_forced)
+                        break
+                    case "RDE":
+                        statname1 = ("Tackles")
+                        statname2 = ("Interceptions")
+                        statname3 = ("Sacks")
+                        statname4 = ("Fumbles Forced")
+                        playerstat1[i] = (props.player1[i].tackles)
+                        playerstat2[i] = (props.player1[i].interceptions)
+                        playerstat3[i] = (props.player1[i].sacks)
+                        playerstat4[i] = (props.player1[i].fumbles_forced)
+                        break
+                    default:
+                        if (props.title === "offensive") {
+                            chartTitle = "Passing Stats"
+                            statname1 = "Passing Yards"
+                            playerstat1[i] = (props.player1[i].passing_yards)
+                        }
+                        else {
+                            chartTitle = "Rushing Stats"
+                            statname1 = ("Rushing Yards")
+                            statname2 = ("Touchdowns")
+                            playerstat1[i] = (props.player1[i].rush_yards)
+                            playerstat2[i] = (parseInt(props.player1[i].rushing_and_receiving_touchdowns) + parseInt(props.player1[i].passing_touchdowns))
+                            statname3 = ("Quarterback Rating")
+                            playerstat3[i] = props.player1[i].espn_qbr
+                        }
+                        break
+                }
                 xAxesLabel[i] = props.player1[i].index
             }
+
             break
         case "hockey":
             if (props.title == "offensive") {
@@ -105,7 +207,7 @@ function PlayerCharts(props) {
                 for (let i = 0; i < props.player1.length; i++) {
                     if (props.player1[i].index === "Career")
                         break;
-                    playerstat1[i] = props.player1[i].points
+                    playerstat1[i] = props.player1[i].goals
                     playerstat2[i] = props.player1[i].assists
                     playerstat3[i] = props.player1[i].offensive_point_shares
                     playerstat4[i] = props.player1[i].goals_created

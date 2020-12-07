@@ -76,9 +76,38 @@ function TeamCharts(props) {
                     xAxesLabel[i] = props.SeasonStats[i].year
                 }
             }
-
             break
         case "hockey":
+            console.log(props.SeasonStats)
+            if (props.title === "offensive") {
+                chartTitle = "Season Stats"
+                statname1 = "Wins"
+                statname2 = "Losses"
+                statname3 = "Games Played"
+                statname4 = "Goals"
+                for (let i = 0; i < props.SeasonStats.length; i++) {
+                    teamstat1[i] = props.SeasonStats[i].wins
+                    teamstat2[i] = props.SeasonStats[i].losses
+                    teamstat3[i] = parseInt(props.SeasonStats[i].wins) + parseInt(props.SeasonStats[i].losses)
+                    teamstat4[i] = props.SeasonStats[i].goals_for
+
+                    xAxesLabel[i] = props.SeasonStats[i].year
+                }
+            }
+            else {
+                chartTitle = "Offensive Stats"
+                statname1 = "Goals"
+                statname2 = "Power Player Goals"
+                statname3 = "Power Play Opportunities"
+                statname4 = "Penalty Killing Percentage"
+                for (let i = 0; i < props.SeasonStats.length; i++) {
+                    teamstat1[i] = props.SeasonStats[i].goals_for
+                    teamstat2[i] = props.SeasonStats[i].power_play_goals
+                    teamstat3[i] = props.SeasonStats[i].power_play_opportunities
+                    teamstat4[i] = props.SeasonStats[i].penalty_killing_percentage
+                    xAxesLabel[i] = props.SeasonStats[i].year
+                }
+            }
             break
     }
     teamstat1 = [...new Set(teamstat1)]

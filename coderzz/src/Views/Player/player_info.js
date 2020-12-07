@@ -87,35 +87,71 @@ function Player(props) {
         setstat4(player[career].fielding_percentage)
         break
       case "football":
-        let offensivePosFootball = ["C", "OG", "OT", "QB", "HB", "FB", "WR", "TE"]
-        let defensivePosFootball = ["DT", "DE", "MLB", "OLB", "CB", "S"]
-
+        console.log(player)
         for (let i = 0; i < player.length; i++) {
-          if (player[i].position != "") {
-            switch (player[i].position) {
-              case "C":
-              case "OG":
-              case "OT":
-              case "QB":
-              case "HB":
-              case "FB":
-              case "WR":
-              case "TE":
-              case "DT":
-              case "DE" || "LDE" || "RDE":
-              case "MLB":
-              case "OLB":
-              case "CB":
-              case "S":
-            }
+          switch (player[i].position.toUpperCase()) {
+            case "C":
+            case "OG":
+            case "OT":
+            case "QB":
+              setstatname1("Passing Yards")
+              setstatname2("Rushing Yards")
+              setstatname3("Quarterback Rating")
+              setstatname4("Touchdowns")
+              setstat1(player[career].passing_yards)
+              setstat2(player[career].rush_yards)
+              setstat3(player[player.length-2].espn_qbr)
+              setstat4(parseInt(player[career].rushing_and_receiving_touchdowns) + parseInt(player[career].passing_touchdowns))
+              break
+            case "HB":
+            case "FB":
+            case "WR":
+            case "TE":
+            case "DT":
+            case "DE":
+              setstatname1("Tackles")
+              setstatname2("Interceptions")
+              setstatname3("Sacks")
+              setstatname4("Fumbles Forced")
+              setstat1(player[career].tackles)
+              setstat2(player[career].interceptions)
+              setstat3(player[career].sacks)
+              setstat4(player[career].fumbles_forced)
+              break
+            case "LDE":
+              setstatname1("Tackles")
+              setstatname2("Interceptions")
+              setstatname3("Sacks")
+              setstatname4("Fumbles Forced")
+              setstat1(player[career].tackles)
+              setstat2(player[career].interceptions)
+              setstat3(player[career].sacks)
+              setstat4(player[career].fumbles_forced)
+              break
+            case "RDE":
+              setstatname1("Tackles")
+              setstatname2("Interceptions")
+              setstatname3("Sacks")
+              setstatname4("Fumbles Forced")
+              setstat1(player[career].tackles)
+              setstat2(player[career].interceptions)
+              setstat3(player[career].sacks)
+              setstat4(player[career].fumbles_forced)
+              break
+            case "MLB":
+            case "OLB":
+            case "CB":
+            case "S":
           }
+
         }
+        break
       case "hockey":
         setstatname1("Goals")
         setstatname2("Assists")
         setstatname3("Offensive Point Shares")
         setstatname4("Goals Created")
-        setstat1(player[career].points)
+        setstat1(player[career].goals)
         setstat2(player[career].assists)
         setstat3(player[career].offensive_point_shares)
         setstat4(player[career].goals_created)
@@ -207,7 +243,7 @@ function Player(props) {
           <div className="card-body player_stat_body">
             <img className="card-img-top player_stat_img_item"
               src={linkGen("player", sport, player[0].player_id)}
-              onerror={otherbslink}
+              onError={otherbslink}
               alt="Headshot" />
           </div>
           <div className="card player_stat_stats">
