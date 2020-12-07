@@ -96,7 +96,6 @@ function PlayerCharts(props) {
             }
             break
         case "hockey":
-            console.log(props.player1[props.player1.length-1])
             if (props.title == "offensive") {
                 chartTitle = "Offensive Stats"
                 statname1 = "Goals"
@@ -135,7 +134,6 @@ function PlayerCharts(props) {
     playerstat3 = [...new Set(playerstat3)]
     playerstat4 = [...new Set(playerstat4)]
     xAxesLabel = [...new Set(xAxesLabel)]
-    console.log("CHART TITLE: " + chartTitle)
     const data = {
         labels: xAxesLabel,
         datasets: [

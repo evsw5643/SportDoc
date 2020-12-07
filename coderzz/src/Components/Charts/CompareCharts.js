@@ -24,7 +24,7 @@ function CompareCharts(props) {
     let playerTwoStat4 = []
 
     let xAxesLabel = []
-    // console.log(props.player1[0])
+
     switch (props.player1[0].sportname) {
         case "basketball":
             if (props.title == "offensive") {
@@ -136,7 +136,6 @@ function CompareCharts(props) {
     playerOneStat3 = [...new Set(playerOneStat3)]
     playerOneStat4 = [...new Set(playerOneStat4)]
     xAxesLabel = [...new Set(xAxesLabel)]
-    console.log("CHART TITLE: " + chartTitle)
     const data = {
         labels: xAxesLabel,
         datasets: [

@@ -48,12 +48,36 @@ function App() {
 function TeamLoad() {
     let { abb } = useParams()
     let { sport } = useParams()
-    return (
-        <div>
-            <Team team={abb} sport={sport} />
-            <CompareCard cardType="team" sport={sport} playerID={abb} />
-        </div>
-    )
+    switch (sport) {
+        case "basketball":
+            return (
+                <div>
+                    <Team team={abb} sport={sport} />
+                    <CompareCard cardType="team" sport={sport} playerID={abb} />
+                </div>
+            )
+        case "baseball":
+            return (
+                <div>
+                    <Team team="COL" sport={sport} />
+                    <CompareCard cardType="team" sport={sport} playerID="COL" />
+                </div>
+            )
+        case "hockey":
+            return (
+                <div>
+                    <Team team="COL" sport={sport} />
+                    <CompareCard cardType="team" sport={sport} playerID="COL" />
+                </div>
+            )
+        case "football":
+            return (
+                <div>
+                    <Team team={abb} sport={sport} />
+                    <CompareCard cardType="team" sport={sport} playerID={abb} />
+                </div>
+            )
+    }
 }
 
 // * Loads sport 
