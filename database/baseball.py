@@ -55,15 +55,15 @@ def do_baseball():
             except:
                 traceback.print_exc()
 
-        for team in teams:
-            do_players(team)
-
-        try:
-            do_games()
-        except Exception as e:
-            traceback.print_exc()
-            time.sleep(timeout)
-            do_games()
+        # for team in teams:
+        #     do_players(team)
+        #
+        # try:
+        #     do_games()
+        # except Exception as e:
+        #     traceback.print_exc()
+        #     time.sleep(timeout)
+        #     do_games()
 
     def do_players(team):
         for player in team.roster.players:
