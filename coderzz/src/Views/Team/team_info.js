@@ -27,7 +27,6 @@ function Team(props) {
     setsport(props.sport)
     api(props.team, props.sport)
   }, [props.sport, props.team])
-
   function api(apiTeam, apiSport) {
     fetch(`/${apiSport}/getteam/${apiTeam}`)
       .then(res => res.json())

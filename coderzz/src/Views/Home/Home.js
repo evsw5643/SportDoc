@@ -12,7 +12,7 @@ function Home() {
         <Sport sport="basketball" ></Sport>
         <Sport sport="hockey" ></Sport>
         {/* <Sport sport="football" ></Sport> */}
-        {/* <Sport sport="baseball" ></Sport> */}
+        <Sport sport="baseball" ></Sport>
       </div>
     </div>
   );

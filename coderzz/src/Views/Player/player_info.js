@@ -77,8 +77,6 @@ function Player(props) {
         setstat5(player[career].player_efficiency_rating)
         break
       case "baseball":
-        console.log("BASEBALL OBJ:")
-        console.log(player[career])
         setstatname1("Batting Average")
         setstatname2("On-Base Percentage")
         setstatname3("Slugging Percentage")
@@ -139,7 +137,8 @@ function Player(props) {
           return (`https://www.pro-football-reference.com/req/20180910/images/headshots/${id}_${year}.jpg`)
           break
         case "baseball":
-          return (`https://www.baseball-reference.com/req/202007270/images/headshots/c/${player[0].chadwick_id}_mlbam.jpg`)
+          // return (`https://www.baseball-reference.com/req/202007270/images/headshots/c/${player[0].chadwick_id}_mlbam.jpg`)
+          return ("https://www.baseball-reference.com/req/202011060/images/headshots/f/f322d40f_mlbam.jpg")
           break
         case "hockey":
           if (player[player.length - 2].index == "2019-20") {
@@ -201,7 +200,7 @@ function Player(props) {
       }
       return teamArr
     }
-    console.log(player[0])
+
     return (
       <div className="hpage">
         <div className="card player_stat_card">
