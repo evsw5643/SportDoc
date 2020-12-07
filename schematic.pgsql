@@ -253,7 +253,8 @@ create table mlb_teams
     wins_vs_right_handed_pitchers         bigint,
     wins_vs_teams_over_500                bigint,
     wins_vs_teams_under_500               bigint,
-    year                                  bigint
+    year                                  bigint,
+    wins                                  int
 );
 
 alter table mlb_teams
@@ -969,3 +970,4 @@ alter table mlb_games
 create index ix_mlb_games_index
     on mlb_games (index);
 
+UPDATE nba_teams SET wins = (SELECT COUNT(*) FROM nba_games WHERE nba_games.winning_abbr = nba_teams.abbreviation AND EXTRACT(year FROM date) = nba_teams.year)
