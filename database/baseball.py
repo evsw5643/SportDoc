@@ -23,7 +23,7 @@ from sportsreference.nhl.teams import Teams as NHLTeams
 
 # Verify that there are no existing tables
 # print(engine.table_names())
-timeout = 30
+timeout = 1
 
 
 def do_baseball():
@@ -33,37 +33,37 @@ def do_baseball():
     def do_year(year):
         # engine = sqlalchemy.create_engine("postgresql://ubuntu:password@3.17.77.33/sportdoc")
         # con = engine.connect()
-        try:
-            teams = MLBTeams(year=year)
-            frames = teams.dataframes
-            frames['year'] = year
-
-            try:
-                frames.to_sql("mlb_teams", con, if_exists='append')
-            except:
-                traceback.print_exc()
-
-        except Exception as e:
-            traceback.print_exc()
-            time.sleep(timeout)
-            teams = MLBTeams(year=year)
-            frames = teams.dataframes
-            frames['year'] = year
-
-            try:
-                frames.to_sql("mlb_teams", con, if_exists='append')
-            except:
-                traceback.print_exc()
-
-        # for team in teams:
-        #     do_players(team)
-        #
         # try:
-        #     do_games()
+        #     teams = MLBTeams(year=year)
+        #     frames = teams.dataframes
+        #     frames['year'] = year
+        #
+        #     try:
+        #         frames.to_sql("mlb_teams", con, if_exists='append')
+        #     except:
+        #         traceback.print_exc()
+        #
         # except Exception as e:
         #     traceback.print_exc()
         #     time.sleep(timeout)
-        #     do_games()
+        #     teams = MLBTeams(year=year)
+        #     frames = teams.dataframes
+        #     frames['year'] = year
+        #
+        #     try:
+        #         frames.to_sql("mlb_teams", con, if_exists='append')
+        #     except:
+        #         traceback.print_exc()
+        #
+        # for team in teams:
+        #     do_players(team)
+
+        try:
+            do_games()
+        except Exception as e:
+            traceback.print_exc()
+            time.sleep(timeout)
+            do_games()
 
     def do_players(team):
         for player in team.roster.players:
@@ -103,7 +103,7 @@ def do_baseball():
         except:
             traceback.print_exc()
 
-    for year in range(2000, 2021):
+    for year in range(2000, 2010):
         wraprun(do_year, year)
         # threading.Thread(target=wraprun, args=(do_year, year)).start()
 
