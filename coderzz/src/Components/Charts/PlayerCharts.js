@@ -89,8 +89,6 @@ function PlayerCharts(props) {
                 }
                 xAxesLabel.sort()
             }
-
-
             break
         case "football":
             console.log(props.player1)

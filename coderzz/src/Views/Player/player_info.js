@@ -4,7 +4,7 @@ import "./player_info.css"
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Blank from '../blank.png'
 import PlayerCharts from '../../Components/Charts/PlayerCharts.js';
-
+import MikeTrout from '../../miketrout.png'
 
 function Player(props) {
 
@@ -81,6 +81,8 @@ function Player(props) {
         setstatname2("On-Base Percentage")
         setstatname3("Slugging Percentage")
         setstatname4("Fielding Percentage")
+        setstatname5("")
+        setstat5("")
         setstat1(player[career].batting_average)
         setstat2(player[career].on_base_percentage)
         setstat3(player[career].slugging_percentage)
@@ -91,28 +93,40 @@ function Player(props) {
         for (let i = 0; i < player.length; i++) {
           switch (player[i].position.toUpperCase()) {
             case "C":
+              break
             case "OG":
+              break
             case "OT":
+              break
             case "QB":
               setstatname1("Passing Yards")
               setstatname2("Rushing Yards")
               setstatname3("Quarterback Rating")
               setstatname4("Touchdowns")
+              setstatname5("")
+              setstat5("")
               setstat1(player[career].passing_yards)
               setstat2(player[career].rush_yards)
-              setstat3(player[player.length-2].espn_qbr)
+              setstat3(player[player.length - 2].espn_qbr)
               setstat4(parseInt(player[career].rushing_and_receiving_touchdowns) + parseInt(player[career].passing_touchdowns))
               break
             case "HB":
+              break
             case "FB":
+              break
             case "WR":
+              break
             case "TE":
+              break
             case "DT":
+              break
             case "DE":
               setstatname1("Tackles")
               setstatname2("Interceptions")
               setstatname3("Sacks")
               setstatname4("Fumbles Forced")
+              setstatname5("")
+              setstat5("")
               setstat1(player[career].tackles)
               setstat2(player[career].interceptions)
               setstat3(player[career].sacks)
@@ -123,6 +137,8 @@ function Player(props) {
               setstatname2("Interceptions")
               setstatname3("Sacks")
               setstatname4("Fumbles Forced")
+              setstatname5("")
+              setstat5("")
               setstat1(player[career].tackles)
               setstat2(player[career].interceptions)
               setstat3(player[career].sacks)
@@ -133,17 +149,22 @@ function Player(props) {
               setstatname2("Interceptions")
               setstatname3("Sacks")
               setstatname4("Fumbles Forced")
+              setstatname5("")
+              setstat5("")
               setstat1(player[career].tackles)
               setstat2(player[career].interceptions)
               setstat3(player[career].sacks)
               setstat4(player[career].fumbles_forced)
               break
             case "MLB":
+              break
             case "OLB":
+              break
             case "CB":
+              break
             case "S":
+              break
           }
-
         }
         break
       case "hockey":
@@ -151,11 +172,14 @@ function Player(props) {
         setstatname2("Assists")
         setstatname3("Offensive Point Shares")
         setstatname4("Goals Created")
+        setstatname5("")
+        setstat5("")
         setstat1(player[career].goals)
         setstat2(player[career].assists)
         setstat3(player[career].offensive_point_shares)
         setstat4(player[career].goals_created)
         break
+      
     }
   }
 
@@ -173,8 +197,7 @@ function Player(props) {
           return (`https://www.pro-football-reference.com/req/20180910/images/headshots/${id}_${year}.jpg`)
           break
         case "baseball":
-          // return (`https://www.baseball-reference.com/req/202007270/images/headshots/c/${player[0].chadwick_id}_mlbam.jpg`)
-          return ("https://www.baseball-reference.com/req/202011060/images/headshots/f/f322d40f_mlbam.jpg")
+          return (MikeTrout)
           break
         case "hockey":
           if (player[player.length - 2].index == "2019-20") {
@@ -244,7 +267,7 @@ function Player(props) {
             <img className="card-img-top player_stat_img_item"
               src={linkGen("player", sport, player[0].player_id)}
               onError={otherbslink}
-              alt="Headshot" />
+              alt={"Player Headshot Unavailable"} />
           </div>
           <div className="card player_stat_stats">
             <div className="card-body player_stat_body">

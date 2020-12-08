@@ -77,15 +77,6 @@ function CompareCard(props) {
       </div>
       )
     }
-    // else if (compareTeam) {
-    //   return (
-    //     <div className="hpage">
-    //       <div className="card player_compare_stats">
-    //         <CardSearch sport={props.sport} id1={props.playerID} compareType="add" />
-    //       </div>
-    //     </div>
-    //   )
-    // }
   }
 }
 

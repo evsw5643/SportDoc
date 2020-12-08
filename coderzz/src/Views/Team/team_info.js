@@ -22,11 +22,12 @@ function Team(props) {
   const [stat2, setstat2] = useState(0)
   const [stat3, setstat3] = useState(0)
   const [stat4, setstat4] = useState(0)
+  let teamAbbr = ""
   useEffect(() => {
     setloading(true)
     setsport(props.sport)
     api(props.team, props.sport)
-  }, [props.sport, props.team])
+  }, [props.sport, props.team, props.team2])
   function api(apiTeam, apiSport) {
     fetch(`/${apiSport}/getteam/${apiTeam}`)
       .then(res => res.json())
@@ -46,12 +47,12 @@ function Team(props) {
   }
   function perSport(spo, team, teamSize) {
     //console.log(team)
-    for(let i = 0; i < team.length; i++){
-      if(team[i].year === "2018"){
+    for (let i = 0; i < team.length; i++) {
+      if (team[i].year === "2018") {
         console.log(team[i])
       }
     }
-    let currentYearIndex = team.length-1
+    let currentYearIndex = team.length - 1
     switch (spo) {
       case "basketball":
         let basketball_losses = parseInt(team[currentYearIndex].games_played) - parseInt(team[currentYearIndex].wins)
@@ -63,6 +64,7 @@ function Team(props) {
         setstat2(team[currentYearIndex].assists)
         setstat3(team[currentYearIndex].offensive_rebounds)
         setstat4(team[currentYearIndex].points)
+        teamAbbr = team[currentYearIndex].abbreviation
         break
       case "baseball":
         let baseball_wins = parseInt(team[currentYearIndex].home_wins) + parseInt(team[currentYearIndex].away_wins)
@@ -76,6 +78,18 @@ function Team(props) {
         setstat2(baseball_losses)
         setstat3(baseball_games_played)
         setstat4(team[currentYearIndex].hits)
+        teamAbbr = team[currentYearIndex].abbreviation
+        break
+      case "football":
+        setstatname1("Wins")
+        setstatname2("Losses")
+        setstatname3("Games Played")
+        setstatname4("Touchdowns")
+        setstat1(team[currentYearIndex].wins)
+        setstat2(team[currentYearIndex].losses)
+        setstat3(team[currentYearIndex].games_played)
+        setstat4(team[currentYearIndex].rush_touchdowns)
+        teamAbbr = team[currentYearIndex].abbreviation.toLowerCase()
         break
       case "hockey":
         let hockey_wins = parseInt(team[currentYearIndex].games_played) - parseInt(team[currentYearIndex].losses)
@@ -87,6 +101,7 @@ function Team(props) {
         setstat2(team[currentYearIndex].losses)
         setstat3(team[currentYearIndex].games_played)
         setstat4(team[currentYearIndex].goals_for)
+        teamAbbr = team[currentYearIndex].abbreviation
         break
     }
   }
@@ -130,9 +145,9 @@ function Team(props) {
       .then(res => res.json())
       .then(function (data) {
         for (let i = 0; i < data.length; i++) {
-          let t1 = data[i].home_abbr, t2 = data[i].away_abbr
+          let t1 = data[i].home_abbr.toUpperCase(), t2 = data[i].away_abbr.toUpperCase()
           let s1 = data[i].home_score, s2 = data[i].away_score
-
+  
           let r1 = 0, r2 = 1;
           if (s1 === s2) {
             r1 = 0.5
@@ -182,7 +197,7 @@ function Team(props) {
       case "basketball":
         return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202010091/tlogo/bbr/${id}-2020.png`)
       case "football":
-        return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202012013/tlogo/pfr/${id}-2020.png`)
+        return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202012013/tlogo/pfr/${id.toLowerCase()}-2020.png`)
       case "baseball":
         return (`https://d2p3bygnnzw9w3.cloudfront.net/req/202012013/tlogo/br/${id}-2020.png`)
       case "hockey":
@@ -205,13 +220,17 @@ function Team(props) {
     // var replacer = function(k, v) { if (v === undefined || k === "__proto__") { return null; } return v; };
     // var jsonString = JSON.stringify(elo, replacer);
     // console.log(jsonString)
-    // console.log(elo);
-    // console.log(elo["DEN"])
-    console.log()
+    // console.log("ELO")
+    // console.log(elo)
+    let winChanceVar = 0
+    console.log("TEAM 2:")
+    console.log(props.team2)
+    if(props.team2 != undefined){
+      winChanceVar = 100*Elo.getWinChance(elo[team[0].abbreviation.toUpperCase()], elo[props.team2.toUpperCase()])
+    }
     return (
       <div className="hpage">
         <div className="card team_stat_card">
-          {/* <h2 className="card-title team_stat_title"> {team[0].name} </h2> */}
           <div className="card-body team_stat_body">
             <img className="card-img-top team_stat_img_item"
               src={linkGen("team", sport, team[0].abbreviation)}
@@ -232,15 +251,22 @@ function Team(props) {
           <div className="card team_info">
             <div className="card-body team_stat_body">
               <div className="card-text team_info_text">
-                Name: {team[0].name}
+                <h1> Team Name: <strong>{team[0].name}</strong>  </h1>
                 <br />
+                <strong>Team Abbreviation: {team[0].abbreviation}</strong>
+                <br />
+                <strong>Current Rank:</strong> {team[team.length - 1].rank}
+                <br />
+                <strong>ELO: </strong> {elo[team[0].abbreviation.toUpperCase()]}
+                <br />
+                <strong>Win Chance: </strong> {winChanceVar} %
               </div>
             </div>
           </div>
           <div className="card season_info">
             <div className="card-body team_stat_body">
               <div className="card-text team_info_text">
-                Name: {team[0].name}
+                <h1> Season: Current Season </h1>
                 <br />
               </div>
             </div>

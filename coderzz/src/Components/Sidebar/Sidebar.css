@@ -15,6 +15,7 @@
 .SidebarList .row:hover {
     cursor: pointer;
     background-color: #002a52;
+    text-decoration: none;
 }
 
 .SidebarList .row {

@@ -50,7 +50,7 @@ function TeamCharts(props) {
                 statname2 = "On-Base Percentage"
                 statname3 = "Slugging Percentage"
                 statname4 = "Fielding Percentage"
-                
+
                 for (let i = 0; i < props.SeasonStats.length; i++) {
                     teamstat1[i] = props.SeasonStats[i].batting_average
                     teamstat2[i] = props.SeasonStats[i].on_base_percentage
@@ -75,6 +75,20 @@ function TeamCharts(props) {
 
                     xAxesLabel[i] = props.SeasonStats[i].year
                 }
+            }
+            break
+        case "football":
+            statname1 = ("Wins")
+            statname2 =("Losses")
+            statname3 = ("Games Played")
+            statname4 = ("Touchdowns")
+            for(let i = 0; i < props.SeasonStats.length; i++){
+                teamstat1[i] = (props.SeasonStats[i].wins)
+                teamstat2[i] = (props.SeasonStats[i].losses)
+                teamstat3[i] = (props.SeasonStats[i].games_played)
+                teamstat4[i] = (parseInt(props.SeasonStats[i].rush_touchdowns) + parseInt(props.SeasonStats[i]))
+
+                xAxesLabel[i] = props.SeasonStats[i].year
             }
             break
         case "hockey":
@@ -166,7 +180,7 @@ function TeamCharts(props) {
             }
         }} />
     );
-    
+
 
 }
 

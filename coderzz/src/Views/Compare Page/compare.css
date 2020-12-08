@@ -14,6 +14,7 @@
     grid-gap: 10px;
     position: relative;
     transition: top, left, right, bottom, 250ms ease-in-out;
+    text-decoration: none;
 }
 .player_compare_card_static {
     height: 10%;
@@ -35,6 +36,7 @@
 .player_compare_card:hover{
     cursor: pointer;
     background: #002a52;
+    text-decoration: none;
 }
 
 .gridText{

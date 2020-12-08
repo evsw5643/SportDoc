@@ -13,8 +13,8 @@ function ComparePage(props) {
     else {
         return (
             <div>
-                <Team sport={props.sport} team={props.player1} />
-                <Team sport={props.sport} team={props.player2} />
+                <Team sport={props.sport} team={props.player1} team2={props.player2}/>
+                <Team sport={props.sport} team={props.player2} team2={props.player1}/>
             </div>
         )
     }

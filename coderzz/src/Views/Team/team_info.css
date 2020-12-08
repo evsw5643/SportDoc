@@ -66,8 +66,6 @@
     background-color: #002a52;
     width: 100%;
     grid-area: teamInfo;
-    /* margin: auto; */
-    /* margin-bottom: 1rem; */
 }
 .team_info_text {
     color: #2a9d8f;
@@ -78,6 +76,4 @@
     background-color: #002a52;
     width: 100%;
     grid-area: SeasonInfo;
-    /* margin: auto; */
-    /* margin-bottom: 1rem; */
 }

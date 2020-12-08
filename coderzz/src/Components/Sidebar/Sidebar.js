@@ -14,12 +14,14 @@ function Sidebar() {
                 {SidebarData.map((val, key) => {
                     return (
                         //onClick={ () => {window.location.pathname = val.link} }
-                        <li key={key} className="row" >
-                            <Link to={`${val.link}`}>
-                                <div id="icon"> {val.icon} </div>
-                                <div id="title"> {val.title} </div>
-                            </Link>
-                        </li>
+                        <Link to={`${val.link}`} className="row">
+                            <li key={key} className="row" >
+
+                                <div id="icon"> {val.icon}  </div>
+                                <div id="title"> {val.title}</div>
+
+                            </li>
+                        </Link>
                     )
                 })}
             </ul>

@@ -3,16 +3,13 @@ import Player from '../Player/player_info'
 import Team from '../Team/team_info'
 import CompareCard from './CompareCard'
 function Compare(props) {
-    //2 buttons, players and teams
-    //if click on player it loads a player stat card, if team it loads team
-    //also loads an empty stat card with the option to compare directly or to add another player card to see 2 different players stats separately or overlayed
     const [playerLoad, setPlayerLoad] = useState(false);
     const [teamLoad, setTeamLoad] = useState(false);
 
     useEffect(() => {
         setPlayerLoad(false)
         setTeamLoad(false)
-    }, [])
+    }, [props.sport, props.player1])
 
     function playerHandler() {
         setPlayerLoad(true)
@@ -25,7 +22,7 @@ function Compare(props) {
             <div className="hpage">
                 <div className="flex-parent jc-center">
                     <div className="card player_compare_card" onClick={playerHandler}>
-                        {/* <button type="button" className="btn btn-info playerBtn" > Players </button> */}
+                    
                         <div className="gridText">
                             <h1 className="selectionText">Players</h1>
                         </div>
@@ -33,7 +30,7 @@ function Compare(props) {
                 </div>
                 <div className="flex-parent jc-center">
                     <div className="card player_compare_card" onClick={teamHandler}>
-                        {/* <button type="button" className="btn btn-info teamBtn" > Teams </button> */}
+                        
                         <div className="gridText">
                             <h1 className="selectionText">Teams</h1>
                         </div>
